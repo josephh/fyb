@@ -1,0 +1,97 @@
+/* Rudimentary CSS Reset - producion environments should consider more 'complete' reset */
+{
+    margin: 0;
+    padding: 0;
+}
+ 
+/* Tell the browser to render HTML 5 elements as block.  This is a stop-gap,
+telling web browsers which aren't familiar with the newer elements what to do with 
+elements they don't know about (because they are html 5 and that's not yet fully
+supported across all browsers */
+header, footer, aside, nav, article {
+    display: block;
+}
+
+nav { /* we want the nav element to span the whole page: given it an absolute (fixed) position and a relative width to fill the space */
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: url("nav_background");
+}
+
+    nav ul { /* centre the nested, unordered list - specify the width to make sure it fits within layout boundaries */
+        margin: 0 auto;
+        width: 940px;
+        list-style: none;
+    }
+
+        nav ul li { /* float the menu items, going left to right */
+            float: left;
+        } 
+ 
+            nav ul li a { /* style the links */
+                    display: block;
+                    margin-right: 20px;
+                    width: 140px;
+                    font-size: 14px;
+                    line-height: 44px;
+                    text-align: center;
+                    text-decoration: none;
+                    color: #777;
+            }
+
+            nav ul li a:hover { /* change the colour of the menu item the mouse if over */
+                color: #fff;
+            }
+
+        nav ul li.selected a {  /* change the colour of selected item */
+            color: #fff;
+        }
+    
+        nav ul li.subscribe a {  /* special styling for the link */
+            margin-left: 22px;
+            padding-left: 33px;
+            text-align: left;
+            background: url("rss.png") left center no-repeat;
+        }
+
+body { 
+    margin: 0 auto; /* margin properties result in centering: the full margin syntax is 'margin-top: 0; margin-right: auto; margin-bottom: 0; margin-left: auto;' Shorthand is 'margin 1px 2px 3px 4px' - remembered via the TRouBLe menemonic (top, right, left, bottom).  But we shorten further here since there are only 2 values to assign (0 and auto).  This means effectivly no top and bottom margins but auto centering.  AUTO MARGINS NEEDS A FIXED WIDTH DECLARATION! */
+    width: 940px; /* body width is fixed! lengths can be specified in pixels.  Pixel measurements are usually relative to the device on which a document is reproduced.  However, once css3 and html 5 are completely implemented by the browser vendors page zooming will be fully-functional, rather than resizing being limited to text resizing only.  Relative units won't be needed then, the browser will take care of rescaling the page. */
+    font: 13px/22px Helvetica, Arial, sans-serif;
+    background: #f0f0f0;
+}
+
+#intro { /* # (or pound sign) is the Id selector */
+    margin-top: 66px;
+    padding: 44px;
+    background: #467612 url("../Downloads/photos/joe-james-maggie.jpg") repeat-x;
+    background-size: 50%;  /* new in css3 */
+    border-radius: 22px; /* new in css3 (rounded borders) */
+    
+    /* unforunately this isn't supported yet by the major browsers */
+    /* Background-size not implemented yet */
+    -webkit-background-size: 100%;
+    -o-background-size: 100%;
+    -khtml-background-size: 100%;
+ 
+    /* Border-radius not implemented yet */
+    -moz-border-radius: 22px;
+    -webkit-border-radius: 22px;
+}
+ 
+h2 {
+    font-size: 28px;
+    line-height: 44px;
+    padding: 22px 0;
+}
+ 
+h3 {
+    font-size: 18px;
+    line-height: 22px;
+    padding: 11px 0;
+}
+ 
+p {
+    padding-bottom: 22px;
+}
