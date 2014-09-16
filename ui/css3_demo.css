@@ -1,25 +1,45 @@
-/* Rudimentary CSS Reset - producion environments should consider more 'complete' reset */
+/* Rudimentary CSS Reset - producion environments should consider more 
+'complete' reset */
 {
     margin: 0;
     padding: 0;
 }
  
 /* Tell the browser to render HTML 5 elements as block.  This is a stop-gap,
-telling web browsers which aren't familiar with the newer elements what to do with 
+telling web browsers which aren't familiar with the newer elements what to do 
+with 
 elements they don't know about (because they are html 5 and that's not yet fully
 supported across all browsers */
 header, footer, aside, nav, article {
     display: block;
 }
 
-nav { /* we want the nav element to span the whole page: given it an absolute (fixed) position and a relative width to fill the space */
+h2 {
+    font-size: 28px;
+    line-height: 44px;
+    padding: 22px 0;
+}
+ 
+h3 {
+    font-size: 18px;
+    line-height: 22px;
+    padding: 11px 0;
+}
+ 
+p {
+    padding-bottom: 22px;
+}
+
+nav { /* we want the nav element to span the whole page: given it an absolute
+(fixed) position and a relative width to fill the space */
     position: absolute;
     left: 0;
     width: 100%;
     background: url("nav_background");
 }
 
-    nav ul { /* centre the nested, unordered list - specify the width to make sure it fits within layout boundaries */
+    nav ul { /* centre the nested, unordered list - specify the width to make 
+    sure it fits within layout boundaries */
         margin: 0 auto;
         width: 940px;
         list-style: none;
@@ -40,7 +60,8 @@ nav { /* we want the nav element to span the whole page: given it an absolute (f
                     color: #777;
             }
 
-            nav ul li a:hover { /* change the colour of the menu item the mouse if over */
+            nav ul li a:hover { /* change the colour of the menu item the mouse 
+            if over */
                 color: #fff;
             }
 
@@ -56,8 +77,19 @@ nav { /* we want the nav element to span the whole page: given it an absolute (f
         }
 
 body { 
-    margin: 0 auto; /* margin properties result in centering: the full margin syntax is 'margin-top: 0; margin-right: auto; margin-bottom: 0; margin-left: auto;' Shorthand is 'margin 1px 2px 3px 4px' - remembered via the TRouBLe menemonic (top, right, left, bottom).  But we shorten further here since there are only 2 values to assign (0 and auto).  This means effectivly no top and bottom margins but auto centering.  AUTO MARGINS NEEDS A FIXED WIDTH DECLARATION! */
-    width: 940px; /* body width is fixed! lengths can be specified in pixels.  Pixel measurements are usually relative to the device on which a document is reproduced.  However, once css3 and html 5 are completely implemented by the browser vendors page zooming will be fully-functional, rather than resizing being limited to text resizing only.  Relative units won't be needed then, the browser will take care of rescaling the page. */
+    margin: 0 auto; /* margin properties result in centering: the full margin 
+    syntax is 'margin-top: 0; margin-right: auto; margin-bottom: 0; margin-left:
+     auto;' Shorthand is 'margin 1px 2px 3px 4px' - remembered via the TRouBLe 
+     menemonic (top, right, left, bottom).  But we shorten further here since 
+     there are only 2 values to assign (0 and auto).  This means effectivly no 
+     top and bottom margins but auto centering.  AUTO MARGINS NEEDS A FIXED 
+     WIDTH DECLARATION! */
+    width: 940px; /* body width is fixed! lengths can be specified in pixels.  
+    Pixel measurements are usually relative to the device on which a document 
+    is reproduced.  However, once css3 and html 5 are completely implemented by 
+    the browser vendors page zooming will be fully-functional, rather than 
+    resizing being limited to text resizing only.  Relative units won't be 
+    needed then, the browser will take care of rescaling the page. */
     font: 13px/22px Helvetica, Arial, sans-serif;
     background: #f0f0f0;
 }
@@ -65,11 +97,16 @@ body {
 #intro { /* # (or pound sign) is the Id selector */
     margin-top: 66px;
     padding: 44px;
-    background: #467612 url("../Downloads/photos/joe-james-maggie.jpg") repeat-x;
+    background: #467612 url("../Downloads/photos/joe-james-maggie.jpg") top 
+    left (287px 100%) repeat-x, url("intro_flower.png") top right (653px 100%) 
+    no-repeat;  /* css3 supports giving a second background image to the 
+    background property - in this example they both get explicit dimensions to 
+    ensure they don't overlap : BUT no browser reliably support this yet - so
+    do it the old-school way = an inline image positioned using css */
     background-size: 50%;  /* new in css3 */
     border-radius: 22px; /* new in css3 (rounded borders) */
     
-    /* unforunately this isn't supported yet by the major browsers */
+    /* unfortunately this isn't supported yet by the major browsers */
     /* Background-size not implemented yet */
     -webkit-background-size: 100%;
     -o-background-size: 100%;
@@ -78,20 +115,79 @@ body {
     /* Border-radius not implemented yet */
     -moz-border-radius: 22px;
     -webkit-border-radius: 22px;
+    
+    /* Since we have a background-color defined, 
+    there will be no major problems in browsers that don't support background-
+    size, such as Firefox */
+}
+
+#intro h2, #intro p{  
+    width: 336px;
 }
  
-h2 {
-    font-size: 28px;
-    line-height: 44px;
-    padding: 22px 0;
+#intro h2 {
+    padding: 0 0 22px 0;
+    font-weight: normal
+    color: #fff;
 }
  
-h3 {
-    font-size: 18px;
-    line-height: 22px;
-    padding: 11px 0;
+#intro p {
+    padding: 0;
+    color: #d9f499;
+}
+
+/*
+Content area and sidebar are aligned beside typically, this would be done using
+ floats, but in CSS 3 we are can use tables!
+ !!!! Table for web layout is bad, especially for usability and accessibility
+ concerns: think NoMensa.  So, it's best practise to continue to avoid tables 
+to mark up a layout. However, in CSS 3 we can make elements behave like tables 
+without it ever showing in the markup!
+
+Divs go around the sections to lend it some better organisation (see the html).
+
+So, we use the div element and # id selector to apply table styling - the 
+content as an outer table and the main content and aside as columns
+*/
+#content {
+    display: table;
 }
  
-p {
-    padding-bottom: 22px;
+    #mainContent {
+        display: table-cell;
+        width: 620px;
+        padding-right: 22px;
+    }
+ 
+    aside {
+        display: table-cell;
+        width: 300px;
+    }
+    
+.blogPost div { /* Multiple columns of text was previously impossible without
+ manually splitting the text, but with CSS 3 it's a piece of cake, although we
+  have to add a div around the multiple paragraphs for this to work with current 
+  browsers (see html)
+*/
+    column-count: 2;
+    column-gap: 22px;
+    /* but not fully supported by all browsers yet - including safari and 
+    firefox - so for those specify vendor specific properties as well */
+    /* Column-count not implemented yet */
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+ 
+    /* Column-gap not implemented yet */
+    -moz-column-gap: 22px;
+    -webkit-column-gap: 22px;
+
+    
 }
+
+    .blogPost header {
+        column-span: all;
+    }
+    Of course the column-count and column-gap properties are only supported by some browsers, Safari and Firefox. We have to use the vendor-specific properties for now.
+.blogPost div {
+}
+
