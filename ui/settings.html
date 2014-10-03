@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>Preferred Settings</title>
+		<meta name="author" content="Joseph Jobbings">
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		
+		<link rel="stylesheet" href="css3_demo.css" type="text/css" media="screen" />
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>Settings - Preferred View</h1>
+			</header>
+			<nav>
+        		<ul>
+	                <li><a href="#">Day</a></li>
+	                <li><a href="#">Week</a></li>
+	                <li><a href="#">Year</a></li>
+	                <li class="subscribe">
+	                	 <a href="#">Subscribe via RSS</a>
+	                </li>
+		        </ul>
+			</nav>
+
+			 <div id="content">
+        		<div id="mainContent">
+        			<section>
+                	<!-- Main content area -->
+                    	<header>
+                    		<img src="img/tools.ico" alt="settings icon" />
+                      		<h2>Select the view you would like to see following login</h2>
+                        </header>                        
+                        <div>
+            	            <form action="#" method="post">
+            	            	<label for="name">Day</label>
+		                    	<input type="radio" name="preferred_view_group"  value="day" id="radio_day_id" />
+		                    	<label for="name">Week</label>
+		                    	<input type="radio" name="preferred_view_group" value="week" id="radio_week_id" />
+		                    	<label for="name">Month</label>
+		                    	<input type="radio" name="preferred_view_group" value="month" id="radio_month_id" />
+		                    	<input type="submit" value="Save" />
+		                    	<input type="submit" value="Cancel" />
+	                    	</form>
+                    	</div>
+					</section>
+				</div>
+			</div>
+
+			<footer>
+				<p>
+					&copy; Copyright info in the footer
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>

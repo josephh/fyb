@@ -187,7 +187,39 @@ content as an outer table and the main content and aside as columns
     .blogPost header {
         column-span: all;
     }
-    Of course the column-count and column-gap properties are only supported by some browsers, Safari and Firefox. We have to use the vendor-specific properties for now.
-.blogPost div {
-}
-
+    
+    .blogPost img {
+    margin: 22px 0;
+    box-shadow: 3px /* The first "3px" tells the browser where we want the 
+    shadow to stop horizontally. */ 
+    3px /*The second "3px" tells it where we want the shadow to stop vertically.
+     */
+     7px /* The last "7px" is how blurred the border should be. If you set it to
+      0 it will be completely solid. */
+      #777;  /* Last but not least we define the base color of the shadow. This
+       color is of course faded, depending on how much you blur the shadow. */
+      
+    /* so far box-shadow is only used in safari, so include the vendor-
+    specific property for those browsers that don't support it...*/
+    -webkit-box-shadow: 3px 3px 7px #777;
+    }
+    
+/*Zebra-striping, or highlighting every second element in a series, has 
+traditionally involved selecting all the elements via javascript, then looping
+ through them and highlighting all the odd elements. CSS 3 introduces the
+  pseudo-class "nth-child", which makes it ridiculously simple to do this 
+  without javascript. We'll use it to zebra-stripe the comments. */
+    section#comments article:nth-child(2n+1) { /* '2n' selects every 2nd item (3
+    n selects evert third, 4n every fourth etc). +1 means start at element 1 
+    (the array is zero-based); this could also be written as
+    section#comments article:nth-child(odd) { ... } */
+        padding: 21px;
+        background: #E3E3E3;
+        border: 1px solid #d7d7d7;
+     
+        /* Border-radius not implemented yet */
+        -moz-border-radius: 11px;
+        -webkit-border-radius: 11px;
+    }
+    
+    
