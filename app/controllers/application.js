@@ -57,12 +57,25 @@ var entry = Entry.create({
    },
    fishes: Ember.ArrayProxy.extend(Ember.SortableMixin, {
        sortProperties: ['time'],
-       sortAscending: true,
+         sortAscending: true,
        content: []
      }).create()
 });
 
 entry.fishes.pushObjects([f1, f2, f3]);
+
+window.entry = entry;
+
+var f4 = Fish.create({
+  time: new Date(2015, 4, 21, 11, 52, 0, 0),
+  species: 'pike',
+  length: 35,
+  weight: 4,
+  tackle: '#4 16 CDC',
+  conditions: weather[0]
+});
+
+window.newFish = f4;
 
 export default Ember.Controller.extend({
   entry: entry

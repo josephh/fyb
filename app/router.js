@@ -6,6 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('dates');
+  this.route('fishes');
 });
 
 export default Router;
