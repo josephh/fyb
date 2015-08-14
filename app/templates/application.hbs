@@ -2,16 +2,9 @@
 <div class="container">
   <div class="col-md-12">
     <div class="page-header">
-      <h1><small>Journal Entry for : </small> {{entry.date}}</h1>
+      <h1>Fisherman's Year Book</h1>
     </div>
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li>{{link-to "Fishes" "fishes"}}</li>
-        <li>{{link-to "Dates" "dates"}}</li>
-        </ul>
-      </div>
-    </nav>
+    <!-- Anything placed in the application template will be application-wide -->
     {{outlet}}
   </div>
 </div>

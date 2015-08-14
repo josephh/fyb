@@ -1,0 +1,12 @@
+<!-- /journals/:year/entries -->
+<div class="row">
+  <div class="row list-wrapper">
+    <ul class="list-group entries">
+      {{#each entry in model}}
+    <li class="list-group-item">{{entry.datetime}}>
+      <span class="location pull-right">{{entry.location}}</span>
+    </li>
+    {{/each}}
+  </ul>
+</div>
+</div>
