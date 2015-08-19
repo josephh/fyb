@@ -5,6 +5,14 @@
       <h1>Fisherman's Year Book</h1>
     </div>
     <!-- Anything placed in the application template will be application-wide -->
+     <nav class="navbar navbar-default" role="navigation">
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li>{{link-to "Journals" "journals"}}</li>
+          <li>{{link-to "Entries" "entries"}}</li>
+        </ul>
+      </div>
+    </nav>
     {{outlet}}
   </div>
 </div>
