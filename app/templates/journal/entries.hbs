@@ -1,0 +1,11 @@
+<!-- entries.hbs -->
+<div class="row">
+  <ul class="list-group entries">
+    {{#each entry in model}}
+      <li class="list-group-item">
+        {{entry.date}}
+        <span class="fishes pull-right">{{entry.fishes}}</span>
+      </li>
+    {{/each}}
+  </ul>
+</div>

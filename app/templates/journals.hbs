@@ -1,10 +1,16 @@
 <!-- /journals -->
-<div class="row">
-  <div class="row list-wrapper">
-    <ul class="list-group">
-      {{#each journal in model}}
-      <em><li class="list-group-item">Journal for <strong>{{journal.year}}</strong></li></em>
-      {{/each}}
-    </ul>
+<div class="col-md-4">
+  <div class="list-group">
+    {{#each journal in model}}
+      {{#link-to "journal.entries" journal class="list-group-item journal-link"}}
+        {{journal.date}} (journal id: {{journal.id}})
+        <span class="pointer glyphicon glyphicon-chevron-right"></span>
+      {{/link-to}}
+    {{/each}}
+  </div>
+</div>
+<div class="col-md-8">
+  <div class="list-group">
+    {{outlet}}
   </div>
 </div>

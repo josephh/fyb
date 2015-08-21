@@ -6,24 +6,23 @@ var Router = Ember.Router.extend({
 });
 
 //      /journals/
-//      /journals/:year
-//      /journals/:year/entries
-//      /journals/:year/entries/:datetime
+//      /journals/:year-id
+//      /journals/:year-id/entries
+//      /entries/:id (once we have the entry id, that's unique - we no longer
+//        need to reference the journal.
 /* Note, resource and route are both available as methods here: resource resets
 the namespace, route appends. */
 Router.map(function() {
-  // this.resource('journals', {path: ':slug'}, function(){
-    // this.resource('entries', {path: ':slug'},function(){
-      // this.route('...');
-      // further nested routes under 'entry' can go here
-
+  // this.route('...');
+  // further nested routes under 'entry' can go here
   //this.route('journals', { path: ':slug' }, function(){
   //  this.route('entries', { path: ':slug' });
   // });
-this.route('journals');
-this.route('entries');
-
-
+  this.resource('journals', function(){
+    this.resource('journal', {path: ':slug'}, function(){
+        this.route('entries');
+    });
+  });
 });
 
 export default Router;
