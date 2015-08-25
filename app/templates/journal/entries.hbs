@@ -1,14 +1,14 @@
 <!-- entries.hbs -->
 <div class="row">
   <ol class="list-group entries">
-    {{#each entry in model}}
+    {{#each model as |entry|}}
       <li class="list-group-item">
         <strong>date:</strong>
         <em>{{entry.date}}</em>
         <strong>(id: {{entry.id}})</strong>
         <strong>(journal id: {{entry.journalId}})</strong>
         <ul class="list-group fishes">
-          {{#each fish in entry.fishes}}
+          {{#each entry.fishes as |fish|}}
             <li class="list-group-item">
               <span class="fishes">{{fish.species}}</span>
             </li>
