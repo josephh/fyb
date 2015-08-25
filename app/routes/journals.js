@@ -9,12 +9,6 @@ function logArrayElements(element, index) {
 
 var weather = ['sunny', 'overcast', 'rainy'];
 
-var entries = Ember.ArrayProxy.extend(Ember.SortableMixin, {
-  sortProperties: ['date'],
-  sortAscending: false,
-  content: []
-}).create();
-
 var Entry = Ember.Object.extend({
   id: '',
   journalId: '',
@@ -81,7 +75,7 @@ var f6 = Fish.create({
 
 var entry1 = Entry.create({
   id:1,
-  journalId: '4',
+  journalId: 4,
   date: new Date(2015, 4, 21, 10, 30, 0, 0),
   location: {
      name: 'west amesbury',
@@ -97,7 +91,7 @@ entry1.fishes.pushObjects([f1, f2]);
 
 var entry2 = Entry.create({
   id: 2,
-  journalId: '4',
+  journalId: 4,
   date: new Date(2015, 5, 1, 12, 30, 0, 0),
   location: {
      name: 'west amesbury',
@@ -113,7 +107,7 @@ entry2.fishes.pushObjects([f3, f4]);
 
 var entry3 = Entry.create({
   id: 3,
-  journalId: '4',
+  journalId: 4,
   date: new Date(2015, 6, 11, 8, 25, 0, 0),
   location: {
      name: 'west amesbury',
@@ -127,7 +121,7 @@ var entry3 = Entry.create({
 });
 entry3.fishes.pushObjects([f5, f6]);
 
-entries.pushObjects([entry1, entry2, entry3]);
+var entries = [entry1, entry2, entry3];
 
 var Journal = Ember.Object.extend({
   id: '',
@@ -139,7 +133,7 @@ var Journal = Ember.Object.extend({
   entries: function(){
     entries.forEach(logArrayElements);
     return entries.filterBy('journalId', this.get('id'));
-  }.property('journalId', 'entries.@each.entry')
+  }.property('id', 'entries.@each.journalId')
   /* findBy returns all matches.
    * entries.@each.journal is a composed dependent key so ember will invalidate
    * the computed property if either the value of entries if either entries are
