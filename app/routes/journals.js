@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import Journal from '../models/journal';
+import Entry from '../models/entry';
 
 function logArrayElements(element, index) {
   console.log('a[' + index + '] = ' + element);
@@ -8,19 +10,6 @@ function logArrayElements(element, index) {
 }
 
 var weather = ['sunny', 'overcast', 'rainy'];
-
-var Entry = Ember.Object.extend({
-  id: '',
-  journalId: '',
-  date: '',
-  location : {
-     name: '',
-     lat: '',
-     long: '',
-     postcode: ''
-   },
-   fishes: []
-});
 
 var Fish = Ember.Object.extend({
   species:'',
@@ -75,82 +64,67 @@ var f6 = Fish.create({
 
 var entry1 = Entry.create({
   id:1,
-  journalId: 4,
+  journalId: 1,
   date: new Date(2015, 4, 21, 10, 30, 0, 0),
   location: {
-     name: 'west amesbury',
-     lat: '40.712784',
-     long: '-74.005941',
-     postcode: 'sp47bq'
-   },
-   fishes: Ember.ArrayProxy.extend({
-       content: []
-     }).create()
+    name: 'west amesbury',
+    lat: '40.712784',
+    long: '-74.005941',
+    postcode: 'sp47bq'
+  },
+  fishes: Ember.ArrayProxy.extend({
+    content: []
+  }).create()
 });
 entry1.fishes.pushObjects([f1, f2]);
 
 var entry2 = Entry.create({
   id: 2,
-  journalId: 4,
+  journalId: 2,
   date: new Date(2015, 5, 1, 12, 30, 0, 0),
   location: {
-     name: 'west amesbury',
-     lat: '40.712784',
-     long: '-74.005941',
-     postcode: 'sp47bq'
-   },
-   fishes: Ember.ArrayProxy.extend( {
-       content: []
-     }).create()
+    name: 'west amesbury',
+    lat: '40.712784',
+    long: '-74.005941',
+    postcode: 'sp47bq'
+  },
+  fishes: Ember.ArrayProxy.extend( {
+    content: []
+  }).create()
 });
 entry2.fishes.pushObjects([f3, f4]);
 
 var entry3 = Entry.create({
   id: 3,
-  journalId: 4,
+  journalId: 3,
   date: new Date(2015, 6, 11, 8, 25, 0, 0),
   location: {
-     name: 'west amesbury',
-     lat: '40.712784',
-     long: '-74.005941',
-     postcode: 'sp47bq'
-   },
-   fishes: Ember.ArrayProxy.extend({
-       content: []
-     }).create()
+    name: 'west amesbury',
+    lat: '40.712784',
+    long: '-74.005941',
+    postcode: 'sp47bq'
+  },
+  fishes: Ember.ArrayProxy.extend({
+    content: []
+  }).create()
 });
 entry3.fishes.pushObjects([f5, f6]);
-
-var entries = [entry1, entry2, entry3];
-
-var Journal = Ember.Object.extend({
-  id: '',
-  date: new Date(2015, 1, 1),
-  slug: function() {
-    var s = this.date.getFullYear() + '-' + this.get('id');
-    return s;
-  }.property('id'),
-  entries: function(){
-    entries.forEach(logArrayElements);
-    return entries.filterBy('journalId', this.get('id'));
-  }.property('id', 'entries.@each.journalId')
-  /* findBy returns all matches.
-   * entries.@each.journal is a composed dependent key so ember will invalidate
-   * the computed property if either the value of entries if either entries are
-   * added or taken away or if the journal of any entry is changed.
-   */
-});
 
 var journals = Ember.ArrayProxy.extend(Ember.SortableMixin, {
   sortProperties: ['date'],
   sortAscending: true,
   content: []
 }).create();
-for(var i=2012; i<2051; i++){
-  var j = Journal.create({date: new Date(i, 1, 1)});
-  j.id = i-2011;
-  journals.pushObject(j);
-}
+
+var j1 = Journal.create({date: new Date(2013, 1, 1), id: 1});
+var j2 = Journal.create({date: new Date(2014, 1, 1), id: 2});
+var j3 = Journal.create({date: new Date(2015, 1, 1), id: 3});
+
+j1.get('entries').pushObject(entry1);
+j2.get('entries').pushObject(entry2);
+j3.get('entries').pushObject(entry3);
+
+journals.pushObjects([j1, j2, j3]);
 
 export default Ember.Route.extend({
   model: function() {
