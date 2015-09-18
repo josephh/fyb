@@ -1,27 +1,37 @@
 <!-- entries.hbs -->
 <div class="row">
   <div class="container">
+    {{#if noSongs}}
+      <div class="list-group-item empty-list">
+        <div class="empty-message">
+          There are no songs yet. Why don't you <a href="#" {{action
+            "enableSongCreation"}}>create one?</a>
+          </div>
+      </div>
+    {{/if}}
     <ul class="list-group entries">
       {{#each model as |entry|}}
-        <li class="list-group-item">
-          <strong>date:</strong>
-          <em>{{entry.date}}</em>
-          <strong>(id: {{entry.id}})</strong>
-          <strong>(journal id: {{entry.journalId}})</strong>
-          <ul class="list-group fishes">
-            <li>
-              {{input type="text" class="new-entry" placeholder="New entry"
-      value=date}}
-              <button class="new-entry-button" {{action
-      "createEntry"}}>Add</button>
+      <li class="list-group-item">
+        <strong>date:</strong>
+        <em>{{entry.date}}</em>
+        <strong>(id: {{entry.id}})</strong>
+        <strong>(journal id: {{entry.journalId}})</strong>
+        {{star-rating item=entry rating=entry.rating
+          setAction="updateRating"}}
+        <ul class="list-group fishes">
+          <li>
+            {{input type="text" class="new-entry" placeholder="New entry"
+            value=date}}
+            <button class="new-entry-button" {{action
+              "createEntry"}}>Add</button>
             </li>
             {{#each entry.fishes as |fish|}}
               <li class="list-group-item">
                 <span class="fishes">{{fish.species}}</span>
               </li>
             {{/each}}
-          </ul>
-        </li>
+        </ul>
+      </li>
       {{/each}}
     </ul>
   </div>

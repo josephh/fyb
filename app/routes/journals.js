@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Journal from '../models/journal';
 import Entry from '../models/entry';
-import Entry from '../models/fish';
+import Fish from '../models/fish';
 
 function logArrayElements(element, index) {
   console.log('a[' + index + '] = ' + element);

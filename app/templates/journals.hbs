@@ -3,7 +3,9 @@
   <div class="list-group">
     {{input type="text" class="new-journal" placeholder="New journal"
 value=date}}
-    <button class="new-journal-button" {{action "createJournal"}}>Add</button>
+    <button class="new-journal-button"
+    {{action "createJournal"}}
+    {{bind-attr disabled=disabled}}>Add</button>
     {{#each model as |journal|}}
       {{#link-to "journal.entries" journal class="list-group-item journal-link"}}
         {{journal.date}} (journal id: {{journal.id}})
