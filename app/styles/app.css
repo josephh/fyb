@@ -1,0 +1,17 @@
+h1 {
+  font-family: 'Montserrat' !important;
+  font-style: normal;
+  font-weight: 700;
+}
+
+h2, h3, h4 {
+  font-family: ‘Montserrat’, Arial, serif;
+  font-weight: 400;
+}
+
+/* app specific */
+h1.fyb-heading {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

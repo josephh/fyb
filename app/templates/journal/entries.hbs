@@ -1,11 +1,11 @@
 <!-- entries.hbs -->
 <div class="row">
   <div class="container">
-    {{#if noSongs}}
+    {{#if noEntries}}
       <div class="list-group-item empty-list">
         <div class="empty-message">
-          There are no songs yet. Why don't you <a href="#" {{action
-            "enableSongCreation"}}>create one?</a>
+          There are no entries yet. Why don't you <a href="#" {{action
+            "enableEntryCreation"}}>create one?</a>
           </div>
       </div>
     {{/if}}

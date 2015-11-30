@@ -3,13 +3,6 @@ import Journal from '../models/journal';
 import Entry from '../models/entry';
 import Fish from '../models/fish';
 
-function logArrayElements(element, index) {
-  console.log('a[' + index + '] = ' + element);
-  if(typeof element === 'object'){
-    console.log('entry\'s journal id ' + element.journalId);
-  }
-}
-
 var weather = ['sunny', 'overcast', 'rainy'];
 
 var f1 = Fish.create({
@@ -126,8 +119,8 @@ export default Ember.Route.extend({
   actions:{
     createJournal: function(){
       var date = this.get('controller').get('date');
-      var entry = Entry.create({date: date });
-      journals.pushObject(entry);
+      var journal = Entry.create({date: date, id :4 });
+      journals.pushObject(journal);
       this.get('controller').set('date','');
     }
   }

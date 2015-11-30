@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import DS from 'ember-data';
 
-export default Ember.Object.extend({
-  id: '',
-  date: '',
+var Journal = DS.Model.extend({
+  id: DS.attr('string'),
+  date: DS.attr('date'),
   slug: function() {
     var s = this.date.getFullYear() + '-' + this.get('id');
     return s;

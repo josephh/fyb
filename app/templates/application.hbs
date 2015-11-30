@@ -1,11 +1,38 @@
 <!-- app/templates/application.hbs -->
-<div class="container">
+<div class="containe-fluid">
   <div class="col-md-12">
-    <div class="page-header">
-      <h1>Fisherman's Year Book</h1>
-    </div>
+    <section class="page-header">
+      <h1 class="fyb-heading text-center">FYB</h1>
+    </section>
     <!-- Anything placed in the application template will be application-wide -->
-    
+    <!-- logged-in or not logic: TODO -->
+    <div class="row">
+      <div class="col-md-6 pull-left">
+        <svg id="fish-left" height="116" width="106" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g transform="scale(0.1)" translate="(180.1,0,0)">
+            <image x="0" y="0" height="1140" width="1040"  xlink:href="/images/fish-on-line.svg"/>
+          </g>
+        </svg>
+      </div>
+      <div class="col-md-6">
+        <svg id="fish-right" height="116" width="106" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g transform="scale(0.1)">
+            <image x="0" y="0" height="1140" width="1040"  xlink:href="/images/fish-on-line.svg"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          <h2 class="pull-right">Create a new user with...</h2>
+      </div>
+      <div class="col-md-6"></div>
+      <section class="login-user">
+        <h2 class="pull-left">Already a user?  Login with...</h2>
+      </section>
+    </div>
     {{outlet}}
+    {{outlet}}
+
   </div>
 </div>
