@@ -1,38 +1,64 @@
 <!-- app/templates/application.hbs -->
-<div class="containe-fluid">
-  <div class="col-md-12">
-    <section class="page-header">
-      <h1 class="fyb-heading text-center">FYB</h1>
-    </section>
-    <!-- Anything placed in the application template will be application-wide -->
-    <!-- logged-in or not logic: TODO -->
+<div class="container-fluid">
+  <h1 class="col-md-12 fyb-heading text-center">FYB</h1>
+  <!-- Anything placed in the application template will be application-wide -->
+  <!-- logged-in or not logic: TODO -->
     <div class="row">
-      <div class="col-md-6 pull-left">
-        <svg id="fish-left" height="116" width="106" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <g transform="scale(0.1)" translate="(180.1,0,0)">
-            <image x="0" y="0" height="1140" width="1040"  xlink:href="/images/fish-on-line.svg"/>
-          </g>
-        </svg>
+      <div class="col-md-6">
+        <img src="/images/fish-on-line-left.svg" class="img-responsive pull-right hidden-xs" alt="Responsive image">
       </div>
       <div class="col-md-6">
-        <svg id="fish-right" height="116" width="106" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <g transform="scale(0.1)">
-            <image x="0" y="0" height="1140" width="1040"  xlink:href="/images/fish-on-line.svg"/>
-          </g>
-        </svg>
+        <img src="/images/fish-on-line-right.svg" class="img-responsive pull-left hidden-xs" alt="Responsive image">
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6">
-          <h2 class="pull-right">Create a new user with...</h2>
-      </div>
-      <div class="col-md-6"></div>
-      <section class="login-user">
-        <h2 class="pull-left">Already a user?  Login with...</h2>
+      <section class="login-create-user">
+        <div class="col-md-6">
+          <h2 class="pull-left">Create a new user with...</h2>
+          <div class="clearfix"/>
+          <form>
+            <div class="form-group">
+              <label for="gmail">Email address</label>
+              <input type="email" class="form-control" id="gmail" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="username">User Name</label>
+              <input type="text" class="form-control" id="username" placeholder="Enter your preferred user name">
+            </div>
+            <div class="form-group">
+              <label for="username">First Name</label>
+              <input type="text" class="form-control" id="firstname" placeholder="First name">
+            </div>
+            <div class="form-group">
+              <label for="lastname">Last Name</label>
+              <input type="text" class="form-control" id="lastname" placeholder="Last name">
+            </div>
+            <p>Gender</p>
+            <div class="form-group">
+              <label class="checkbox-inline">
+              <input type="checkbox" id="inlineCheckboxMale" value="optionMale"> male
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxFemale" value="optionFemale"> female
+              </label>
+            </div>
+            <button type="submit" class="btn btn-default">Create New User</button>
+          </form>
+        </div>
+      </section>
+      <section class="login-existing-user">
+        <div class="col-md-6">
+            <h2 class="pull-left">Already a user?  Login with...</h2>
+            <div class="clearfix"/>
+            <form>
+              <div class="form-group">
+                <label for="gmail">Email address</label>
+                <input type="email" class="form-control" id="gmail" placeholder="Email">
+              </div>
+              <button type="submit" class="btn btn-default">Login</button>
+            </form>
+        </div>
       </section>
     </div>
-    {{outlet}}
-    {{outlet}}
-
-  </div>
+  {{outlet}}
 </div>
