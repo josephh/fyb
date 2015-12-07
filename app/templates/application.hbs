@@ -1,6 +1,17 @@
 <!-- app/templates/application.hbs -->
-<div class="container-fluid">
-  <h1 class="col-md-12 fyb-heading text-center">FYB</h1>
-  <!-- Anything placed in the application template will be application-wide -->
-  {{outlet}}
-</div>
+<header>
+  <div class="container-fluid">
+    <h1 class="col-md-12 fyb-heading text-center">FYB</h1>
+  </div>
+</header>
+
+<!-- Anything placed in the application template will be application-wide -->
+{{outlet}}
+
+<footer>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      &copy;fyb 2016.
+    </div>
+  </div>
+</footer>
