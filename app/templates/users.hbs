@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-6">
+    <img src="/images/fish-on-line-left.svg" class="img-responsive pull-right hidden-xs" alt="Responsive image">
+  </div>
+  <div class="col-md-6">
+    <img src="/images/fish-on-line-right.svg" class="img-responsive pull-left hidden-xs" alt="Responsive image">
+  </div>
+</div>
+<div class="row">
+  <section class="login-existing-user">
+    <div class="col-md-6 text-center">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Already a user? Login with...</h2>
+          <div class="clearfix"></div>
+          <form>
+            <ul>
+              {{#each loginProvider in users.loginProviders}}
+                <li>
+                  <a class="btn btn-default btn-lg" type="submit" value="google">
+                    {{action 'login' loginProvider}} {{loginProvider.name}}</a>
+                </li>
+              {{/each}}
+            </ul>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="login-existing-user">
+    <div class="col-md-6 text-center">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Create a user account with...</h2>
+          <div class="clearfix"></div>
+          <form>
+            <a class="btn btn-default btn-lg" type="submit" value="google">
+              {{#link-to 'users.create-with-google'}}Google{{/link-to}}</a>
+            <a class="btn btn-default btn-lg" type="submit" value="facebook">
+              {{#link-to 'users.create-with-facebook'}}Facebook{{/link-to}}</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{{outlet}}
