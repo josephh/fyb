@@ -14,14 +14,10 @@
           <h2>Already a user? Login with...</h2>
           <div class="clearfix"></div>
           <form>
-            <ul>
               {{#each loginProvider in users.loginProviders}}
-                <li>
-                  <a class="btn btn-default btn-lg" type="submit" value="google">
-                    {{action 'login' loginProvider}} {{loginProvider.name}}</a>
-                </li>
+                <a class="btn btn-default btn-lg" type="submit" value="google">
+                <!--  {{action 'login' loginProvider}} --> {{loginProvider}}</a>
               {{/each}}
-            </ul>
           </form>
         </div>
       </div>

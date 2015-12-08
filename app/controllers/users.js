@@ -1,28 +1,17 @@
 import Ember from 'ember';
 
-var users = Ember.Object.extend({
+var Users = Ember.Object.extend({
   // auth providers probably merit their own controller/model
-   loginProviders: Ember.ArrayProxy.extend({content: []}).create(),
-   createProviders: Ember.ArrayProxy.extend({content: []}).create()
-}).create();
+   loginProviders: [],
+   createProviders: []
+ });
 
-users.loginProviders.pushObjects([
-  Ember.Object.extend({
-    name: 'google'
-  }),
-  Ember.Object.extend({
-    name: 'facebook'
-  })
-]);
+var providers = ['Google', 'Facebook'];
 
-users.createProviders.pushObjects([
-  Ember.Object.extend({
-    name: 'google'
-  }),
-  Ember.Object.extend({
-    name: 'facebook'
-  })
-]);
+var users = Users.create({
+  loginProviders: Ember.ArrayProxy.create( {content: Ember.A(providers)} ),
+  createProviders: Ember.ArrayProxy.create( {content: Ember.A(providers)} )
+});
 
 export default Ember.Controller.extend({
   users: users
