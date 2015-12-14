@@ -15,6 +15,9 @@ Router.map(function() {
     this.route('create-with-google');
     this.route('create-with-facebook');
   });
+  this.route('secure', function() {
+    this.route('entries');
+  });
 });
 
 export default Router;
