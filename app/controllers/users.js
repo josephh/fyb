@@ -12,14 +12,5 @@ var users = Users.create({
 });
 
 export default Ember.Controller.extend({
-  users: users,
-  actions: {
-    login: function(provider) {
-      console.log('login with ' + provider);
-    },
-
-    create: function(provider) {
-      console.log('create with ' + provider);
-    }
-  }
+  users: users
 });

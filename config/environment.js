@@ -1,4 +1,4 @@
-/* jshint node: true */
+ /* jshint node: true */
 
 module.exports = function(environment) {
   var ENV = {
@@ -23,11 +23,23 @@ module.exports = function(environment) {
     googleFonts: [
       'Montserrat:400,700'
     ],
-  
+
     // Set or update content security policies
     contentSecurityPolicy: {
       'font-src': "'self' fonts.gstatic.com",
       'style-src': "'self' fonts.googleapis.com"
+    },
+
+    contentSecurityPolicy: {
+      'connect-src': "'self' http://localhost:4500",
+    },
+
+    'simple-auth-token': {
+      serverTokenEndpoint: 'http://localhost:4500/get-token',
+    },
+
+    'simple-auth': {
+      authorizer: 'simple-auth-authorizer:token'
     }
 
   };
