@@ -27,10 +27,7 @@ module.exports = function(environment) {
     // Set or update content security policies
     contentSecurityPolicy: {
       'font-src': "'self' fonts.gstatic.com",
-      'style-src': "'self' fonts.googleapis.com"
-    },
-
-    contentSecurityPolicy: {
+      'style-src': "'self' fonts.googleapis.com",
       'connect-src': "'self' http://localhost:4500",
     },
 
@@ -40,6 +37,15 @@ module.exports = function(environment) {
 
     'simple-auth': {
       authorizer: 'simple-auth-authorizer:token'
+    },
+
+    torii: {
+      providers: {
+        'google-oauth2-bearer': {
+          apiKey: '500707701090-h6ib4qve8b4rf445lpugjipn3bih9ere.apps.googleusercontent.com',
+          redirectUri: 'http://localhost:4200',
+        },
+      }
     }
 
   };
