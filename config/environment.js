@@ -28,7 +28,7 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'font-src': "'self' fonts.gstatic.com",
       'style-src': "'self' fonts.googleapis.com",
-      'connect-src': "'self' http://localhost:4500",
+      'connect-src': "'self' http://localhost:4500"
     },
 
     'simple-auth-token': {
@@ -41,10 +41,10 @@ module.exports = function(environment) {
 
     torii: {
       providers: {
-        'google-oauth2-bearer': {
+        'google-oauth2': {
           apiKey: '500707701090-h6ib4qve8b4rf445lpugjipn3bih9ere.apps.googleusercontent.com',
-          redirectUri: 'http://localhost:4200',
-        },
+          redirectUri: 'http://localhost:4200'
+        }
       }
     }
 

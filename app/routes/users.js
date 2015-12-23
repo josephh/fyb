@@ -7,7 +7,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     sessionRequiresAuthentication: function() {
       var session = this.get('session');
       this.get('torii')
-      .open('google-oauth2-bearer')
+      .open('google-oauth2')
       .then(function(googleAuth){
         var googleToken = googleAuth.authorizationToken.access_token;
         console.log('Google authentication successful.');
