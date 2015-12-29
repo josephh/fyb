@@ -1,13 +1,13 @@
-// application route
 import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   actions: {
     sessionRequiresAuthentication: function() {
+      console.log('sessionRequiresAuthentication');
       var session = this.get('session');
       this.get('torii')
-      .open('google-oauth2')
+      .open('google-oauth2-bearer')
       .then(function(googleAuth){
         var googleToken = googleAuth.authorizationToken.access_token;
         console.log('Google authentication successful.');
@@ -23,13 +23,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       }, function (error) {
         console.error('Google auth failed: ', error.message);
       });
-    },
-    login: function(provider) {
-      console.log('login with ' + provider);
-    },
-
-    create: function(provider) {
-      console.log('create with ' + provider);
     }
   }
 });

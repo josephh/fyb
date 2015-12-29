@@ -32,16 +32,18 @@ module.exports = function(environment) {
     },
 
     'simple-auth-token': {
+      // get token
       serverTokenEndpoint: 'http://localhost:4500/get-token',
-    },
-
-    'simple-auth': {
-      authorizer: 'simple-auth-authorizer:token'
+      // refresh token
+      serverTokenRefreshEndpoint: 'http://localhost:4500/refresh-token',
+      // timeFactor * refreshLeeway = milliseconds before token refresh
+      timeFactor: 1000,
+      refreshLeeway: 60, // 1 minute
     },
 
     torii: {
       providers: {
-        'google-oauth2': {
+        'google-oauth2-bearer': {
           apiKey: '500707701090-h6ib4qve8b4rf445lpugjipn3bih9ere.apps.googleusercontent.com',
           redirectUri: 'http://localhost:4200'
         }
