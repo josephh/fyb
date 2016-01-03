@@ -15,7 +15,7 @@
            <div class="clearfix"></div>
            {{#each users.authProviders as |authProvider|}}
              <a class="btn btn-default btn-lg" type="submit"
-              {{action 'sessionRequiresAuthentication' authProvider}}> <!-- note the action should
+              {{action 'login' authProvider}}> <!-- note the action should
                  be inside the html element-->
               {{authProvider}}</a>
            {{/each}}
@@ -31,7 +31,7 @@
            <div class="clearfix"></div>
            {{#each users.authProviders as |authProvider|}}
              <a class="btn btn-default btn-lg" type="submit"
-               {{action 'sessionRequiresAuthentication' authProvider}}> <!-- note the action should
+               {{action 'create' authProvider}}> <!-- note the action should
                  be inside the html element-->
               {{authProvider}}</a>
            {{/each}}

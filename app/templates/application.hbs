@@ -8,6 +8,10 @@
 <!-- Anything placed in the application template will be application-wide -->
 {{outlet}}
 
+{{#if session.isAuthenticated}}
+ <a {{ action 'invalidateSession' }}>Logout</a>
+{{/if}}
+
 <footer>
   <div class="panel panel-default">
     <div class="panel-body">

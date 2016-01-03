@@ -12,6 +12,12 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       console.log('NOT authenticated!');
       this.transitionTo('users');
     }
+  },
+
+  actions: {
+    invalidateSession: function(){
+      console.log('invalidate session TODO');
+    }
   }
 
 });
