@@ -1,11 +1,8 @@
 import Ember from 'ember';
-import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
-
-export default Ember.Route.extend(ApplicationRouteMixin, {
+export default Ember.Route.extend( {
 
   beforeModel() {
-    var session = this.get('session');
-    if(session.isAuthenticated){
+    if(this.authService.isAuthenticated()){
       console.log('is authenticated...');
       this.transitionTo('secure.entries');
     }else{
@@ -16,7 +13,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   actions: {
     invalidateSession: function(){
+      this.authService.setAuthenticated(false);
       console.log('invalidate session TODO');
+      return true;
     }
   }
 

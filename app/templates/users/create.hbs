@@ -1,0 +1,41 @@
+<section class="create-user-input">
+  <div class="col-md-12 pull-left">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <h2>Enter new user details</h2>
+        </div>
+        <div class="row">
+          {{input type="text" class="new-user-username" placeholder="User name"
+          value=title}}
+        </div>
+        <div class="row">
+          {{input type="text" class="new-user-firstname" placeholder="First name"
+          value=title}}
+        </div>
+        <div class="row">
+          {{input type="text" class="new-user-lastname" placeholder="Last name"
+          value=title}}
+        </div>
+        <div class="row">
+          {{radio-button
+            value="male"
+            groupValue=gender
+            required=false
+            disabled=true
+            name="color"}}
+          {{#radio-button
+            value="female"
+            groupValue=gender
+            changed="genderChanged"}}
+            Gender
+          {{/radio-button}}
+        </div>
+        <div class="row">
+          <button class="create-user-button pull-right" {{action
+            "createUser"}}>Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

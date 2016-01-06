@@ -2,9 +2,8 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 var authenticate = function(routeContext, provider, callback) {
-  console.log('sessionRequiresAuthentication');
 
-  if(provider.toLowerCase() == 'google'){
+  if(provider.toLowerCase() === 'google'){
     routeContext.get('torii')
     .open('google-oauth2-bearer')
     .then(function(googleAuth){
@@ -21,7 +20,7 @@ var authenticate = function(routeContext, provider, callback) {
     }, function (error) {
       console.error('Google auth failed: ', error.message);
     });
-  }else if(provider.toLowerCase() == 'facebook'){
+  }else if(provider.toLowerCase() === 'facebook'){
     console.log('facebook authentication');
   }
 
@@ -33,18 +32,21 @@ var authenticate = function(routeContext, provider, callback) {
 export default Ember.Route.extend(ApplicationRouteMixin, {
   actions: {
     login: function(authProvider){
+      var that = this;
       console.log('do log in with ' + authProvider);
-      authenticate(this, authProvider, function(authProvider){
+      authenticate(this, authProvider, function(){
         console.log('login callback for ' + authProvider);
-  // should be in after or before model functions, and this behaviour in the controller, setting the properties to drive routing        this.transitionTo('secure.entries');
+        that.authService.setAuthenticated(true);
+        that.transitionTo('secure.entries');
       });
     },
     create: function(authProvider){
+      var that = this;
       console.log('do create user with ' + authProvider);
-      authenticate(this, authProvider, function(authProvider){
+      authenticate(this, authProvider, function(){
         console.log('create callback for ' + authProvider);
-  // should be in after or before model functions, and this behaviour in the controller, setting the properties to drive routing
-//        this.transitionTo('users.create');
+        that.authService.setAuthenticated(true);
+        that.transitionTo('users.create');
       });
     }
   }
