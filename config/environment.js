@@ -31,21 +31,47 @@ module.exports = function(environment) {
       'connect-src': "'self' http://localhost:4500"
     },
 
-    'simple-auth-token': {
+    'ember-simple-auth-token': {
       // get token
       serverTokenEndpoint: 'http://localhost:4500/get-token',
       // refresh token
       serverTokenRefreshEndpoint: 'http://localhost:4500/refresh-token',
-      // timeFactor * refreshLeeway = milliseconds before token refresh
-      timeFactor: 1000,
-      refreshLeeway: 60, // 1 minute
+      timeFactor: 1, // time factor is the multiplier for time units (1000 = milliseconds)
+      refreshAccessTokens: true,
+      refreshLeeway: 300 // Refresh the token 5 minutes (300s) before it expires.
     },
 
     torii: {
+      sessionServiceName: 'session',
       providers: {
         'google-oauth2-bearer': {
           apiKey: '500707701090-h6ib4qve8b4rf445lpugjipn3bih9ere.apps.googleusercontent.com',
           redirectUri: 'http://localhost:4200'
+        },
+        'google-oauth2': {
+          apiKey: '500707701090-h6ib4qve8b4rf445lpugjipn3bih9ere.apps.googleusercontent.com',
+          redirectUri: 'http://localhost:4200'
+        },
+        'facebook-oauth2': {
+          apiKey: '829811140460593',
+          redirectUri: 'http://localhost:4200',
+          scope: 'public_profile' // optional
+          /*
+          Further facebook oauth optional properties include:
+            state - An arbitrary unique string created by your app to guard
+              against Cross-site Request Forgery.
+            response_type - Determines whether the response data included when the
+              redirect back to the app occurs is in URL parameters or fragments.
+              See the Confirming Identity section to choose which type your app
+              should use. This can be one of: code; token; code%20token.
+            granted_scopes - Returns a comma-separated list of all Permissions
+              granted to the app by the user at the time of login. Can be
+              combined with other response_type values. When combined with
+              token, response data is included as a URL fragment, otherwise
+              included as a URL parameter.
+            scope - A comma separated list of Permissions to request from the
+              person using your app.
+          */
         }
       }
     }

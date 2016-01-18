@@ -1,7 +1,5 @@
-// s (secure) route
-
+// routes/secure
 import Ember from 'ember';
-import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
-});
+export default Ember.Route.extend(AuthenticatedRouteMixin);
