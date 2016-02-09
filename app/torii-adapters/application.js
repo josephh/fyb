@@ -34,6 +34,7 @@ export default Ember.Object.extend({
   // authData is the result of `provider.open()`
   open(authData) {
     let { authorizationCode } = authData;
+    console.log('configd auth host : ' + config.authenticationHost );
     let url = config.authenticationHost + '/sign-in-with-authorization-code';
 
     // (all adapter methods have to return a promise)
