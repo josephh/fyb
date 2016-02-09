@@ -4,7 +4,7 @@ import Ember from 'ember';
 var authenticate = function(routeContext, provider, callback) {
   if (provider.toLowerCase() === 'google' && false === true) {
     console.log('<<< oauth2 implicit flow >>>');
-    routeContext.get('torii')
+    routeContext.get('toriiSession')
     /**
      * In the 'implicit' flow, the promise returned from 'open(...)' contains an
      * access token returned google, intended for direct use inside your app.
@@ -29,7 +29,7 @@ var authenticate = function(routeContext, provider, callback) {
     });
   } else if (provider.toLowerCase() === 'google') {
     console.log('<<< oauth2 authorization code grant flow >>>');
-    routeContext.get('torii')
+    routeContext.get('toriiSession')
     /**
      * In the 'authorisation code grant' flow, the provider returns an authorisation
      * code (once authentication and redirection steps have finished).
@@ -55,12 +55,15 @@ var authenticate = function(routeContext, provider, callback) {
         console.error('Google auth failed: ', error.message);
       });
   } else if(provider.toLowerCase() === 'facebook') {
-    console.log('facebook authentication');
-    var controller = this.controllerFor('users');
-    // The provider name is passed to `open`
-    this.get('torii').open('facebook-oauth2').then(function(authorization){
+    console.log('<<< oauth2 implicit flow >>>');
+    var controller = routeContext.controllerFor('users');
+    console.log('FYB client >> attempt facebook authentication');
+    routeContext.get('toriiSession').open('facebook-oauth2').then(function(authorization){
       // FB.api is now available. authorization contains the UID and
       // accessToken.
+      console.log('FYB client >> authenticated ok with facebook');
+      console.log('FYB client >> Facebook authentication details = ');
+      console.log('\t' + authorization);
       controller.set('hasFacebook', true);
     });
   }
@@ -75,9 +78,37 @@ export default Ember.Route.extend({
     login: function(authProvider){
       var that = this;
       console.log('do log in with ' + authProvider);
-      authenticate(this, authProvider, function(){
+      /* authenticate(this, authProvider, function(){
         console.log('login callback for ' + authProvider);
         that.transitionTo('secure.entries');
+      });
+      */
+      let {controller} = this;
+      let session = this.get('toriiSession');
+
+      controller.set('error', null);
+
+      /* using session is slightly different to the torii object: the session
+       * service will do the following,
+       *   1. calling open will transition the session state to 'working'
+       *   2. looks up the google-oauth2 provider and calls open on the provider
+       *   3. then following obtaining the authorization code, passes it to an
+       *      adapter.  (The service will look for an adapter with the same
+       *      name as the provider (e.g. google-oauth2)) and if it doesn't find
+       *      an adapter with that name, will fallback to an adapter called
+       *      application.
+       */
+      session.open('google-oauth2').then(() => {
+       if (session.attemptedTransition) {
+          session.attemptedTransition.retry();
+          session.attemptedTransition = null;
+       } else {
+         // redirect following sign on
+         controller.transitionTo('secure.entries');
+       }
+      }).catch(err => {
+        Ember.run(controller, 'set', 'error', err);
+        console.log('error details: ' + err);
       });
     },
     create: function(authProvider){

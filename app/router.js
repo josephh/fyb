@@ -10,8 +10,8 @@ Router.map(function() {
   this.route('users', function(){
     this.route('create');
   });
-  this.route('secure', function(){
-    this.route('entries');
+  this.authenticatedRoute('secure', function(){
+    this.authenticatedRoute('entries');
   });
 });
 

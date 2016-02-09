@@ -42,7 +42,7 @@ module.exports = function(environment) {
     },
 
     torii: {
-      sessionServiceName: 'session',
+      sessionServiceName: 'toriiSession',
       providers: {
         'google-oauth2-bearer': {
           apiKey: '500707701090-h6ib4qve8b4rf445lpugjipn3bih9ere.apps.googleusercontent.com',
@@ -50,7 +50,8 @@ module.exports = function(environment) {
         },
         'google-oauth2': {
           apiKey: '500707701090-h6ib4qve8b4rf445lpugjipn3bih9ere.apps.googleusercontent.com',
-          redirectUri: 'http://localhost:4200'
+          redirectUri: 'http://localhost:4200',
+          accessType: 'offline'
         },
         'facebook-oauth2': {
           apiKey: '829811140460593',

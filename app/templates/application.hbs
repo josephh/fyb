@@ -8,8 +8,8 @@
 <!-- Anything placed in the application template will be application-wide -->
 {{outlet}}
 
-{{#if session.isAuthenticated}}
- <a {{ action 'invalidateSession' }}>Logout</a>
+{{#if toriiSession.isAuthenticated}}
+  Logged in as <b>{{session.currentUser.email}}</b> <a {{ action 'invalidateSession' }}>Logout</a>
 {{/if}}
 
 <footer>
