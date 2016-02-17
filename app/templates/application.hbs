@@ -5,12 +5,16 @@
   </div>
 </header>
 
+<nav>
+  {{#if session.isAuthenticated}}
+    <p>Logged in as <b>{{session.currentUser.email}}</b></p>
+  {{else}}
+    <p>Not logged in.</p>
+  {{/if}}
+</nav>
+
 <!-- Anything placed in the application template will be application-wide -->
 {{outlet}}
-
-{{#if toriiSession.isAuthenticated}}
-  Logged in as <b>{{session.currentUser.email}}</b> <a {{ action 'invalidateSession' }}>Logout</a>
-{{/if}}
 
 <footer>
   <div class="panel panel-default">

@@ -43,7 +43,7 @@ module.exports = function(environment) {
     },
 
     torii: {
-      sessionServiceName: 'toriiSession',
+      sessionServiceName: 'session',
       providers: {
         'google-oauth2-bearer': {
           apiKey: '500707701090-h6ib4qve8b4rf445lpugjipn3bih9ere.apps.googleusercontent.com',

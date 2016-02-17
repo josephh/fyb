@@ -7,9 +7,7 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('users', function(){
-    this.route('create');
-  });
+  this.route('users');
   this.authenticatedRoute('secure', function(){
     this.authenticatedRoute('entries');
   });

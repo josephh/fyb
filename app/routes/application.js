@@ -1,14 +1,12 @@
 // routes/application.js
+/** ApplicationRoute is entered when your app first boots up.
+ * It renders the application template.
+ */
 import Ember from 'ember';
-import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend( ApplicationRouteMixin, {
-
-  /*
-   * employing the ember-simple-auth service 'session'...
-   */
+export default Ember.Route.extend( {
   beforeModel() {
-    if(this.get('session').isAuthenticated === true){
+    if(this.get('session').isAuthenticated){
       console.log('is authenticated...');
       this.transitionTo('secure.entries');
     }else{
@@ -21,5 +19,4 @@ export default Ember.Route.extend( ApplicationRouteMixin, {
       this.get('session').invalidate();
     }
   }
-
 });
