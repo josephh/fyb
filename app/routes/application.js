@@ -6,12 +6,12 @@ import Ember from 'ember';
 
 export default Ember.Route.extend( {
   beforeModel() {
-    if(this.get('session').isAuthenticated){
+    if(this.get('session').isAuthenticated === true){
       console.log('is authenticated...');
       this.transitionTo('secure.entries');
     }else{
       console.log('NOT authenticated!');
-      this.transitionTo('users');
+      this.transitionTo('login');
     }
   },
   actions: {

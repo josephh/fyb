@@ -24,3 +24,11 @@
      </div>
    </section>
  </div>
+
+ {{#if authError}}
+ Error: {{authError}}
+ {{/if}}
+
+ {{#if authData}}
+ Auth data: {{authData}}
+ {{/if}}

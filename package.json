@@ -36,12 +36,9 @@
     "ember-data": "1.13.5",
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
-    "ember-simple-auth-token": "1.0.0",
     "torii": "^0.6.1"
   },
   "dependencies": {
-    "ember-cli": "^1.13.13",
-    "ember-simple-auth": "^1.0.1",
     "googleapis": "^2.1.6"
   }
 }

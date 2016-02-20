@@ -1,6 +1,6 @@
 // controllers/users
 import Ember from 'ember';
-var providers = ['Google', 'Facebook'];
+var providers = ['Google', 'Facebook', 'Twitter'];
 
 var users = Ember.Object.extend({
    authProviders: []

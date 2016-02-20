@@ -32,15 +32,9 @@ module.exports = function(environment) {
       'connect-src': "'self' http://localhost:4500"
     },
 
-    'ember-simple-auth-token': {
-      // get token
-      serverTokenEndpoint: 'http://localhost:4500/get-token',
-      // refresh token
-      serverTokenRefreshEndpoint: 'http://localhost:4500/refresh-token',
-      timeFactor: 1, // time factor is the multiplier for time units (1000 = milliseconds)
-      refreshAccessTokens: true,
-      refreshLeeway: 300 // Refresh the token 5 minutes (300s) before it expires.
-    },
+
+    authorizationExchangeServerUrl: 'http://localhost:4500/exchange-authorization-code',
+    authenticationHost: 'http://localhost:4500',
 
     torii: {
       sessionServiceName: 'session',
