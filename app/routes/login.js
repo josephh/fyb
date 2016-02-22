@@ -14,12 +14,13 @@ export default Ember.Route.extend({
         // /* to do */ providerName = 'twitter-oauth1'
       }
 
-      let { controller } = this;
+      let controller = this;
       let session = this.get('session');
 
       controller.set('error', null);
 
       session.open(providerName).then(() => {
+        controller.transitionTo('secure.entries');
         // no-op, we are signed in
         if (session.attemptedTransition) {
           session.attemptedTransition.retry();
