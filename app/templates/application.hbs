@@ -8,6 +8,12 @@
 <nav>
   {{#if session.isAuthenticated}}
     <p>Logged in as <b>{{session.currentUser.email}}</b></p>
+    <p>
+      <a class="btn btn-default btn-lg" type="submit"
+       {{action 'logout'}}>
+        <b>Logout</b>
+      </a>
+    </p>
   {{else}}
     <p>Not logged in.</p>
   {{/if}}
