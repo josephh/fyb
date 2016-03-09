@@ -34,15 +34,15 @@ export default Ember.Object.extend({
   // authData is the result of `provider.open()`
   open(authData) {
     let { authorizationCode } = authData;
-    console.log('configd auth host : ' + config.authenticationHost );
-    let url = config.authenticationHost + '/sign-in-with-authorization-code';
+    let { provider } = authData;
+    let url = config.authorizationExchangeServerUrl;
 
     // (all adapter methods have to return a promise)
     return new Ember.RSVP.Promise((resolve, reject) => {
       $.ajax({
         type: 'post',
         url,
-        data: JSON.stringify({authorizationCode}),
+        data: JSON.stringify({authorizationCode, provider}),
         dataType: 'json',
         contentType: 'application/json'
       }).done(result => {

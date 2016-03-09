@@ -5,7 +5,7 @@ export default Ember.Route.extend({
   actions: {
     login(provider) {
       console.log('do log in with ' + provider);
-      var providerName = null;
+      var providerName = '';
       if (provider.toLowerCase() === 'google') {
         providerName = 'google-oauth2';
       } else if (provider.toLowerCase() === 'facebook'){

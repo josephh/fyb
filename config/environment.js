@@ -69,6 +69,10 @@ module.exports = function(environment) {
               person using your app.
           */
         }
+       // 'twitter-oauth1': {
+       //   apiKey: 'ThiWyjSHHEGRfOj9ms8i5F2Xy',
+       //   redirectUri: 'http://localhost:4200'
+      //  }
       }
     }
 
