@@ -1,15 +1,17 @@
-import Ember from 'ember';
+import DS from 'ember-data';
+import MF from 'model-fragments';
 
-export default Ember.Object.extend({
-  ownerId: 0,
-  entryID: 0,
-  catchId: 0,
-  catchURL: '',
-  catchDateTime: '',
-  species: 'unknown',
-  length: 0,
-  lengthUnit: `cm`,
-  weight: 0,
-  weightUnit: `ounces`,
-  images: Ember.ArrayProxy.extend(Ember.SortableMixin, { content: [] }).create()
- });
+export default MF.Fragment.extend({
+  ownerId: DS.attr('number', { default: 0 }),
+  entryId: DS.attr('number', { default: 0 }),
+  catchId: DS.attr('number', { default: 0 }),
+  catchURL: DS.attr('string'),
+  species: DS.attr('string', { default: 'unknown' }),
+  lengthUnit: DS.attr('string', { default: 'cm' }),
+  length: DS.attr('number', { default: 0 }),
+  weightUnit: DS.attr('string', { default: 'ounces' }),
+  weight: DS.attr('number', { default: 0 }),
+  name: DS.attr('string'),
+  catchDateTime: DS.attr('date'),
+  images: DS.hasMany('image', { async: true })
+});

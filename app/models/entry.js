@@ -1,22 +1,15 @@
 import Ember from 'ember';
 
-export default Ember.Object.extend({
-  entryDateTime: '',
-  ownerId: 0,
-  entryID: 0,
-  contextDateTime: '',
-  position: {
-    lat: 0,
-    long: 0
-  },
-  location:{
-    country: '',
-    waterBody: '',
-    name: ''
-  },
-  conditions: '',
-  tackle: '',
-  notes: '',
-  images: Ember.ArrayProxy.extend(Ember.SortableMixin, { content: [] }).create(),
-  catch: Ember.ArrayProxy.extend(Ember.SortableMixin, { content: [] }).create()
+export default DS.Model.extend({
+  entryDateTime: DS.attr('date'),
+  ownerId: DS.attr('number', { defaultValue: 0 }),
+  entryID: DS.attr('number', { defaultValue: 0 }),
+  contextDateTime: DS.attr('date'),
+  position: MF.fragment('position'),
+  location: MF.fragment('location'),
+  conditions: DS.attr('string', { defaultValue: 'sunny' }),
+  tackle: DS.attr('string'),
+  notes: DS.attr('string'),
+  images: DS.hasMany('image', { async: true }),
+  catch: MF.fragment('catch')
 });
