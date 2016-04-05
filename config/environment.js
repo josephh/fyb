@@ -27,11 +27,22 @@ module.exports = function(environment) {
 
     // Set or update content security policies
     contentSecurityPolicy: {
-      'font-src': "'self' fonts.gstatic.com",
-      'style-src': "'self' fonts.googleapis.com",
-      'connect-src': "'self' http://localhost:4500"
-    },
 
+      'default-src': ["'none'"],
+
+      'script-src':  ["'self'"],
+
+      'font-src': ["'self'", "fonts.gstatic.com"],
+
+      'connect-src': ["'self'", "http://localhost:4500", "http://private-fc323-fyb1.apiary-mock.com/api/entries"],
+
+      'img-src':     ["'self'"],
+
+      'style-src': ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
+
+      'media-src': null
+
+    },
 
     authorizationExchangeServerUrl: 'http://localhost:4500/exchange-authorization-code',
     authenticationHost: 'http://localhost:4500',
