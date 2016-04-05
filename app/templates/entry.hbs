@@ -1,0 +1,13 @@
+<ul>
+{{#each model as |entry|}}
+<li>
+  <h2>Entry date: {{entry.entryDateTime}}</h2>
+  <h3>Owner id: {{entry.ownerId}}</h3>
+  <h3>Entry id: {{entry.entryID}}</h3>
+  <h3>Position: {{entry.position}}</h3>
+  <h3>Location: {{entry.location}}</h3>
+</li>
+{{/each}}
+</ul>
+
+{{outlet}}
