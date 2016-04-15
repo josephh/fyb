@@ -1,6 +1,6 @@
 // routes/index.js
 /**
- * App.IndexRoute is the default route, and will render the index template when
+ * App.Index Route is the default route, and will render the index template when
  * the user visits / (unless / has been overridden by your own custom route).
  */
 import Ember from 'ember';
