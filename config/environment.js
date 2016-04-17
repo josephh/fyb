@@ -25,6 +25,7 @@ module.exports = function(environment) {
       'Montserrat:400,700'
     ],
 
+    contentSecurityPolicyHeader: 'Content-Security-Policy',
     // Set or update content security policies
     contentSecurityPolicy: {
 
@@ -48,7 +49,7 @@ module.exports = function(environment) {
     authenticationHost: 'http://localhost:4500',
 
     torii: {
-      sessionServiceName: 'session',
+      sessionServiceName: 'toriiSession',
       providers: {
         'google-oauth2-bearer': {
           apiKey: '500707701090-h6ib4qve8b4rf445lpugjipn3bih9ere.apps.googleusercontent.com',

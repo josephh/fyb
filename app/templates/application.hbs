@@ -19,6 +19,40 @@
   {{/if}}
 </nav>
 
+<div class="row">
+  <div class="col-md-6">
+    <img src="/images/fish-on-line-left.svg" class="fish-left img-responsive pull-right hidden-xs" alt="Responsive image">
+  </div>
+  <div class="col-md-6">
+    <img src="/images/fish-on-line-right.svg" class="fish-right img-responsive pull-left hidden-xs" alt="Responsive image">
+  </div>
+</div>
+
+
+{{#if session.isWorking}}
+  One sec while we get you signed in...
+{{else}}
+  {{error}}
+  <div class="row">
+    <section class="login-existing-user">
+      <div class="col-md-12 text-center">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2>Login with...</h2>
+            <div class="clearfix"></div>
+            {{#each model.authProviders as |authProvider|}}
+              <a class="btn btn-default btn-lg" type="submit"
+               {{action 'login' authProvider}}> <!-- note the action should
+                  be inside the html element-->
+               {{authProvider}}</a>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+{{/if}}
+
 <!-- Anything placed in the application template will be application-wide -->
 {{outlet}}
 

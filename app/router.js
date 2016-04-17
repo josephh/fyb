@@ -9,7 +9,7 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.authenticatedRoute('secure', function(){
-    this.authenticatedRoute('entries');
+    this.authenticatedRoute('entries', {path: '/:ownerId/entries'});
   });
 });
 
