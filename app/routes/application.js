@@ -1,6 +1,6 @@
-// routes/application.js
+// app/routes/application.js
 /** ApplicationRoute is entered when your app first boots up.
- * It renders the application template.
+ * It renders the application template and will handle actions not handled closer to the point of issue.
  */
 import Ember from 'ember';
 
@@ -20,32 +20,30 @@ export default Ember.Route.extend( {
     logout() {
       this.get('toriiSession').close();
     },
-  login(provider) {
-    console.log('do log in with ' + provider);
-    var providerName = '', route = this,
-          controller = this.controllerFor('application');
-    if (provider.toLowerCase() === 'google') {
-      providerName = 'google-oauth2';
-    } else if (provider.toLowerCase() === 'facebook'){
-      providerName = 'facebook-oauth2';
-    } else {
-      // /* to do */ providerName = 'twitter-oauth1'
-    }
-
-    let session = route.get('toriiSession');
-
-    controller.set('error', null);
-
-    session.open(providerName).then(() => {
-      route.transitionTo('secure.entries');
-      // no-op, we are signed in
-      if (session.attemptedTransition) {
-        session.attemptedTransition.retry();
-        session.attemptedTransition = null;
+    accessDenied() {
+      this.transitionTo('login');
+    },
+    login(provider) {
+      console.log('do log in with ' + provider);
+      var providerName = '', route = this,
+            controller = this.controllerFor('application');
+      if (provider.toLowerCase() === 'google') {
+        providerName = 'google-oauth2';
+      } else if (provider.toLowerCase() === 'facebook'){
+        providerName = 'facebook-oauth2';
+      } else {
+        // /* to do */ providerName = 'twitter-oauth1'
       }
-    }).catch(err => {
-      Ember.run(controller, 'set', 'error', err.message);
-    });
-  }
+
+      let session = route.get('toriiSession');
+
+      controller.set('error', null);
+
+      session.open(providerName).then(() => {
+        route.transitionTo('secure.entries', session.get('currentUser'));
+      }).catch(err => {
+        Ember.run(controller, 'set', 'error', 'Could not sign you in: ' + err.message);
+      });
+    }
   }
 });

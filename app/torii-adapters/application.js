@@ -1,3 +1,4 @@
+// /app/torii-adapters/application.js
 import Ember from 'ember';
 import config from '../config/environment';
 

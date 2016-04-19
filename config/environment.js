@@ -46,7 +46,6 @@ module.exports = function(environment) {
     },
 
     authorizationExchangeServerUrl: 'http://localhost:4500/exchange-authorization-code',
-    authenticationHost: 'http://localhost:4500',
 
     torii: {
       sessionServiceName: 'toriiSession',

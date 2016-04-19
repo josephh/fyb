@@ -1,9 +1,8 @@
-// routes/secure/entries
+// /app/routes/secure/entries.js
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model: function(){
-    // GET /entries
-    return this.store.findAll('entry');
-  } 
+  model() {
+    return this.store.query('entry');
+  }
 });

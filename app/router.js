@@ -1,4 +1,4 @@
-// application route '/'
+// /app/routes/application.js
 import Ember from 'ember';
 import config from './config/environment';
 
@@ -7,7 +7,6 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('login');
   this.authenticatedRoute('secure', function(){
     this.authenticatedRoute('entries', {path: '/:ownerId/entries'});
   });
