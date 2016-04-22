@@ -1,11 +1,11 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:journal', 'Unit | Route | journal', {
+moduleFor('route:secure/owner/entries', 'Unit | Route | secure/owner/entries', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });
 
 test('it exists', function(assert) {
-  var route = this.subject();
+  let route = this.subject();
   assert.ok(route);
 });

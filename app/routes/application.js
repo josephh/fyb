@@ -40,7 +40,7 @@ export default Ember.Route.extend( {
       controller.set('error', null);
 
       session.open(providerName).then(() => {
-        route.transitionTo('secure.entries', session.get('currentUser'));
+        route.transitionTo('secure.owner.entries', session.get('currentUser').id);
       }).catch(err => {
         Ember.run(controller, 'set', 'error', 'Could not sign you in: ' + err.message);
       });

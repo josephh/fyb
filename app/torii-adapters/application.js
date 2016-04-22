@@ -25,7 +25,7 @@ export default Ember.Object.extend({
         });
       }
     }).then(currentUser => {
-      // currentUser property will be merged onto session property
+      // currentUser property will be merged onto session property (then available in routes and controllers)
       return {
         currentUser
       };
