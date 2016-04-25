@@ -35,7 +35,7 @@ module.exports = function(environment) {
 
       'font-src': ["'self'", "fonts.gstatic.com"],
 
-      'connect-src': ["'self'", "http://localhost:4500", "http://private-fc323-fyb1.apiary-mock.com/api/entries"],
+      'connect-src': ["'self'", "http://localhost:4500", "http://private-fc323-fyb1.apiary-mock.com"],
 
       'img-src':     ["'self'"],
 
