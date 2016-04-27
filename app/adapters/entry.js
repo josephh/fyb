@@ -2,7 +2,7 @@ import ApplicationAdapter from './application';
 
 export default ApplicationAdapter.extend({
   buildURL (modelName, id, snapshot, requestType, query)  {
-    let offset = query.offset, page = query.page, owner = query.owner;
+    let owner = query.owner;
     var url = [];
     var host = this.host;
     var prefix = this.urlPrefix();
