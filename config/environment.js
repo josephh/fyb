@@ -31,13 +31,13 @@ module.exports = function(environment) {
 
       'default-src': ["'none'"],
 
-      'script-src':  ["'self'"],
+      'script-src':  ["'self'", "http://maps.googleapis.com"],
 
       'font-src': ["'self'", "fonts.gstatic.com"],
 
       'connect-src': ["'self'", "http://localhost:4500", "http://private-fc323-fyb1.apiary-mock.com"],
 
-      'img-src':     ["'self'"],
+      'img-src':     ["'self'", "http://csi.gstatic.com/csi"],
 
       'style-src': ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
 

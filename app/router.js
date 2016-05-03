@@ -10,8 +10,10 @@ Router.map(function() {
   this.authenticatedRoute('secure', function(){
     this.authenticatedRoute('owner', {path: '/:ownerId'}, function(){
       this.authenticatedRoute('entries');
+      this.route('new');
     });
   });
+  this.route('search');
 });
 
 export default Router;

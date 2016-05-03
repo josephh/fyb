@@ -5,18 +5,28 @@
   </div>
 </header>
 
-<nav>
-  {{#if toriiSession.isAuthenticated}}
-    <p>Logged in as <b>{{toriiSession.currentUser.id}}</b></p>
-    <p>
-      <a class="btn btn-default btn-lg" type="submit"
-       {{action 'logout'}}>
-        <b>Logout</b>
-      </a>
-    </p>
-  {{else}}
-    <p>Not logged in.</p>
-  {{/if}}
+<nav class="navbar navbar-default">
+  <ul class="nav nav-pills">
+    {{#if toriiSession.isAuthenticated}}
+      <li role="presentation">
+        <span class="icon-bar">Logged in as <b>{{toriiSession.currentUser.id}}</b></span>
+      </li>
+    {{/if}}
+    <li role="presentation" class="active">{{link-to 'Entries' secure.owner.entries}}</li>
+    <li role="presentation">{{link-to 'Add a catch' 'secure.owner.new'}}</li>
+    <li role="presentation">{{link-to 'Browse' search}}</li>
+    {{#if toriiSession.isAuthenticated}}
+      <li role="presentation">
+        <a class="btn btn-default btn-lg pull-right" type="submit" {{action 'logout'}}>
+          <b>Logout</b>
+        </a>
+      </li>
+    {{else}}
+      <li role="presentation">
+        <span class="icon-bar">Not logged in.</span>
+      </li>
+    {{/if}}
+  </ul>
 </nav>
 
 <div class="row">

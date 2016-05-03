@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-6 panel panel-default panel-body">
+    <h4>Add a catch</h4>
+    <ul>
+      <li>
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" value="river" type="submit" {{action 'selectWaterBody' }}>River</button>
+          <button type="button" class="btn btn-default" value="stillwater" type="submit" {{action 'selectWaterBody' }}>Stillwater</button>
+          <button type="button" class="btn btn-default" value="sea"  type="submit" {{action 'selectWaterBody' }}>Sea</button>
+        </div>
+      </li>
+      <li>
+        {{#if isFreshWater}}
+          <select onchange={{action (mut specie) value="target.value"}}>
+            {{#each freshwaterSpecies as |selectSpecies|}}
+              <option value={{selectSpecies}} selected={{eq specie selectSpecies}}>{{selectSpecies}}</option>
+            {{/each}}
+          </select>
+        {{else}}
+          <select onchange={{action (mut specie) value="target.value"}}>
+            {{#each saltwaterSpecies as |selectSpecies|}}
+              <option value={{selectSpecies}} selected={{eq specie selectSpecies}}>{{selectSpecies}}</option>
+            {{/each}}
+          </select>
+        {{/if}}
+        <ul>
+          <li>
+            length: {{entry.length}} {{entry.lengthunit}}, weight: {{entry.weight}} {{entry.weightunit}}
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Location</strong>
+        <ul>
+          <li>{{entry.location.country}}, {{entry.location.waterBody}}, {{entry.location.name}}
+            <ul>
+              <li>
+                latitude: {{entry.location.geoposition.lat}}, longitude: {{entry.location.geoposition.long}}
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <li><strong>Conditions: </strong>{{entry.conditions}}</li>
+        <li><strong>Tackle: </strong>{{entry.tackle}}</li>
+        <li><strong>Notes: </strong>{{entry.notes}}</li>
+      </li>
+    </ul>
+  </div>
+</div>
