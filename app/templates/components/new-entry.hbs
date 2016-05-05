@@ -3,6 +3,7 @@
     <h4>Catch Details</h4>
     <ul>
       <li>
+        <strong>Water body</strong>
         <div class="btn-group" role="group" aria-label="...">
           <button type="button" class="btn btn-default" value="river" type="submit" {{action 'selectWaterBody' 'river'}} autofocus="true">River</button>
           <button type="button" class="btn btn-default" value="stillwater" type="submit" {{action 'selectWaterBody' 'stillwater'}}>Stillwater</button>
@@ -10,6 +11,7 @@
         </div>
       </li>
       <li>
+        <strong>Fish species</strong>
         <select onchange={{action (mut specie) value="target.value"}}>
           {{#each speciesOptions as |fishChoice|}}
             <option value={{fishChoice}}>{{fishChoice}}</option>
@@ -17,7 +19,24 @@
         </select>
         <ul>
           <li>
-            length: {{entry.length}} {{entry.lengthunit}}, weight: {{entry.weight}} {{entry.weightunit}}
+            <strong>Length units</strong>
+            <select onchange={{action (mut lengthUnit) value="target.value"}}>
+              {{#each lengthUnits as |lengthUnitChoice|}}
+                <option value={{lengthUnitChoice}}>{{lengthUnitChoice}}</option>
+              {{/each}}
+            </select>
+            {{#if isMetricLength}}
+              {{input value=lengthMajor}} cm
+            {{else}}
+              {{input value=lengthMajor}} feet {{input value=lengthMinor}} inches
+            {{/if}}
+          </li>
+          <li><strong>Weight units</strong>
+            <select onchange={{action (mut weightUnit) value="target.value"}}>
+              {{#each weightUnits as |weightUnitChoice|}}
+                <option value={{weightUnitChoice}}>{{weightUnitChoice}}</option>
+              {{/each}}
+            </select>
           </li>
         </ul>
       </li>

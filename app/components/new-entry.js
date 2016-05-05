@@ -23,10 +23,44 @@ export default Ember.Component.extend({
       return Ember.ArrayProxy.create({ content: freshwaterSpecies });
     } else {
       return Ember.ArrayProxy.create({ content: saltwaterSpecies });
-    };
+    }
   }),
-  // weightUnits: ,
-  // lengthUnits: ,
+  weightUnit: weightUnitLabels[0],
+  weightUnits: weightUnitLabels,
+  weightMajor: 0,
+  weightMinor: 0,
+  isMetricWeight: Ember.computed('weightUnit', function() {
+    if(this.get('weightUnit') === metricWeight) {
+      return true;
+    } else {
+      return false;
+    }
+  }),
+  compositeWeight: Ember.computed('weightMajor', 'weightMinor', 'weightUnit', function() {
+    if(this.get('weightUnit') === metricWeight) {
+      return this.get('weightMajor');
+    } else {
+      return this.get('weightMajor') + ',' + this.get('weightMinor');
+    }
+  }),
+  lengthUnit: lengthUnitLabels[0],
+  lengthUnits: lengthUnitLabels,
+  lengthMajor: 0,
+  lengthMinor: 0,
+  isMetricLength: Ember.computed('lengthUnit', function() {
+    if(this.get('lengthUnit') === metricLength) {
+      return true;
+    } else {
+      return false;
+    }
+  }),
+  compositeLength: Ember.computed('lengthMajor', 'lengthMinor', 'lengthUnit', function() {
+    if(this.get('lengthUnit') === metricLength) {
+      return this.get('lengthMajor');
+    } else {
+      return this.get('lengthMajor') + ',' + this.get('lengthMinor');
+    }
+  }),
   actions: {
     selectWaterBody(water) {
       this.set('water', water);
