@@ -1,28 +1,20 @@
 <div class="row">
   <div class="col-md-6 panel panel-default panel-body">
-    <h4>Add a catch</h4>
+    <h4>Catch Details</h4>
     <ul>
       <li>
         <div class="btn-group" role="group" aria-label="...">
-          <button type="button" class="btn btn-default" value="river" type="submit" {{action 'selectWaterBody' }}>River</button>
-          <button type="button" class="btn btn-default" value="stillwater" type="submit" {{action 'selectWaterBody' }}>Stillwater</button>
-          <button type="button" class="btn btn-default" value="sea"  type="submit" {{action 'selectWaterBody' }}>Sea</button>
+          <button type="button" class="btn btn-default" value="river" type="submit" {{action 'selectWaterBody' 'river'}} autofocus="true">River</button>
+          <button type="button" class="btn btn-default" value="stillwater" type="submit" {{action 'selectWaterBody' 'stillwater'}}>Stillwater</button>
+          <button type="button" class="btn btn-default" value="sea"  type="submit" {{action 'selectWaterBody' 'sea'}}>Sea</button>
         </div>
       </li>
       <li>
-        {{#if isFreshWater}}
-          <select onchange={{action (mut specie) value="target.value"}}>
-            {{#each freshwaterSpecies as |selectSpecies|}}
-              <option value={{selectSpecies}} selected={{eq specie selectSpecies}}>{{selectSpecies}}</option>
-            {{/each}}
-          </select>
-        {{else}}
-          <select onchange={{action (mut specie) value="target.value"}}>
-            {{#each saltwaterSpecies as |selectSpecies|}}
-              <option value={{selectSpecies}} selected={{eq specie selectSpecies}}>{{selectSpecies}}</option>
-            {{/each}}
-          </select>
-        {{/if}}
+        <select onchange={{action (mut specie) value="target.value"}}>
+          {{#each speciesOptions as |fishChoice|}}
+            <option value={{fishChoice}}>{{fishChoice}}</option>
+          {{/each}}
+        </select>
         <ul>
           <li>
             length: {{entry.length}} {{entry.lengthunit}}, weight: {{entry.weight}} {{entry.weightunit}}
@@ -42,7 +34,9 @@
         </ul>
         <li><strong>Conditions: </strong>{{entry.conditions}}</li>
         <li><strong>Tackle: </strong>{{entry.tackle}}</li>
-        <li><strong>Notes: </strong>{{entry.notes}}</li>
+        <li>
+          <button type="button" class="btn btn-primary" value="add" type="submit" {{action 'addEntry' }}>Add Catch</button>
+        </li>
       </li>
     </ul>
   </div>

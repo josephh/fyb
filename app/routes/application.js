@@ -21,7 +21,7 @@ export default Ember.Route.extend( {
       this.get('toriiSession').close();
     },
     accessDenied() {
-      this.transitionTo('login');
+      this.transitionTo('error');
     },
     login(provider) {
       console.log('do log in with ' + provider);
