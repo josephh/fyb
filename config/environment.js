@@ -93,7 +93,7 @@ module.exports = function(environment) {
 
     'g-map': {
       libraries: ['drawing', 'visualization'],
-      key: 'AIzaSyBnpT-gKM068y-2b8odSS1SWnOucVMt1Eg',
+      key: process.env.FYB_GOOGLE_API_KEY,
       protocol: 'https'
     }
 
