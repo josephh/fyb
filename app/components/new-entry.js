@@ -13,7 +13,8 @@ var freshwaterSpecies = Ember.A([
   "Albacore", "Alewife", "Amberjack", "American Eel", "American Shad", "Arctic Char", "Atlantic Bonito", "Atlantic Cod", "Atlantic Mackerel", "Atlantic Salmon", "Atlantic Sturgeon", "Black Drum", "Black Sea Bass", "Blackfish", "Blue Marlin", "Blue Shark", "Bluefin Tuna", "Bluefish", "Bonefish", "Bull Shark", "Catfish", "Cunner", "Cusk", "Dogshark", "Dolly Varden", "Dolphin Fish", "Great White Shark", "Grouper", "Haddock", "Hake", "Halibut", "Hickory Shad", "King Mackerel", "Little Tunny", "Lobster", "Mako Shark", "Monkfish", "Other", "Oyster Toadfish", "Pollock", "Pompano", "Red Drum", "Red Snapper", "Sailfish", "Salmon", "Sand Trout", "Sandbar (Brown) Shark", "Scup (Porgy)", "Sheepshead", "Shortnose Sturgeon", "Snook", "Spanish Mackerel", "Spot", "Spotted Seatrout", "Striped Bass", "Summer Flounder (Fluke)", "Swordfish", "Tarpon", "Thresher Shark", "Tommy Cod", "Turbot", "Walu", "Weakfish", "White Marlin", "Winter Flounder", "Winter Skate", "Yellowfin Tuna"
 ]),
   lengthUnitLabels = Ember.A([imperialLength, metricLength]),
-  weightUnitLabels = Ember.A([imperialWeight, metricWeight]);
+  weightUnitLabels = Ember.A([imperialWeight, metricWeight]),
+  conditionLabels = Ember.A(['sunny', 'rainy', 'overcast', 'windy']);
 
 export default Ember.Component.extend({
   water: 'river', // stillwater or sea
@@ -61,14 +62,26 @@ export default Ember.Component.extend({
       return this.get('lengthMajor') + ',' + this.get('lengthMinor');
     }
   }),
+  conditions: conditionLabels[0],
+  conditionsOptions: Ember.ArrayProxy.create({ content: conditionLabels}),
   actions: {
     selectWaterBody(water) {
       this.set('water', water);
-      console.log(this.get('water'));
     },
     addEntry() {
-      console.log('entry clicked');
+      console.log(`water body : ${this.get('water')}`);
+      console.log(`fish species: ${this.get('specie')}`);
+      console.log(`length: ${this.get('compositeLength')} ${this.get('lengthUnit')}`);
+      console.log(`weight: ${this.get('compositeWeight')} ${this.get('weightUnit')}`);
+      console.log(``);
+      console.log(``);
+      console.log(`conditions: ${this.get('conditions')}`);
+      console.log(`tackle: ${this.get('tackle')}`);
+      console.log(`notes: ${this.get('notes')}`);
+    },
+    onClose() {
       debugger;
+      console.log('on close action')
     }
   }
 });

@@ -12,8 +12,9 @@
         <span class="icon-bar">Logged in as <b>{{toriiSession.currentUser.id}}</b></span>
       </li>
     {{/if}}
-    <li role="presentation" class="active">{{link-to 'Entries' secure.owner.entries}}</li>
-    <li role="presentation">{{link-to 'Browse' search}}</li>
+    <li role="presentation" class="active">{{link-to 'Entries' 'secure.owner.entries' 1}}</li>
+    <li role="presentation">{{link-to 'New Entry' 'secure.owner.new' 1}}</li>
+    <li role="presentation">{{link-to 'Search' 'search'}}</li>
     {{#if toriiSession.isAuthenticated}}
       <li role="presentation">
         <a class="btn btn-default btn-lg pull-right" type="submit" {{action 'logout'}}>

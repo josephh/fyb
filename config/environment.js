@@ -37,7 +37,7 @@ module.exports = function(environment) {
 
       'connect-src': ["'self'", "http://localhost:4500", "http://private-fc323-fyb1.apiary-mock.com"],
 
-      'img-src':     ["'self'", "http://csi.gstatic.com/csi"],
+      'img-src':     ["'self'", "http://csi.gstatic.com/csi", "https://maps.gstatic.com/"],
 
       'style-src': ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
 
@@ -85,6 +85,12 @@ module.exports = function(environment) {
        //   redirectUri: 'http://localhost:4200'
       //  }
       }
+    },
+
+    'g-map': {
+      libraries: ['drawing', 'visualization'],
+      key: 'AIzaSyBnpT-gKM068y-2b8odSS1SWnOucVMt1Eg',
+      protocol: 'https'
     }
 
   };
