@@ -17,6 +17,7 @@ var freshwaterSpecies = Ember.A([
   conditionLabels = Ember.A(['sunny', 'rainy', 'overcast', 'windy']);
 
 export default Ember.Component.extend({
+  geolocation: Ember.inject.service(),
   water: 'river', // stillwater or sea
   specie: 'Other',
   speciesOptions: Ember.computed('water', function() {
@@ -64,9 +65,17 @@ export default Ember.Component.extend({
   }),
   conditions: conditionLabels[0],
   conditionsOptions: Ember.ArrayProxy.create({ content: conditionLabels}),
-  startLat: 51.0583557,
-  startLong: -1.7907422,
+  startLat: undefined,
+  startLong: undefined,
   startZoom: 16,
+  init() {
+    var component = this;
+    this._super(...arguments);
+    this.get('geolocation').getLocation().then(function(geoObject) {
+      component.set('startLat', geoObject.coords.latitude);
+      component.set('startLong', geoObject.coords.longitude);
+    });
+  },
   actions: {
     selectWaterBody(water) {
       this.set('water', water);
