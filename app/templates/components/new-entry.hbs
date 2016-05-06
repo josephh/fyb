@@ -54,21 +54,7 @@
                 latitude: {{entry.location.geoposition.lat}}, longitude: {{entry.location.geoposition.long}}
               </li>
               <li>
-                {{#g-map lat=37.7833 lng=-122.4167 zoom=12 as |context|}}
-                  {{#g-map-infowindow context lat=37.7733 lng=-122.4067}}
-                    <h1>Info Window with Block</h1>
-                    <p>Text with {{bound}} variables</p>
-                    <button {{action "do"}}>Do</button>
-                  {{/g-map-infowindow}}
-                  {{g-map-infowindow context lat=37.7733 lng=-122.4067
-                                     title="Blockless form" message="Plain text."}}
-                  {{g-map-infowindow context lat=37.7733 lng=-122.4067
-                                     title="With action set"
-                                     onClose="onClose"}}
-                  {{g-map-infowindow context lat=37.7733 lng=-122.4067
-                                     title="With closure action set"
-                                     onClose=(action "onClose")}}
-                {{/g-map}}
+                {{g-map lat=37.7833 lng=-122.4167 zoom=12}}
               </li>
             </ul>
           </li>
