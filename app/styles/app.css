@@ -19,3 +19,8 @@ h1.fyb-heading {
 .fish-left, .fish-right{
   margin-bottom: 15px;
 }
+
+.g-map-canvas {
+  width: 600px;
+  height: 400px;
+}

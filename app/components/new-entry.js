@@ -64,6 +64,9 @@ export default Ember.Component.extend({
   }),
   conditions: conditionLabels[0],
   conditionsOptions: Ember.ArrayProxy.create({ content: conditionLabels}),
+  startLat: 51.0583557,
+  startLong: -1.7907422,
+  startZoom: 16,
   actions: {
     selectWaterBody(water) {
       this.set('water', water);
@@ -78,10 +81,6 @@ export default Ember.Component.extend({
       console.log(`conditions: ${this.get('conditions')}`);
       console.log(`tackle: ${this.get('tackle')}`);
       console.log(`notes: ${this.get('notes')}`);
-    },
-    onClose() {
-      debugger;
-      console.log('on close action')
     }
   }
 });

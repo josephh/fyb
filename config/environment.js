@@ -37,7 +37,11 @@ module.exports = function(environment) {
 
       'connect-src': ["'self'", "http://localhost:4500", "http://private-fc323-fyb1.apiary-mock.com"],
 
-      'img-src':     ["'self'", "http://csi.gstatic.com/csi", "https://maps.gstatic.com/"],
+      'img-src':     [
+        "'self'",
+        "http://csi.gstatic.com/csi",
+        "https://maps.gstatic.com/",
+        "https://maps.googleapis.com/"],
 
       'style-src': ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
 
