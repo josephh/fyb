@@ -55,7 +55,9 @@
                 latitude: {{entry.location.geoposition.lat}}, longitude: {{entry.location.geoposition.long}}
               </li> -->
               <li>
-                {{g-map lat=startLat lng=startLong zoom=startZoom}}
+                {{#g-map lat=startLat lng=startLong zoom=startZoom as |context|}}
+                  {{g-map-marker context lat=startLat lng=startLong icon="/images/fish-and-hook24.png" }}
+                {{/g-map}}
               </li>
             </ul>
           </li>
