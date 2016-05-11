@@ -39,7 +39,9 @@ module.exports = function(environment) {
 
       'img-src':     [
         "'self'",
-        "http://csi.gstatic.com/csi",
+        "http://csi.gstatic.com/",
+        "http://maps.gstatic.com/",
+        "http://maps.googleapis.com/",
         "https://maps.gstatic.com/",
         "https://maps.googleapis.com/"],
 
@@ -92,12 +94,14 @@ module.exports = function(environment) {
     },
 
     'g-map': {
-      libraries: ['drawing', 'visualization'],
+      libraries: ['places'],
       key: process.env.FYB_GOOGLE_API_KEY,
       protocol: 'https'
     }
 
   };
+
+  debugger;
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;

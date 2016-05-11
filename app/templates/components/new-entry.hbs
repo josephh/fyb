@@ -49,17 +49,23 @@
         <strong>Location</strong>
         <ul>
           <li>
-            <!-- {{entry.location.country}}, {{entry.location.waterBody}}, {{entry.location.name}} -->
-            <ul>
-              <!-- <li>
-                latitude: {{entry.location.geoposition.lat}}, longitude: {{entry.location.geoposition.long}}
-              </li> -->
-              <li>
-                {{#g-map lat=startLat lng=startLong zoom=startZoom as |context|}}
-                  {{g-map-marker context lat=startLat lng=startLong icon="/images/fish-and-hook24.png" }}
-                {{/g-map}}
-              </li>
-            </ul>
+            <strong>Name</strong>{{input value=name}}
+          </li>
+          <li>
+            {{#g-map lat=lat lng=long zoom=startZoom as |context|}}
+              {{g-map-marker context lat=lat lng=long icon="/images/fish-and-hook24.png" }}
+            {{/g-map}}
+          </li>
+          <li>
+            <strong>Address</strong>
+            {{place-autocomplete-field
+              value=address
+              disable=false
+              handlerController=this
+              inputClass='place-autocomplete--input'
+              focusOutCallback='done'
+              placeChangedCallback='placeChanged'
+            }}
           </li>
         </ul>
         <li>

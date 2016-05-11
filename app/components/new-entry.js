@@ -65,16 +65,33 @@ export default Ember.Component.extend({
   }),
   conditions: conditionLabels[0],
   conditionsOptions: Ember.ArrayProxy.create({ content: conditionLabels}),
-  startLat: undefined,
-  startLong: undefined,
+
+  /**
+  export default MF.Fragment.extend({
+    country: DS.attr('string', { default: 'UK' }),
+    waterbody: DS.attr('string', { default: 'river' }),
+    name: DS.attr('string'),
+    geoposition: MF.fragment('geoposition')
+  });*/
+  country: undefined,
+  name: undefined,
+  address: undefined,
+  lat: undefined,
+  long: undefined,
   startZoom: 16,
   init() {
     var component = this;
     this._super(...arguments);
     this.get('geolocation').getLocation().then(function(geoObject) {
-      component.set('startLat', geoObject.coords.latitude);
-      component.set('startLong', geoObject.coords.longitude);
+      component.set('lat', geoObject.coords.latitude);
+      component.set('long', geoObject.coords.longitude);
     });
+  },
+  focusOutCallback() {
+    console.log('focus out callback');
+  },
+  placeChangedCallback() {
+    console.log('place changed callback');
   },
   actions: {
     selectWaterBody(water) {
