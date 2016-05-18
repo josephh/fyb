@@ -66,13 +66,6 @@ export default Ember.Component.extend({
   conditions: conditionLabels[0],
   conditionsOptions: Ember.ArrayProxy.create({ content: conditionLabels}),
 
-  /**
-  export default MF.Fragment.extend({
-    country: DS.attr('string', { default: 'UK' }),
-    waterbody: DS.attr('string', { default: 'river' }),
-    name: DS.attr('string'),
-    geoposition: MF.fragment('geoposition')
-  });*/
   country: undefined,
   name: undefined,
   address: undefined,
@@ -82,10 +75,22 @@ export default Ember.Component.extend({
   init() {
     var component = this;
     this._super(...arguments);
+    var lat, long, formattedAddress, google, geocoder;
     this.get('geolocation').getLocation().then(function(geoObject) {
-      component.set('lat', geoObject.coords.latitude);
-      component.set('long', geoObject.coords.longitude);
+      lat = geoObject.coords.latitude;
+      long = geoObject.coords.longitude;
+      component.set('lat', lat);
+      component.set('long', long);
+      debugger;
+      let google = component.get('google').maps;
+      geocoder = new google.Geocoder();
+      geocoder.geocode({location:{lat: lat, lng: long}},function(resultArray, status){
+        if(resultArray.length > 0){
+          component.set('address', resultArray[0].formatted_address);
+        }
+      });
     });
+
   },
   focusOutCallback() {
     console.log('focus out callback');
@@ -107,6 +112,25 @@ export default Ember.Component.extend({
       console.log(`conditions: ${this.get('conditions')}`);
       console.log(`tackle: ${this.get('tackle')}`);
       console.log(`notes: ${this.get('notes')}`);
+    },
+    onLocationChangeHandler(lat, lng, results) {
+      debugger;
+      Ember.Logger.log(`lat: ${lat}, lng: ${lng}`);
+      Ember.Logger.debug(results);
+    },
+    placeChanged(googlePlacesResponse){
+      // sometimes the response is a string (cached formatted string from previous search?)
+      if(typeof  googlePlacesResponse === 'object'){
+        let lat = googlePlacesResponse.geometry.location.lat(),
+          long = googlePlacesResponse.geometry.location.lng();
+          if(lat && long){
+            this.set('lat', lat);
+            this.set('long', long);
+          }
+      }
+    },
+    done(){
+      debugger;
     }
   }
 });

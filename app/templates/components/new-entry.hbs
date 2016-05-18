@@ -52,9 +52,23 @@
             <strong>Name</strong>{{input value=name}}
           </li>
           <li>
-            {{#g-map lat=lat lng=long zoom=startZoom as |context|}}
-              {{g-map-marker context lat=lat lng=long icon="/images/fish-and-hook24.png" }}
-            {{/g-map}}
+
+          {{#g-map lat=lat lng=long zoom=startZoom as |context|}}
+            {{#g-map-marker
+              context
+              lat=lat
+              lng=long
+              icon="/images/fish-and-hook24.png"
+              onLocationChange=(action "onLocationChangeHandler")
+              as |markerContext| }}
+              {{#g-map-infowindow markerContext openOn="mouseover" closeOn="mouseout"}}
+                <h2>{{specie}}</h2>
+                <h3>{{compositeLength}} ({{lengthUnit}}); {{compositeWeight}} ({{weightUnit}})</h3>
+                <h4>Caught at: "{{name}}" ({{water}})</h4>
+                <h5>{{address}}</h5>
+              {{/g-map-infowindow}}
+            {{/g-map-marker}}
+          {{/g-map}}
           </li>
           <li>
             <strong>Address</strong>
