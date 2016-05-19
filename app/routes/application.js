@@ -39,11 +39,16 @@ export default Ember.Route.extend( {
 
       controller.set('error', null);
 
-      session.open(providerName).then(() => {
-        route.transitionTo('secure.owner.entries', session.get('currentUser').id);
-      }).catch(err => {
-        Ember.run(controller, 'set', 'error', 'Could not sign you in: ' + err.message);
-      });
+      route.transitionTo('search');
+
+/** TODO commented out, pending implementation of authentication patterns.
+The app should probably default to the anonymous "search entries" page in the absence of login; but go to the
+logged-in user's timeline when they are signed in **/
+      // session.open(providerName).then(() => {
+      //   route.transitionTo('secure.owner.entries', session.get('currentUser').id);
+      // }).catch(err => {
+      //   Ember.run(controller, 'set', 'error', 'Could not sign you in: ' + err.message);
+      // });
     }
   }
 });

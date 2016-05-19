@@ -12,7 +12,7 @@
         <span class="icon-bar">Logged in as <b>{{toriiSession.currentUser.id}}</b></span>
       </li>
     {{/if}}
-    <li role="presentation" class="active">{{link-to 'Entries' 'secure.owner.entries' 1}}</li>
+    <li role="presentation" class="active">{{link-to 'Entries' 'entries'}}</li>
     <li role="presentation">{{link-to 'New Entry' 'secure.owner.new' 1}}</li>
     <li role="presentation">{{link-to 'Search' 'search'}}</li>
     {{#if toriiSession.isAuthenticated}}

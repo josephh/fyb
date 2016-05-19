@@ -4,15 +4,16 @@ import MF from 'model-fragments';
 export default DS.Model.extend({
   caught: DS.attr('date'),
   created: DS.attr('date'),
-  owner: DS.attr('number'),
-  location: MF.fragment('location'),
   conditions: DS.attr('string'),
   tackle: DS.attr('string'),
+  bait: DS.attr('string'),
   notes: DS.attr('string'),
   species: DS.attr('string', { defaultValue: 'unknown' }),
-  lengthunit: DS.attr('string', { defaultValue: 'cm' }),
   length: DS.attr('number', { defaultValue: 0 }),
-  weightunit: DS.attr('string', { defaultValue: 'ounces' }),
+  lengthunits: DS.attr('string', { defaultValue: 'cm' }),
   weight: DS.attr('number', { defaultValue: 0 }),
-  images: DS.hasMany('image', { async: true })
+  weightunits: DS.attr('string', { defaultValue: 'ounces' }),
+  images: DS.hasMany('image', { async: true }),
+  user: DS.attr('user'),
+  location: MF.fragment('location')
 });
