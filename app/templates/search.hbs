@@ -1,37 +1,3 @@
 <!-- app/templates/search -->
 <h2>Search Catches and Entries template...</h2>
-<div class="row">
-  <div class="col-md-6 panel panel-default panel-body">
-    <h4>Search Catches</h4>
-    <ul>
-      <li>
-        <strong>Water body</strong>
-        <div class="btn-group" role="group" aria-label="...">
-          <button type="button" class="btn btn-default" value="river" type="submit" {{action 'selectWaterBody' 'river'}} autofocus="true">River</button>
-          <button type="button" class="btn btn-default" value="stillwater" type="submit" {{action 'selectWaterBody' 'stillwater'}}>Stillwater</button>
-          <button type="button" class="btn btn-default" value="sea"  type="submit" {{action 'selectWaterBody' 'sea'}}>Sea</button>
-        </div>
-      </li>
-      <li>
-        <strong>Fish species</strong>
-        <select onchange={{action (mut specie) value="target.value"}}>
-          {{#each speciesOptions as |fishChoice|}}
-            <option value={{fishChoice}}>{{fishChoice}}</option>
-          {{/each}}
-        </select>
-      </li>
-      <li>
-        <strong>Location</strong>
-        <ul>
-          <li>
-            <strong>Name</strong>{{input value=name}}
-          </li>
-        <li>
-          <button type="button" class="btn btn-primary" value="add" type="submit" {{action 'search' }}>Search</button>
-        </li>
-      </li>
-    </ul>
-  </div>
-</div>
-
-{{outlet}}
+{{entry-search onSearch=(action 'search')}}

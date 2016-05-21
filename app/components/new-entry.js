@@ -66,11 +66,11 @@ export default Ember.Component.extend({
   conditions: conditionLabels[0],
   conditionsOptions: Ember.ArrayProxy.create({ content: conditionLabels}),
 
-  country: undefined,
-  name: undefined,
-  address: undefined,
-  lat: undefined,
-  long: undefined,
+  country: '',
+  name: '',
+  address: '',
+  lat: '',
+  long: '',
   startZoom: 16,
   init() {
     var component = this;
@@ -81,7 +81,6 @@ export default Ember.Component.extend({
       long = geoObject.coords.longitude;
       component.set('lat', lat);
       component.set('long', long);
-      debugger;
       let google = component.get('google').maps;
       geocoder = new google.Geocoder();
       geocoder.geocode({location:{lat: lat, lng: long}},function(resultArray, status){
