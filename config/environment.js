@@ -35,7 +35,11 @@ module.exports = function(environment) {
 
       'font-src': ["'self'", "fonts.gstatic.com"],
 
-      'connect-src': ["'self'", "http://localhost:4500", "http://private-fc323-fyb1.apiary-mock.com"],
+      'connect-src': [
+        "'self'",
+        "http://localhost:4500",
+        "http://localhost:9000",
+        "http://private-fc323-fyb1.apiary-mock.com"],
 
       'img-src':     [
         "'self'",
@@ -43,7 +47,10 @@ module.exports = function(environment) {
         "http://maps.gstatic.com/",
         "http://maps.googleapis.com/",
         "https://maps.gstatic.com/",
-        "https://maps.googleapis.com/"],
+        "https://maps.googleapis.com/",
+        "http://www.shallowtails.com/",
+        "http://www.otleyanglingclub.co.uk",
+        "http://www.sydneylake.com",],
 
       'style-src': ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
 

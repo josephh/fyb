@@ -23,9 +23,7 @@ export default Ember.Component.extend({
       this.set('water', water);
     },
     submitClick() {
-      debugger;
-      this.get('onSearch')();
-      // this.sendAction(this.get('specie'), this.get('name'));
+      this.sendAction('onSearch', this.get('specie'), this.get('name'));
     }
   }
 });

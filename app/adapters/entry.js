@@ -2,8 +2,9 @@
 import ApplicationAdapter from './application';
 
 export default ApplicationAdapter.extend({
+  namespace: '',
   buildURL (modelName, id, snapshot, requestType, query)  {
-    let owner = query.owner;
+    debugger;
     var url = [];
     var host = this.host;
     var prefix = this.urlPrefix();
@@ -14,11 +15,6 @@ export default ApplicationAdapter.extend({
      if (path) {
        url.push(path);
      }
-    }
-
-    if (owner) {
-     url.unshift(encodeURIComponent(owner));
-     delete query.owner; // the owner parameter isn't intended to append to a GET request
     }
 
     if (prefix) {
