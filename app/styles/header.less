@@ -1,0 +1,78 @@
+header {
+  position: relative;
+  z-index: 100;
+
+  .header-body {
+    background: @body-background-color;
+    border-top: 5px solid #EDEDED;
+    border-bottom: 1px solid transparent;
+    padding: 8px 0;
+    -webkit-transition: min-height 0.3s ease;
+    -moz-transition: min-height 0.3s ease;
+    transition: min-height 0.3s ease;
+    width: 100%;
+    z-index: 1001;
+    min-height: 125px;
+  }
+
+  .header-row { // top-level header row
+    display: table-row;
+    clear: both;
+  }
+
+  .header-column {
+    display: table-cell;
+    vertical-align: middle;
+
+    .header-row { // nested header row
+      display: block;
+      clear: right;
+
+    }
+  }
+
+  .header-search {
+    float: right;
+    margin-top: 10px;
+    margin-left: 10px;
+
+    .form-control {
+      border-radius: 20px;
+      font-size: 0.9em;
+      height: 34px;
+      margin: 0;
+      padding: 6px 12px;
+      -webkit-transition: width 0.3s ease;
+      -moz-transition: width 0.3s ease;
+      transition:  width 0.3s ease;
+      -webkit-transform: translate3d(0, 0, 0);
+      -webkit-backface-visibility: hidden;
+      -webkit-perspective: 1000;
+      width: 170px;
+    }
+
+    .btn-default {
+       background: transparent;
+       border: 0 none;
+       color: #CCC;
+       position: absolute;
+       right: 0;
+       top: 0;
+       z-index: 3;
+    }
+  }
+
+  .header-logo {
+    float: left;
+    position: relative;
+
+    img {
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+      position: relative;
+      margin: 15px 15px 15px 0;
+      top: 0;
+    }
+  }
+}
