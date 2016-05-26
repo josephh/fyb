@@ -7,13 +7,7 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.authenticatedRoute('secure', function(){
-    this.authenticatedRoute('owner', {path: '/:ownerId'}, function(){
-      this.route('new');
-    });
-  });
-  this.route('entries');
-  this.route('search');
+  this.route('entries', {path: '/'});
 });
 
 export default Router;

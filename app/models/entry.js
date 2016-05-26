@@ -14,6 +14,6 @@ export default DS.Model.extend({
   weight: DS.attr('number', { defaultValue: 0 }),
   weightunits: DS.attr('string', { defaultValue: 'ounces' }),
   images: DS.hasMany('image', { async: true }),
-  user: DS.attr('user'),
+  user: DS.attr('string'),
   location: MF.fragment('location')
 });

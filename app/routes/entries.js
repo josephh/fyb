@@ -17,7 +17,6 @@ export default Ember.Route.extend({
     }
   },
   model(params) {
-    debugger;
     return this.store.query('entry', params);
   }
 });
