@@ -2,6 +2,11 @@ header {
   position: relative;
   z-index: 100;
 
+  .header-container {
+    position: relative;
+    display: table;
+  }
+
   .header-body {
     background: @color-white;
     border-top: 5px solid #EDEDED;
@@ -93,14 +98,59 @@ header {
   @media (min-width: @tablet-min-width-breakpoint) {
     .header-nav {
       display: block !important;
-    }
 
-   .header-nav-main {
-      display: block !important;
-      height: auto !important;
-      float: right;
-      margin: 12px 0 0;
-      min-height: 45px;
+      .header-nav-main {
+         display: block !important;
+         height: auto !important;
+         float: right;
+         margin: 12px 0 0;
+         min-height: 45px;
+
+         nav  ul > li > a {
+           border-radius: 4px;
+           font-size: 12px;
+           font-style: normal;
+           font-weight: 700;
+           line-height: 20px;
+           padding: 10px 13px;
+           text-transform: uppercase;
+           .dropdown-toggle {
+             padding-right: 23px;
+           }
+         }
+
+         nav > ul > li.dropdown .dropdown-menu {
+           border-top-color: #0088cc;
+           top: -1000px;
+           display: block;
+           opacity: 0;
+           left: auto;
+           border-radius: 0 4px 4px;
+           border: 0;
+           border-top: 5px solid #CCC;
+           box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+           margin: -3px 0 0 0;
+           min-width: 200px;
+           padding: 5px;
+           text-align: left;
+
+           .fa-caret-down {
+             display: none;
+           }
+
+         }
+      }
+
+      ul.nav-pills > li.active > a {
+        background-color: #0088cc;
+        background-color: #CCC;
+      }
+
+      .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+          color: #fff;
+          background-color: #337ab7;
+      }
+
     }
   }
 
