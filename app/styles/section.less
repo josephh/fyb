@@ -1,0 +1,99 @@
+
+/* Section Featured */
+section.section {
+  background: #f4f4f4;
+  border-top: 5px solid #f1f1f1;
+  margin: 30px 0;
+  padding: 50px 0;
+}
+
+section.section.section-no-background {
+  background: transparent;
+  border-top-color: transparent;
+}
+
+section.section.section-center {
+  text-align: center;
+}
+
+section.section.section-text-light h1, section.section.section-text-light h2, section.section.section-text-light h3, section.section.section-text-light h4, section.section.section-text-light h5, section.section.section-text-light h6 {
+  color: @color-white;
+}
+
+section.section.section-text-light p {
+  color: #e6e6e6;
+}
+
+section.section.section-background {
+  background-repeat: repeat;
+  border: 0;
+}
+
+section.section.section-overlay {
+  position: relative;
+}
+
+section.section.section-overlay:before {
+  content: "";
+  display: block;
+  background: url("../img/video-overlay.png") repeat scroll 0 0 transparent;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+section.section.section-video {
+  background: none !important;
+  border: 0;
+}
+
+section.section.section-parallax {
+  border: 0;
+}
+
+section.section.section-no-border {
+  border: 0;
+}
+
+section.section.section-with-divider {
+  margin: 56px 0 35px;
+}
+
+section.section.section-with-divider .divider {
+  margin: -56px 0 44px;
+}
+
+section.section.section-footer {
+  margin-bottom: -50px;
+}
+
+section.section.section-with-mockup {
+  margin-top: 120px;
+}
+
+section.section.section-front {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .container-fluid > .row > .p-none section.section {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .container-fluid > .row > .p-none:first-child section.section {
+    margin-bottom: 0;
+    margin-top: 30px;
+  }
+
+  .container-fluid > .row > .p-none:last-child section.section {
+    margin-bottom: 30px;
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,98 @@
+
+/* Home Intro */
+.home-intro {
+  background-color: #171717;
+  margin-bottom: 60px;
+  overflow: hidden;
+  padding: 20px 0 10px 0;
+  position: relative;
+  text-align: left;
+}
+
+.home-intro p {
+  color: @color-white;
+  display: inline-block;
+  font-size: 1.4em;
+  font-weight: 300;
+  max-width: 800px;
+  padding-top: 5px;
+}
+
+.home-intro p span {
+  color: #999;
+  display: block;
+  font-size: 0.8em;
+  padding-top: 5px;
+}
+
+.home-intro p em {
+  font-family: "Shadows Into Light", cursive;
+  font-size: 1.6em;
+}
+
+.home-intro .get-started {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  position: relative;
+  text-align: right;
+}
+
+.home-intro .get-started .btn {
+  position: relative;
+  z-index: 1;
+}
+
+.home-intro .get-started .btn i {
+  font-size: 1.1em;
+  font-weight: normal;
+  margin-left: 5px;
+}
+
+.home-intro .get-started a {
+  color: @color-white;
+}
+
+.home-intro .get-started a:not(.btn) {
+  color: #777;
+}
+
+.home-intro .learn-more {
+  margin-left: 15px;
+}
+
+.home-intro.light {
+  background-color: #E2E2E2;
+}
+
+.home-intro.light.secondary {
+  background-color: #E0E1E4;
+}
+
+.home-intro.light p {
+  color: #777;
+}
+
+/* Home Intro Compact */
+.home-intro-compact {
+  border-radius: 0 0 10px 10px;
+  margin-top: -10px;
+}
+
+.home-intro-compact p {
+  padding-left: 20px;
+}
+
+.home-intro-compact .get-started {
+  padding-right: 20px;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  /* Home Intro */
+  .home-intro-compact {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

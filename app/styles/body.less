@@ -1,54 +1,30 @@
+html {
+  direction: ltr;
+  overflow-x: hidden;
+}
+
 body {
   background-color: @color-white;
-  color: @color-white;
+  color: #777;
   font-family: "Open Sans", Arial, sans-serif;
   font-size: 14px;
   line-height: 22px;
   margin: 0;
   overflow-x: hidden;
-  display: block;
+}
 
-  a {
-      outline: none !important;
-  }
+body a {
+  outline: none !important;
+}
 
-  li {
-    line-height: 24px;
-  }
+li {
+  line-height: 24px;
+}
 
-  .btn {
-    -webkit-transition: all 0.1s;
-    -moz-transition: all 0.1s;
-    transition: all 0.1s;
-  }
-
-  .social-icons {
-    margin: 0;
-    padding: 0;
-    width: auto;
-
-    li {
-      display: inline-block;
-      margin: -1px 1px 5px 0;
-      padding: 0;
-      border-radius: 100%;
-      overflow: visible;
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
-
-      a {
-        -webkit-transition: all 0.2s ease;
-        -moz-transition: all 0.2s ease;
-        transition: all 0.2s ease;
-        background: #FFF;
-        border-radius: 100%;
-        display: block;
-        height: 30px;
-        line-height: 30px;
-        width: 30px;
-        text-align: center;
-        color: @color-black !important;
-        text-decoration: none;
-      }
-    }
+/* Body */
+@media (max-width: 991px) {
+  body > .body {
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
