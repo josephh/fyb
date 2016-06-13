@@ -10,10 +10,10 @@ export default DS.Model.extend({
   notes: DS.attr('string'),
   species: DS.attr('string', { defaultValue: 'unknown' }),
   length: DS.attr('number', { defaultValue: 0 }),
-  lengthunits: DS.attr('string', { defaultValue: 'cm' }),
+  lengthUnits: DS.attr('string', { defaultValue: 'cm' }),
   weight: DS.attr('number', { defaultValue: 0 }),
-  weightunits: DS.attr('string', { defaultValue: 'ounces' }),
-  images: DS.hasMany('image', { async: true }),
-  user: DS.attr('string'),
-  location: MF.fragment('location')
+  weightUnits: DS.attr('string', { defaultValue: 'ounces' }),
+  image: DS.attr('string'),
+  location: MF.fragment('location'),
+  user: DS.attr()
 });

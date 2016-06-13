@@ -1,33 +1,44 @@
-{{#each model as |entry|}}
-<div class="row">
-  <div class="col-md-6 panel panel-default panel-body">
-    <h4>{{entry.owner}}'s catch details for {{entry.caught}}</h4>
-    <h5>(created {{entry.created}})</h5>
-    <ul>
-      <li><strong>Species: </strong>{{entry.species}}
-        <ul>
-          <li>
-            length: {{entry.length}} {{entry.lengthunit}}, weight: {{entry.weight}} {{entry.weightunit}}
-          </li>
+<div role="main" class="main">
+
+  <section class="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active">Entries</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Hooked!</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <h2>See what people have caught</h2>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-9">
+        <ul class="portfolio-list sort-destination lightbox" data-sort-id="portfolio" data-plugin-options='{"delegate": "a.lightbox-portfolio", "type": "image", "gallery": {"enabled": true}}'>
+          {{#each model as |entry|}}
+          {{portfolio-entry catch=entry}}
+          {{/each}}
         </ul>
-      </li>
-      <li>
-        <strong>Location</strong>
-        <ul>
-          <li>{{entry.location.country}}, {{entry.location.waterBody}}, {{entry.location.name}}
-            <ul>
-              <li>
-                latitude: {{entry.location.geoposition.lat}}, longitude: {{entry.location.geoposition.long}}
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <li><strong>Conditions: </strong>{{entry.conditions}}</li>
-        <li><strong>Tackle: </strong>{{entry.tackle}}</li>
-        <li><strong>Notes: </strong>{{entry.notes}}</li>
-      </li>
-    </ul>
+      </div>
+      <div class="col-md-3">
+        {{entries-sidebar}}
+      </div>
+
+    </div>
+
   </div>
+
 </div>
-{{/each}}
 {{outlet}}

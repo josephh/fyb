@@ -50,5 +50,8 @@ logged-in user's timeline when they are signed in **/
       //   Ember.run(controller, 'set', 'error', 'Could not sign you in: ' + err.message);
       // });
     }
+  },
+  redirect() {
+    this.transitionTo('entries');
   }
 });

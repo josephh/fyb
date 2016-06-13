@@ -81,13 +81,13 @@ export default Ember.Component.extend({
       long = geoObject.coords.longitude;
       component.set('lat', lat);
       component.set('long', long);
-      let google = component.get('google').maps;
-      geocoder = new google.Geocoder();
-      geocoder.geocode({location:{lat: lat, lng: long}},function(resultArray, status){
-        if(resultArray.length > 0){
-          component.set('address', resultArray[0].formatted_address);
-        }
-      });
+    //   let google = component.get('google').maps;
+    //   geocoder = new google.Geocoder();
+    //   geocoder.geocode({location:{lat: lat, lng: long}},function(resultArray, status){
+    //     if(resultArray.length > 0){
+    //       component.set('address', resultArray[0].formatted_address);
+    //     }
+    //   });
     });
 
   },
@@ -117,17 +117,17 @@ export default Ember.Component.extend({
       Ember.Logger.log(`lat: ${lat}, lng: ${lng}`);
       Ember.Logger.debug(results);
     },
-    placeChanged(googlePlacesResponse){
-      // sometimes the response is a string (cached formatted string from previous search?)
-      if(typeof  googlePlacesResponse === 'object'){
-        let lat = googlePlacesResponse.geometry.location.lat(),
-          long = googlePlacesResponse.geometry.location.lng();
-          if(lat && long){
-            this.set('lat', lat);
-            this.set('long', long);
-          }
-      }
-    },
+    // placeChanged(googlePlacesResponse){
+    //   // sometimes the response is a string (cached formatted string from previous search?)
+    //   if(typeof  googlePlacesResponse === 'object'){
+    //     let lat = googlePlacesResponse.geometry.location.lat(),
+    //       long = googlePlacesResponse.geometry.location.lng();
+    //       if(lat && long){
+    //         this.set('lat', lat);
+    //         this.set('long', long);
+    //       }
+    //   }
+    // },
     done(){
       debugger;
     }

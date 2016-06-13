@@ -1,0 +1,129 @@
+<aside class="sidebar" data-plugin-sticky data-plugin-options='{"minWidth": 991, "containerSelector": ".container", "padding": {"top": 110}}'>
+
+  <h4 class="heading-primary">Filter by fish, fisher, dates and location</h4>
+
+  <hr>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-3">
+          <section class="panel">
+            <div class="panel-body">
+              <form class="form-horizontal form-bordered" action="#">
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Country</label>
+                  <div class="col-md-6">
+                    <select data-plugin-selectTwo class="form-control populate">
+                      <optgroup label="Alaskan/Hawaiian Time Zone">
+                        <option value="AK">Alaska</option>
+                        <option value="HI">Hawaii</option>
+                      </optgroup>
+                      <optgroup label="Pacific Time Zone">
+                        <option value="CA">California</option>
+                        <option value="NV">Nevada</option>
+                        <option value="OR">Oregon</option>
+                        <option value="WA">Washington</option>
+                      </optgroup>
+                      <optgroup label="Mountain Time Zone">
+                        <option value="AZ">Arizona</option>
+                        <option value="CO">Colorado</option>
+                        <option value="ID">Idaho</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="UT">Utah</option>
+                        <option value="WY">Wyoming</option>
+                      </optgroup>
+                      <optgroup label="Central Time Zone">
+                        <option value="AL">Alabama</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TX">Texas</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="WI">Wisconsin</option>
+                      </optgroup>
+                      <optgroup label="Eastern Time Zone">
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="IN">Indiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="OH">Ohio</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WV">West Virginia</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+              </form>
+              <form class="form-horizontal form-bordered">
+                <div class="form-group">
+                  <label for="tags-input" class="col-md-3 control-label">Location Tags</label>
+                  <div class="col-md-6">
+                    <input name="tags" id="tags-input" data-role="tagsinput" data-tag-class="label label-primary" class="form-control" value="thames,shepperton,lower sunbury">
+                  </div>
+                </div>
+              </form>
+              <form class="form-horizontal form-bordered" method="get">
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Fisher</label>
+                  <div class="col-md-6">
+                    <div class="input-group input-group-icon">
+                      <span class="input-group-addon">
+                        <span class="icon"><i class="fa fa-user"></i></span>
+                      </span>
+                      <input type="text" class="form-control" placeholder="fisher">
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <form class="form-horizontal form-bordered">
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Date range</label>
+                  <div class="col-md-6">
+                    <div class="input-daterange input-group" data-plugin-datepicker="">
+                      <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                      <input type="text" class="form-control" name="start">
+                      <span class="input-group-addon">to</span>
+                      <input type="text" class="form-control" name="end">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </section>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</aside>
+{{yield}}
