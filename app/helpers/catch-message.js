@@ -1,31 +1,32 @@
 import Ember from 'ember';
 
+/**
+ * the parameter to this helper is the model - itself an Ember object
+ */
 export function catchMessage(params/*, hash*/) {
-  debugger;
-  var fish = 'unknown',
-    fish = params[0].species,
-    userName = params[0].user.name,
-    weight = params[0].weight,
-    weightUnits = params[0].weightUnits,
-    length = params[0].length,
-    lengthUnits = params[0].lengthUnits,
-    location = params[0].location,
+  var fish = params[0].get('species'),
+    userName = params[0].get('user.name'),
+    weight = params[0].get('weight'),
+    weightUnits = params[0].get('weightUnits'),
+    length = params[0].get('length'),
+    lengthUnits = params[0].get('lengthUnits'),
+    country = params[0].get('location.country'),
     message = '';
   if(fish) { // fish is mandatory in the data model - perhaps not a redundant condition
     if(fish == 'unknown') {
       return "We don't know what sort of fish this is";
     }
     if(userName) {
-      message.concat(`${userName} caught this ${fish} `);
+      message = message.concat(`${userName} caught this ${fish} `);
     }
-    if(location && location.country){ // country is required in the data model as well...
-      message.concat(`in ${location.country}, `);
+    if(country){ // country is required in the data model as well...
+      message = message.concat(`in ${country}, `);
     }
     if(weight) {  // default weight units is ounces
-      message.concat(`weighing ${weight} ${weightUnits} and `);
+      message = message.concat(`weighing ${weight} ${weightUnits} and `);
     }
     if(length) {  // default is cm
-      message.concat(`${length} ${lengthUnits} long.`);
+      message = message.concat(`${length} ${lengthUnits} long.`);
     }
   }
   return message;
