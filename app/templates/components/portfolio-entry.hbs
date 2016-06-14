@@ -15,12 +15,9 @@
           </span>
         </span>
         <span class="thumb-info-action">
-          <a href="portfolio-single-project.html">
+          {{#link-to 'entry' catch.id}}
             <span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fa fa-link"></i></span>
-          </a>
-          <a href="img/projects/project.jpg" class="lightbox-portfolio">
-            <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fa fa-search-plus"></i></span>
-          </a>
+          {{/link-to}}
         </span>
       </span>
     </span>

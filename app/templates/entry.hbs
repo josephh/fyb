@@ -1,0 +1,38 @@
+<div role="main" class="main">
+
+  <section class="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="breadcrumb">
+            <li>{{#link-to 'application'}}Home{{/link-to}}</li>
+            <li>{{#link-to 'entries'}}Entries{{/link-to}}</li>
+            <li class="active">{{#link-to 'entry' model.id}}{{model.id}}{{/link-to}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h1>It's a Catch!</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <h2>{{capitalize-first model.species}} caught on {{formatted-date model.caught 'short'}}</h2>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <p>{{catch-message model}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{{outlet}}
