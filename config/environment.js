@@ -31,10 +31,7 @@ module.exports = function(environment) {
 
       'default-src': ["'none'"],
 
-      'script-src':  ["'self'"
-      // ,
-      // "http://maps.googleapis.com"
-    ],
+      'script-src':  ["'self'" , "http://maps.googleapis.com" ],
 
       'font-src': ["'self'", "fonts.gstatic.com"],
 
@@ -46,11 +43,11 @@ module.exports = function(environment) {
 
       'img-src':     [
         "'self'",
-        // "http://csi.gstatic.com/",
-        // "http://maps.gstatic.com/",
-        // "http://maps.googleapis.com/",
-        // "https://maps.gstatic.com/",
-        // "https://maps.googleapis.com/",
+        "http://csi.gstatic.com/",
+        "http://maps.gstatic.com/",
+        "http://maps.googleapis.com/",
+        "https://maps.gstatic.com/",
+        "https://maps.googleapis.com/",
         "http://www.shallowtails.com/",
         "http://www.otleyanglingclub.co.uk",
         "http://www.sydneylake.com",],
@@ -103,11 +100,10 @@ module.exports = function(environment) {
       }
     },
 
-    // 'g-map': {
-    //   libraries: ['places'],
-    //   key: process.env.FYB_GOOGLE_API_KEY,
-    //   protocol: 'https'
-    // }
+    'g-map': {
+      key: process.env.FYB_GOOGLE_API_KEY,
+      protocol: 'https'
+    }
 
   };
 
