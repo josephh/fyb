@@ -1,105 +1,181 @@
-<div class="row">
-  <div class="col-md-6 panel panel-default panel-body">
-    <h4>Catch Details</h4>
-    <ul>
-      <li>
-        <strong>Water body</strong>
-        <div class="btn-group" role="group" aria-label="...">
-          <button type="button" class="btn btn-default" value="river" type="submit" {{action 'selectWaterBody' 'river'}} autofocus="true">River</button>
-          <button type="button" class="btn btn-default" value="stillwater" type="submit" {{action 'selectWaterBody' 'stillwater'}}>Stillwater</button>
-          <button type="button" class="btn btn-default" value="sea"  type="submit" {{action 'selectWaterBody' 'sea'}}>Sea</button>
+<section class="page-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb">
+          <li>{{#link-to 'application'}}Home{{/link-to}}</li>
+          <li>{{#link-to 'entries'}}Entries{{/link-to}}</li>
+          <li class="active">New Entry</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Tight Lines!</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <section class="panel">
+        <h2>Record a Catch</h2>
+      </section>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <section class="panel">
+              <header class="panel-heading">
+                <div class="panel-actions">
+                  <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                  <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                </div>
+
+              </header>
+              <div class="panel-body">
+                <form class="form-horizontal form-bordered" action="#">
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="inputSuccess">Water Body</label>
+                    <div class="col-md-6">
+                      <div class="btn-group" role="group" aria-label="...">
+                        <button type="button radio" class="btn btn-default" value="river" type="submit" {{action 'selectWaterBody' 'river'}} autofocus="true">River</button>
+                        <button type="button radio" class="btn btn-default" value="stillwater" type="submit" {{action 'selectWaterBody' 'stillwater'}}>Stillwater</button>
+                        <button type="button radio" class="btn btn-default" value="sea"  type="submit" {{action 'selectWaterBody' 'sea'}}>Sea</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Fish</label>
+                    <div class="col-md-6">
+                      <select class="form-control" onchange={{action (mut specie) value="target.value"}}>
+                        {{#each speciesOptions as |fishChoice|}}
+                          <option value={{fishChoice}}>{{fishChoice}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Weight</label>
+                    <div class="col-md-6">
+                      <label class="checkbox-inline">
+                        <input type="checkbox" id="checkboxWeightMetric" value="metricWeight"> metric
+                      </label>
+                      <label class="checkbox-inline">
+                        <input type="checkbox" id="checkboxWeightImperial" value="imperialWeight"> imperial
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-sm-8">
+                      <div class="row">
+                        <div class="col-sm-3">
+                					<div class="input-group input-group-icon">
+                            <input type="text" class="form-control" placeholder="pounds">
+                            <span class="input-group-addon ">lbs</span>
+                          </div>
+                        </div>
+                        <div class="visible-xs mb-md"></div>
+                        <div class="col-sm-3">
+                					<div class="input-group input-group-icon">
+                            <input type="text" class="form-control" placeholder="ounces">
+                            <span class="input-group-addon ">oz</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Length</label>
+                    <div class="col-md-6">
+                      <label class="checkbox-inline">
+                        <input type="checkbox" id="checkboxLengthMetric" value="metricWeight"> metric
+                      </label>
+                      <label class="checkbox-inline">
+                        <input type="checkbox" id="checkboxLengthImperial" value="imperialWeight"> imperial
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-sm-8">
+                      <div class="row">
+                        <div class="col-sm-3">
+                					<div class="input-group input-group-icon">
+                            <input type="text" class="form-control" placeholder="feet">
+                            <span class="input-group-addon ">'</span>
+                          </div>
+                        </div>
+                        <div class="visible-xs mb-md"></div>
+                        <div class="col-sm-3">
+                					<div class="input-group input-group-icon">
+                            <input type="text" class="form-control" placeholder="inches">
+                            <span class="input-group-addon ">"</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="tags-input" class="col-md-3 control-label">Place Tags</label>
+                    <div class="col-md-7">
+                      <input name="tags" id="tags-input" data-role="tagsinput"
+                      data-tag-class="label label-primary" class="form-control" value="Shepperton,Thames,Penton Hook" />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="inputDefault">Address</label>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="inputAddress">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="inputSuccess">Conditions</label>
+                    <div class="col-md-6">
+                      <select class="form-control mb-md onchange={{action (mut conditions) value="target.value"}}">
+                        {{#each conditionsOptions as |conditionsLabel|}}
+                          <option value={{conditionsLabel}}>{{conditionsLabel}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                  </div>
+
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="textareaDefault">Tackle</label>
+										<div class="col-md-6">
+											<textarea class="form-control" rows="3" data-plugin-maxlength maxlength="250"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="textareaDefault">Notes</label>
+										<div class="col-md-6">
+											<textarea class="form-control" rows="3" data-plugin-maxlength maxlength="250"></textarea>
+										</div>
+									</div>
+
+                </form>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-6">
+                  <a href="#" class="btn btn-primary" data-toggle="confirmation" {{action 'addEntry' }}>Add Entry</a>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
-      </li>
-      <li>
-        <strong>Fish species</strong>
-        <select onchange={{action (mut specie) value="target.value"}}>
-          {{#each speciesOptions as |fishChoice|}}
-            <option value={{fishChoice}}>{{fishChoice}}</option>
-          {{/each}}
-        </select>
-        <ul>
-          <li>
-            <strong>Length units</strong>
-            <select onchange={{action (mut lengthUnit) value="target.value"}}>
-              {{#each lengthUnits as |lengthUnitChoice|}}
-                <option value={{lengthUnitChoice}}>{{lengthUnitChoice}}</option>
-              {{/each}}
-            </select>
-            {{#if isMetricLength}}
-              {{input value=lengthMajor}} cm
-            {{else}}
-              {{input value=lengthMajor}} feet {{input value=lengthMinor}} inches
-            {{/if}}
-          </li>
-          <li><strong>Weight units</strong>
-            <select onchange={{action (mut weightUnit) value="target.value"}}>
-              {{#each weightUnits as |weightUnitChoice|}}
-                <option value={{weightUnitChoice}}>{{weightUnitChoice}}</option>
-              {{/each}}
-            </select>
-            {{#if isMetricWeight}}
-              {{input value=weightMajor}} grams
-            {{else}}
-              {{input value=weightMajor}} lbs {{input value=weightMinor}} oz
-            {{/if}}
-          </li>
-        </ul>
-      </li>
-      <li>
-        <strong>Location</strong>
-        <ul>
-          <li>
-            <strong>Name</strong>{{input value=name}}
-          </li>
-          <li>
-<!--
-          {{#g-map lat=lat lng=long zoom=startZoom as |context|}}
-            {{#g-map-marker
-              context
-              lat=lat
-              lng=long
-              icon="/images/fish-and-hook24.png"
-              onLocationChange=(action "onLocationChangeHandler")
-              as |markerContext| }}
-              {{#g-map-infowindow markerContext openOn="mouseover" closeOn="mouseout"}}
-                <h2>{{specie}}</h2>
-                <h3>{{compositeLength}} ({{lengthUnit}}); {{compositeWeight}} ({{weightUnit}})</h3>
-                <h4>Caught at: "{{name}}" ({{water}})</h4>
-                <h5>{{address}}</h5>
-              {{/g-map-infowindow}}
-            {{/g-map-marker}}
-          {{/g-map}} -->
-          </li>
-          <li>
-            <strong>Address</strong>
-            {{place-autocomplete-field
-              value=address
-              disable=false
-              handlerController=this
-              inputClass='place-autocomplete--input'
-              focusOutCallback='done'
-              placeChangedCallback='placeChanged'
-            }}
-          </li>
-        </ul>
-        <li>
-          <strong>Conditions</strong>
-          <select onchange={{action (mut conditions) value="target.value"}}>
-            {{#each conditionsOptions as |conditionsLabel|}}
-              <option value={{conditionsLabel}}>{{conditionsLabel}}</option>
-            {{/each}}
-          </select>
-        </li>
-        <li><strong>Notes</strong>
-          {{textarea value=notes cols="80" rows="5" placeholder="catch notes" wrap="hard"}}
-        </li>
-        <li><strong>Tackle</strong>
-          {{textarea value=tackle cols="80" rows="5" placeholder="tackle notes" wrap="hard"}}
-        </li>
-        <li>
-          <button type="button" class="btn btn-primary" value="add" type="submit" {{action 'addEntry' }}>Add Catch</button>
-        </li>
-      </li>
-    </ul>
+      </div>
+
+
+    </div>
   </div>
 </div>

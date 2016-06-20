@@ -1,6 +1,6 @@
 <aside class="sidebar" data-plugin-sticky data-plugin-options='{"minWidth": 991, "containerSelector": ".container", "padding": {"top": 110}}'>
 
-  <h4 class="heading-primary">Filter by fish, fisher, dates and location</h4>
+  <h4 class="heading-primary">Filter by fish, date and location</h4>
 
   <hr>
 
@@ -10,6 +10,22 @@
       <div class="col-md-3">
           <section class="panel">
             <div class="panel-body">
+              <form class="form-horizontal form-bordered">
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Date range</label>
+                  <div class="col-md-6">
+                    <div class="input-daterange input-group" data-plugin-datepicker="">
+                      <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                      <input type="text" class="form-control" name="start">
+                      <span class="input-group-addon">to</span>
+                      <input type="text" class="form-control" name="end">
+                    </div>
+                  </div>
+                  {{bs-switch size="xs" onColor="success" offColor="warning"}}
+                </div>
+              </form>
               <form class="form-horizontal form-bordered" action="#">
                 <div class="form-group">
                   <label class="col-md-3 control-label">Country</label>
@@ -87,36 +103,6 @@
                     <input name="tags" id="tags-input" data-role="tagsinput" data-tag-class="label label-primary" class="form-control" value="thames,shepperton,lower sunbury">
                   </div>
                   {{bs-switch size="xs" onColor="success" offColor="warning"}}
-                </div>
-              </form>
-              <form class="form-horizontal form-bordered" method="get">
-                <div class="form-group">
-                  <label class="col-md-3 control-label">Fisher</label>
-                  <div class="col-md-6">
-                    <div class="input-group input-group-icon">
-                      <span class="input-group-addon">
-                        <span class="icon"><i class="fa fa-user"></i></span>
-                      </span>
-                      <input type="text" class="form-control" placeholder="fisher">
-                    </div>
-                  </div>
-                  {{bs-switch size="xs" onColor="success" offColor="warning"}}
-                </div>
-              </form>
-              <form class="form-horizontal form-bordered">
-                <div class="form-group">
-                  <label class="col-md-3 control-label">Date range</label>
-                  <div class="col-md-6">
-                    <div class="input-daterange input-group" data-plugin-datepicker="">
-                      <span class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                      </span>
-                      <input type="text" class="form-control" name="start">
-                      <span class="input-group-addon">to</span>
-                      <input type="text" class="form-control" name="end">
-                    </div>
-                  </div>
-                  {{bs-switch size="xs" onColor="success" offColor="warning"}}  
                 </div>
               </form>
             </div>
