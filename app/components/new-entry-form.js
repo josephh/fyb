@@ -11,14 +11,21 @@ var lengthUnitLabels = Ember.A([imperialLength, metricLength]),
   conditionLabels = Ember.A(['sunny', 'rainy', 'overcast', 'windy']);
 
 export default Ember.Component.extend({
+  store: Ember.inject.service(),
   geolocation: Ember.inject.service(),
+  'fish-species': Ember.inject.service(),
   water: 'river', // stillwater or sea
+  waterOptions: Ember.A([
+    {value: 'river', label: 'River'},
+    {value: 'stillwater', label: 'Stillwater'},
+    {value: 'sea', label: 'Sea'}
+  ]),
   specie: 'Other',
   speciesOptions: Ember.computed('water', function() {
     if ( this.get('water') === 'river' || this.get('water') === 'stillwater' ) {
-      return Ember.ArrayProxy.create({ content: freshwaterSpecies });
+      return Ember.ArrayProxy.create({ content: this.get('fish-species').get('freshwaterSpecies') });
     } else {
-      return Ember.ArrayProxy.create({ content: saltwaterSpecies });
+      return Ember.ArrayProxy.create({ content: this.get('fish-species').get('saltwaterSpecies') });
     }
   }),
   weightUnit: weightUnitLabels[0],
@@ -82,6 +89,7 @@ export default Ember.Component.extend({
     //       component.set('address', resultArray[0].formatted_address);
     //     }
     //   });
+
     });
 
   },
@@ -91,30 +99,14 @@ export default Ember.Component.extend({
   placeChangedCallback() {
     console.log('place changed callback');
   },
-  loadPhoto(url) {
-    const { resolve, reject, promise } = RSVP.defer();
-    const img = new Image();
-    img.src = url;
-    img.onload = () => { resolve(img); };
-    img.onerror = reject;
-
-    return promise;
-  },
-
   actions: {
-    addEntry() {
-      console.log(`water body : ${this.get('water')}`);
-      console.log(`fish species: ${this.get('specie')}`);
-      console.log(`length: ${this.get('compositeLength')} ${this.get('lengthUnit')}`);
-      console.log(`weight: ${this.get('compositeWeight')} ${this.get('weightUnit')}`);
-      console.log(``);
-      console.log(``);
-      console.log(`conditions: ${this.get('conditions')}`);
-      console.log(`tackle: ${this.get('tackle')}`);
-      console.log(`notes: ${this.get('notes')}`);
+    waterSelected(waterType) {
+      this.set('water', waterType);
+    },
+    fishTypeSelected(fishType) {
+      this.set('specie', fishType);
     },
     onLocationChangeHandler(lat, lng, results) {
-      debugger;
       Ember.Logger.log(`lat: ${lat}, lng: ${lng}`);
       Ember.Logger.debug(results);
     },
@@ -129,7 +121,18 @@ export default Ember.Component.extend({
     //       }
     //   }
     // },
-    done(){
+    addEntry() {
+      let newEntry = this.get('store').peekRecord('entry', this.get('entryId'));
+      newEntry.set('location', this.get('store').createFragment('location', {water: this.get('water')}));
+      newEntry.set('species', this.get('specie'));
+
+      console.log('NEW Entry >>>');
+      console.log(`water? ${newEntry.get('location.water')}`);
+      console.log(`fish? ${newEntry.get('species')}`);
+
+      // newEntry.save();
+    },
+    done() {
       debugger;
     }
   }

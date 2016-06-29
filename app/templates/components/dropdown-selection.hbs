@@ -1,0 +1,8 @@
+<label class="col-md-3 control-label">{{title}}</label>
+<div class="col-md-6">
+  <select class="form-control" onchange={{action (action onChange) value="target.value"}}>
+    {{#each options as |option|}}
+      <option value={{option}}>{{option}}</option>
+    {{/each}}
+  </select>
+</div>

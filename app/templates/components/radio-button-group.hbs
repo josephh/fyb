@@ -1,15 +1,15 @@
 <label class="col-md-3 control-label" >{{title}}</label>
 <div class="col-md-6">
   <div class="btn-group" role="group" aria-label="...">
-    {{#each buttons as |button index|}}
+    {{#each options as |option|}}
       <button
         type="button radio"
         class="btn btn-default"
-        value={{button.value}}
+        value={{option.value}}
         type="submit"
-        {{action 'selectionChanged' button.value}}
+        {{action (action onChange) option.value}}
         autofocus>
-      {{button.label}}
+      {{option.label}}
       </button>
     {{/each}}
   </div>

@@ -5,22 +5,12 @@ import { request } from 'ic-ajax';
 export default Ember.Route.extend({
 
   model() {
-    let newEntry = this.store.createRecord('entry');
-    this.set('entry', newEntry);
-
-    let b = Ember.A([
-      {value: 'river', label: 'River'},
-      {value: 'stillwater', label: 'Stillwater'},
-      {value: 'sea', label: 'Sea'}
-    ]);
-
-    return {
-      buttons: b
-    }
+    let newEntry = this.store.createRecord('entry', {id: 1});
+    return newEntry;
   },
 
   loadPhoto(url) {
-    const { resolve, reject, promise } = RSVP.defer();
+    const {resolve, reject, promise} = RSVP.defer();
     const img = new Image();
     img.src = url;
     img.onload = () => { resolve(img); };
@@ -34,8 +24,9 @@ export default Ember.Route.extend({
       let model = this.get('model');
       Ember.set(model, 'location', {});
       Ember.set(model, 'location.water', waterType);
+      console.log(`in waterselected (watertype = ${watertype})`);
     },
-    uploadPhoto: function (file) {
+    uploadPhoto: function(file) {
       var image = this.store.createRecord('image', {
         name: get(file, 'name'),
         uploadedAt: new Date()
@@ -43,7 +34,7 @@ export default Ember.Route.extend({
 
       file.read().then((url) => {
         return this.loadPhoto(url);
-      }).then(function (img) {
+      }).then(function(img) {
         set(image, 'width', img.width);
         set(image, 'height', img.height);
       });
@@ -61,8 +52,8 @@ export default Ember.Route.extend({
       //   image.save();
       // });
     },
-    addEntry(){
-      console.log(`water body : ${this.get('model.location.water')}`);
+    save() {
+      console.log(`water body : ${this.get('water')}`);
       // console.log(`fish species: ${this.get('specie')}`);
       // console.log(`length: ${this.get('compositeLength')} ${this.get('lengthUnit')}`);
       // console.log(`weight: ${this.get('compositeWeight')} ${this.get('weightUnit')}`);
@@ -70,9 +61,8 @@ export default Ember.Route.extend({
       // console.log(``);
       // console.log(`conditions: ${this.get('conditions')}`);
       // console.log(`tackle: ${this.get('tackle')}`);
-      // console.log(`notes: ${this.get('notes')}`);
-
       // this.get('model').save();
+      // console.log(`notes: ${this.get('notes')}`);
     }
   },
 
