@@ -1,0 +1,61 @@
+
+.photo-stream {
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.photo-tile {
+  border-bottom: 1px solid #9C9491;
+  padding: 50px 0 20px 0;
+  margin: 0 auto;
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    text-align: left;
+    padding: 0 10px;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.progress-bar {
+  position: relative;
+  background: #9C9491;
+  width: 100%;
+  height: 100%;
+
+  div {
+    transition: width 0.5s;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #524846;
+  }
+}
+
+.photo-uploader {
+  transition: background 0.5s;
+  width: 100%;
+  height: 10vh;
+  background: #01B7DE;
+  a {
+    color: #FFF;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 9vh;
+  }
+  &.active.invalid {
+    background: #F84324;
+  }
+  &.active.valid {
+    background: #00BA67;
+  }
+}
