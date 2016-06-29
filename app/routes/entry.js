@@ -10,7 +10,7 @@ export default Ember.Route.extend({
       return {
         catch: entry,
         showLengthAndWeight: true
-      }
+      };
     } else {
       return {catch: entry};
     }

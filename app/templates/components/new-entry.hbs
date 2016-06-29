@@ -31,16 +31,9 @@
               <div class="panel-body">
                 <form class="form-horizontal form-bordered" action="#">
                   <div class="form-group">
-                    <label class="col-md-3 control-label" for="inputSuccess">Water Body</label>
-                    <div class="col-md-6">
-                      <div class="btn-group" role="group" aria-label="...">
-                        <button type="button radio" class="btn btn-default" value="river" type="submit" {{action 'selectWaterBody' 'river'}} autofocus="true">River</button>
-                        <button type="button radio" class="btn btn-default" value="stillwater" type="submit" {{action 'selectWaterBody' 'stillwater'}}>Stillwater</button>
-                        <button type="button radio" class="btn btn-default" value="sea"  type="submit" {{action 'selectWaterBody' 'sea'}}>Sea</button>
-                      </div>
-                    </div>
+                    {{water-selector}}
                   </div>
-                  
+
                   {{fish-selector
                     options=speciesOptions
                   }}
@@ -61,14 +54,14 @@
                     <div class="col-sm-8">
                       <div class="row">
                         <div class="col-sm-3">
-                					<div class="input-group input-group-icon">
+                          <div class="input-group input-group-icon">
                             <input type="text" class="form-control" placeholder="pounds">
                             <span class="input-group-addon ">lbs</span>
                           </div>
                         </div>
                         <div class="visible-xs mb-md"></div>
                         <div class="col-sm-3">
-                					<div class="input-group input-group-icon">
+                          <div class="input-group input-group-icon">
                             <input type="text" class="form-control" placeholder="ounces">
                             <span class="input-group-addon ">oz</span>
                           </div>
@@ -93,14 +86,14 @@
                     <div class="col-sm-8">
                       <div class="row">
                         <div class="col-sm-3">
-                					<div class="input-group input-group-icon">
+                          <div class="input-group input-group-icon">
                             <input type="text" class="form-control" placeholder="feet">
                             <span class="input-group-addon ">'</span>
                           </div>
                         </div>
                         <div class="visible-xs mb-md"></div>
                         <div class="col-sm-3">
-                					<div class="input-group input-group-icon">
+                          <div class="input-group input-group-icon">
                             <input type="text" class="form-control" placeholder="inches">
                             <span class="input-group-addon ">"</span>
                           </div>
@@ -135,18 +128,27 @@
                     </div>
                   </div>
 
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="textareaDefault">Tackle</label>
-										<div class="col-md-6">
-											<textarea class="form-control" rows="3" data-plugin-maxlength maxlength="250"></textarea>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="textareaDefault">Notes</label>
-										<div class="col-md-6">
-											<textarea class="form-control" rows="3" data-plugin-maxlength maxlength="250"></textarea>
-										</div>
-									</div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="textareaDefault">Tackle</label>
+                    <div class="col-md-6">
+                      <textarea class="form-control" rows="3" data-plugin-maxlength maxlength="250"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="textareaDefault">Notes</label>
+                    <div class="col-md-6">
+                      <textarea class="form-control" rows="3" data-plugin-maxlength maxlength="250"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="textareaDefault">Upload Image</label>
+                    <div class="col-md-6">
+                      {{#pl-uploader extensions="jpeg jpg png" for="browse-photos" for-dropzone="app" onfileadd="uploadPhoto" as |queue dropzone|}}
+                        {{photo-stream photos=model queue=queue dropzone=dropzone}}
+                      {{/pl-uploader}}
+                    </div>
+                  </div>
 
                 </form>
               </div>

@@ -8,6 +8,9 @@
     "bootstrap": "~3.3.5",
     "lodash": "^4.10.0",
     "font-awesome": "fontawesome#^4.6.3",
-    "bootstrap-switch": "^3.3.2"
+    "bootstrap-switch": "^3.3.2",
+    "dinosheets": "0.1.1",
+    "pretender": "~1.1.0",
+    "Faker": "~3.1.0"
   }
 }

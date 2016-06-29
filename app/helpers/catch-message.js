@@ -14,7 +14,7 @@ export function catchMessage(params/*, hash*/) {
     place = params[0].get('location.name'),
     message = '';
   if(fish) { // fish is mandatory in the data model - perhaps not a redundant condition
-    if(fish == 'unknown') {
+    if(fish === 'unknown') {
       return "We don't know what sort of fish this is";
     }
     if(userName) {
