@@ -1,16 +1,27 @@
 <label class="col-md-3 control-label" >{{title}}</label>
 <div class="col-md-6">
-  <div class="btn-group" role="group" aria-label="...">
-    {{#each options as |option|}}
-      <button
-        type="button radio"
-        class="btn btn-default"
-        value={{option.value}}
-        type="submit"
-        {{action (action onChange) option.value}}
-        autofocus>
-      {{option.label}}
-      </button>
+  <div class="btn-group" role="group" aria-label="..." data-toggle="buttons">
+    {{#each options as |option index|}}
+      {{#if (eq index 0)}}
+        <label class="btn btn-primary active">
+          <input
+            type="radio"
+            name="options"
+            id="radio_{{option.value}}"
+            autocomplete="off"
+            value="{{option.value}}"
+            checked>  {{option.label}}
+        </label>
+      {{else}}
+        <label class="btn btn-primary">
+          <input
+            type="radio"
+            name="options"
+            id="radio_{{option.value}}"
+            autocomplete="off"
+            value="{{option.value}}"> {{option.label}}
+        </label>
+      {{/if}}
     {{/each}}
   </div>
 </div>

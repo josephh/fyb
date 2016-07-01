@@ -21,6 +21,7 @@ export default Ember.Route.extend({
 
   actions: {
     waterSelected(waterType) {
+      debugger;
       let model = this.get('model');
       Ember.set(model, 'location', {});
       Ember.set(model, 'location.water', waterType);

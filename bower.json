@@ -11,6 +11,7 @@
     "bootstrap-switch": "^3.3.2",
     "dinosheets": "0.1.1",
     "pretender": "~1.1.0",
-    "Faker": "~3.1.0"
+    "Faker": "~3.1.0",
+    "typeahead.js": "^0.11.1"
   }
 }
