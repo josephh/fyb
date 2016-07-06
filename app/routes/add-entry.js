@@ -4,8 +4,13 @@ import { request } from 'ic-ajax';
 
 export default Ember.Route.extend({
 
+  water: Ember.inject.service(),
   model() {
     let newEntry = this.store.createRecord('entry', {id: 1});
+    newEntry.set('location', this.store.createFragment('location',
+      {water: this.get('water').get('waterOptions.firstObject.value'), names: ''}
+    )
+  );
     return newEntry;
   },
 
@@ -20,13 +25,6 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    waterSelected(waterType) {
-      debugger;
-      let model = this.get('model');
-      Ember.set(model, 'location', {});
-      Ember.set(model, 'location.water', waterType);
-      console.log(`in waterselected (watertype = ${watertype})`);
-    },
     uploadPhoto: function(file) {
       var image = this.store.createRecord('image', {
         name: get(file, 'name'),
@@ -52,18 +50,6 @@ export default Ember.Route.extend({
       //   set(image, 'url', result.headers.Location);
       //   image.save();
       // });
-    },
-    save() {
-      console.log(`water body : ${this.get('water')}`);
-      // console.log(`fish species: ${this.get('specie')}`);
-      // console.log(`length: ${this.get('compositeLength')} ${this.get('lengthUnit')}`);
-      // console.log(`weight: ${this.get('compositeWeight')} ${this.get('weightUnit')}`);
-      // console.log(``);
-      // console.log(``);
-      // console.log(`conditions: ${this.get('conditions')}`);
-      // console.log(`tackle: ${this.get('tackle')}`);
-      // this.get('model').save();
-      // console.log(`notes: ${this.get('notes')}`);
     }
   },
 

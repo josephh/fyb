@@ -4,6 +4,6 @@ import MF from 'model-fragments';
 export default MF.Fragment.extend({
   country: DS.attr('string', { default: 'UK' }),
   water: DS.attr('string', { default: 'river' }),
-  name: DS.attr('string'),
+  names: DS.attr(),
   position: MF.fragment('geoposition')
 });
