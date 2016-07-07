@@ -1,10 +1,16 @@
-
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <section class="panel">
-        <div class="panel-body">
 
+
+      <section class="panel">
+        <header class="panel-heading">
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+        </header>
+        <div class="panel-body">
           <form class="form-horizontal form-bordered" action="#">
             <div class="form-group">
               <label for="tags-input" class="col-md-3 control-label">Catch Date</label>
@@ -12,13 +18,21 @@
                 {{pick-a-date date=(readonly newEntry.caught) on-selected=(action (mut newEntry.caught)) placeholder="Pick a date" options=(readonly extraPickadateOptions)}}
               </div>
             </div>
-            <div class="form-group">
-              {{radio-button-group
-                options=waterOptions
-                onChange=(action 'waterSelected')
-                title='Water Body'
-              }}
-            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header class="panel-heading">
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+
+          <h2 class="panel-title">Fish</h2>
+        </header>
+        <div class="panel-body">
+          <form class="form-horizontal form-bordered" action="#">
             <div class="form-group">
               {{dropdown-selection
                 options=speciesOptions
@@ -80,6 +94,31 @@
                 </div>
               </div>
             </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header class="panel-heading">
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+
+          <h2 class="panel-title">Location</h2>
+        </header>
+        <div class="panel-body">
+          <form class="form-horizontal form-bordered" action="#">
+            <div class="form-group">
+              {{radio-button-group
+                options=waterOptions
+                onChange=(action 'waterSelected')
+                title='Water Body'
+              }}
+            </div>
+            <div class="form-group">
+              <!-- {{google-map latitude="34.851939" longitude="-82.399752"}} -->
+            </div>
             <div class="form-group">
               <label for="tags-input" class="col-md-3 control-label">Add Place Tags</label>
               <div class="col-md-6">
@@ -94,6 +133,21 @@
                 {{/tag-search-input}}
               </div>
             </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header class="panel-heading">
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+
+          <h2 class="panel-title">Notes</h2>
+        </header>
+        <div class="panel-body">
+          <form class="form-horizontal form-bordered" action="#">
             <div class="form-group">
               {{dropdown-selection
                 options=conditionsOptions
@@ -123,6 +177,21 @@
                 }}
               </div>
             </div>
+          </form>
+        </div>
+      </section>
+
+
+      <section class="panel">
+        <div class="panel-body">
+          <form class="form-horizontal form-bordered" action="#">
+            <div class="form-group">
+              <label class="col-md-3 control-label"></label>
+              <div class="col-md-6">
+                <a href="#" class="btn btn-primary" data-toggle="confirmation" {{action 'addEntry' }}>Add Entry</a>
+              </div>
+            </div>
+
           </form>
 
 
@@ -171,12 +240,7 @@
             </div>
           -->
 
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label"></label>
-          <div class="col-md-6">
-            <a href="#" class="btn btn-primary" data-toggle="confirmation" {{action 'addEntry' }}>Add Entry</a>
-          </div>
+
         </div>
       </section>
     </div>

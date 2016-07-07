@@ -16,7 +16,6 @@ export default Ember.Component.extend({
   compositeLength: Ember.computed('lengthMajor', 'lengthMinor', 'lengthUnit', function() {
     return Number(this.get('lengthMajor') + '.' + this.get('lengthMinor'));
   }),
-  conditionsOptions: Ember.ArrayProxy.create({ content: ['sunny', 'rainy', 'overcast', 'windy'] }),
 
   init() {
     let component = this,
@@ -103,6 +102,7 @@ export default Ember.Component.extend({
       console.log('NEW Entry >>>');
       console.log(`caught? ${newEntry.get('caught')}`);
       console.log(`water? ${newEntry.get('location.water')}`);
+      console.log(`country? ${newEntry.get('location.country')}`);
       console.log(`fish? ${newEntry.get('species')}`);
       console.log(`weight? ${newEntry.get('weight')},
         ${newEntry.get('weightUnits.0.text')} ${newEntry.get('weightUnits.1.text')}`);
@@ -111,7 +111,7 @@ export default Ember.Component.extend({
       console.log(`Searched place tags? ${newEntry.get('location.names')}`);
       console.log(`Conditions? ${newEntry.get('conditions')}`);
       console.log(`Tackle? ${newEntry.get('tackle')}`);
-      console.log(`Tackle? ${newEntry.get('bait')}`);
+      console.log(`Bait? ${newEntry.get('bait')}`);
 
       // newEntry.save();
     },

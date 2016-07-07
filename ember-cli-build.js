@@ -13,6 +13,7 @@ module.exports = function(defaults) {
 
 
   app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+  app.import('node_modules/google-maps/Google.js')
 
   var fontawesome = new funnel('bower_components/font-awesome/fonts', {
     srcDir: '/',
