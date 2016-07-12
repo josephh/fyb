@@ -1,1 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+
+      <section class="panel">
+        <header class="panel-heading">
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+        </header>
+        <div class="panel-body">
+          <form class="form-horizontal form-bordered" action="#">
+            <div class="form-group">
+              <label for="tags-input" class="col-md-3 control-label">Auto complete</label>
+              <div class="col-md-6">
+                {{place-autocomplete-field
+                  value=address
+                  inputClass= 'place-autocomplete--input'
+                  focusOutCallback='done'
+                  placeChangedCallback='placeChanged'
+                  withGeoLocate= true
+                }}
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
 {{outlet}}

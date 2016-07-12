@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Service.extend({
   init() {
     this._super(...arguments);
-    this.set('placesConfig', {
+    this.set('placeTagsConfig', {
       "#": {
         type: 'list',
         defaultHint: `a place name like '#key west'`,

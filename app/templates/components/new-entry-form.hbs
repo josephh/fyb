@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-xs-12">
 
-
       <section class="panel">
         <header class="panel-heading">
           <div class="panel-actions">
@@ -16,6 +15,48 @@
               <label for="tags-input" class="col-md-3 control-label">Catch Date</label>
               <div class="col-md-6">
                 {{pick-a-date date=(readonly newEntry.caught) on-selected=(action (mut newEntry.caught)) placeholder="Pick a date" options=(readonly extraPickadateOptions)}}
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header class="panel-heading">
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+
+          <h2 class="panel-title">Location</h2>
+        </header>
+        <div class="panel-body">
+          <form class="form-horizontal form-bordered" action="#">
+            <div class="form-group">
+              {{radio-button-group
+                options=waterOptions
+                onChange=(action 'waterSelected')
+                title='Water Body'
+              }}
+            </div>
+            <div class="form-group">
+              <label for="tags-input" class="col-md-3 control-label">Address</label>
+              <div class="col-md-6">
+                {{map-with-place-autocomplete lat=newEntry.lat lng=newEntry.lng zoom=12}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="tags-input" class="col-md-3 control-label">Tags</label>
+              <div class="col-md-6">
+                {{#tag-search-input
+                  placeholder='Find an existing place tag by typing #'
+                  modifierConfig=placeTagsConfig
+                  inputValue=newEntry.location.names
+                }}
+                <div class="help-title">
+                  Search Existing Places Tags
+                </div>
+                {{/tag-search-input}}
               </div>
             </div>
           </form>
@@ -92,45 +133,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <section class="panel">
-        <header class="panel-heading">
-          <div class="panel-actions">
-            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
-            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
-          </div>
-
-          <h2 class="panel-title">Location</h2>
-        </header>
-        <div class="panel-body">
-          <form class="form-horizontal form-bordered" action="#">
-            <div class="form-group">
-              {{radio-button-group
-                options=waterOptions
-                onChange=(action 'waterSelected')
-                title='Water Body'
-              }}
-            </div>
-            <div class="form-group">
-              <!-- {{google-map latitude="34.851939" longitude="-82.399752"}} -->
-            </div>
-            <div class="form-group">
-              <label for="tags-input" class="col-md-3 control-label">Add Place Tags</label>
-              <div class="col-md-6">
-                {{#tag-search-input
-                  placeholder='Find an existing place tag by typing #'
-                  modifierConfig=placesConfig
-                  inputValue=newEntry.location.names
-                }}
-                <div class="help-title">
-                  Search Existing Places Tags
-                </div>
-                {{/tag-search-input}}
               </div>
             </div>
           </form>

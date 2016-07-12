@@ -1,61 +1,84 @@
 // app/components/new-entry.js
 import Ember from 'ember';
 
-  const { set } = Ember;
+  const { set, inject, computed } = Ember;
 
 export default Ember.Component.extend({
-  store: Ember.inject.service(),
-  geolocation: Ember.inject.service(),
-  'fish-species': Ember.inject.service(),
-  'metric-imperial-fixtures': Ember.inject.service(),
-  'typeahead-config': Ember.inject.service(),
-  water: Ember.inject.service(),
-  compositeWeight: Ember.computed('weightMajor', 'weightMinor', function() {
+  // TODO set these services via DI(?)
+  store: inject.service(),
+  'fish-species': inject.service(),
+  'metric-imperial-fixtures': inject.service(),
+  'typeahead-config': inject.service(),
+  water: inject.service(),
+  compositeWeight: computed('weightMajor', 'weightMinor', function() {
     return Number(this.get('weightMajor') + '.' + this.get('weightMinor'));
   }),
-  compositeLength: Ember.computed('lengthMajor', 'lengthMinor', 'lengthUnit', function() {
+  compositeLength: computed('lengthMajor', 'lengthMinor', 'lengthUnit', function() {
     return Number(this.get('lengthMajor') + '.' + this.get('lengthMinor'));
   }),
-
   init() {
     let component = this,
-      newEntry = this.get('newEntry');
+      newEntry = component.get('store').createRecord('entry', {id: uuid()});
+    // don't forget to make 'newEntry' available as a property of the controller!
+    component.set('newEntry', newEntry);
+    newEntry.set('location', component.get('store').createFragment('location',
+      {water: component.get('water').get('waterOptions.firstObject.value'), names: ''}
+    ));
     component._super(...arguments);
-    component.set('waterOptions', this.get('water').get('waterOptions'));
-    component.set('unitLabels', this.get('metric-imperial-fixtures').get('data'));
-    component.set('speciesOptions', Ember.computed('newEntry.{location.water}', function() {
-      if ( this.get('newEntry.location.water') === 'river' || this.get('newEntry.location.water') === 'stillwater' ) {
+    component.set('waterOptions', component.get('water').get('waterOptions'));
+    component.set('unitLabels', component.get('metric-imperial-fixtures').get('data'));
+    component.set('speciesOptions', computed('newEntry.{location.water}', function() {
+      if ( component.get('newEntry.location.water') === 'river' ||
+        component.get('newEntry.location.water') === 'stillwater' ) {
         return Ember.ArrayProxy.create({ content: component.get('fish-species').get('freshwaterSpecies') });
       } else {
         return Ember.ArrayProxy.create({ content: component.get('fish-species').get('saltwaterSpecies') });
       }
     }));
-    component.set('placesConfig', this.get('typeahead-config').get('placesConfig'));
-    newEntry.set('species', this.get('speciesOptions.firstObject'));
-    newEntry.set('weightUnits', this.get('unitLabels.firstObject.weightUnits'));
-    newEntry.set('lengthUnits', this.get('unitLabels.firstObject.lengthUnits'));
+    component.set('placeTagsConfig', component.get('typeahead-config').get('placeTagsConfig'));
+    // use a combination of services to get the current location and a geocoder object to store on the component
+    let navigator = this.get('navigator') || window.navigator, google, geocoder;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition( (position) => {
+        if(this.get('google')){
+          // TODO - why is service not initialized and available here (via the addon)???
+          console.log('registered google map service found');
+          google = this.get('google');
+          geocoder = new google.Geocoder();
+        } else {
+          google = window.google;
+          geocoder = new google.maps.Geocoder();
+        }
+        geocoder.geocode( { location: {lat: position.coords.latitude, lng: position.coords.longitude} },
+          function(resultArray, status) {
+            if(status === "OK") {
+              if(resultArray.length > 0){
+                component.set('geoDetails', resultArray[0]);
+                newEntry.set('lat', computed('geoDetails{geometry.location}', function() {
+                  return component.get('geoDetails.geometry.location').lat();
+                }));
+                newEntry.set('lng', computed('geoDetails{geometry.longitude}', function() {
+                  return component.get('geoDetails.geometry.location').lng();
+                }));
+                newEntry.set('formattedAddress', computed('geoDetails{geometry.longitude}', function() {
+                  return component.get('geoDetails.formatted_address');
+                }));
+              }
+            }
+          },
+          function(err) {
+            console.log(`Error in geocode() call.  Missing google api key? (Error details : ${err}`);
+          }
+        );
+      });
+    }
 
-    // var lat, long, formattedAddress, google, geocoder;
-    // this.get('geolocation').getLocation().then(function(geoObject) {
-    //   lat = geoObject.coords.latitude;
-    //   long = geoObject.coords.longitude;
-    //   component.set('lat', lat);
-    //   component.set('long', long);
-    //   let google = component.get('google').maps;
-    //   geocoder = new google.Geocoder();
-    //   geocoder.geocode({location:{lat: lat, lng: long}},function(resultArray, status){
-    //     if(resultArray.length > 0){
-    //       component.set('address', resultArray[0].formatted_address);
-    //     }
-    //   });
+    newEntry.set('species', component.get('speciesOptions.firstObject'));
+    newEntry.set('weightUnits', component.get('unitLabels.firstObject.weightUnits'));
+    newEntry.set('lengthUnits', component.get('unitLabels.firstObject.lengthUnits'));
+
   },
 
-  focusOutCallback() {
-    console.log('focus out callback');
-  },
-  placeChangedCallback() {
-    console.log('place changed callback');
-  },
   actions: {
     waterSelected(waterType) {
       set(this.get('newEntry'), 'location.water', waterType);
@@ -78,28 +101,20 @@ export default Ember.Component.extend({
     weatherTypeSelected(conditions) {
       set(this.get('newEntry'), 'conditions', conditions);
     },
-
     onLocationChangeHandler(lat, lng, results) {
       Ember.Logger.log(`lat: ${lat}, lng: ${lng}`);
       Ember.Logger.debug(results);
     },
-    // placeChanged(googlePlacesResponse){
-    //   // sometimes the response is a string (cached formatted string from previous search?)
-    //   if(typeof  googlePlacesResponse === 'object'){
-    //     let lat = googlePlacesResponse.geometry.location.lat(),
-    //       long = googlePlacesResponse.geometry.location.lng();
-    //       if(lat && long){
-    //         this.set('lat', lat);
-    //         this.set('long', long);
-    //       }
-    //   }
-    // },
+    placeChanged() {
+      console.log('place changed callback');
+    },
     addEntry() {
       let newEntry = this.get('newEntry');
       newEntry.set('weight', this.get('compositeWeight'));
       newEntry.set('length', this.get('compositeLength'));
 
       console.log('NEW Entry >>>');
+      // this can be written newEntry.getProperties...
       console.log(`caught? ${newEntry.get('caught')}`);
       console.log(`water? ${newEntry.get('location.water')}`);
       console.log(`country? ${newEntry.get('location.country')}`);
@@ -116,7 +131,7 @@ export default Ember.Component.extend({
       // newEntry.save();
     },
     done() {
-      debugger;
+      console.log('done called (places auto complete)');
     },
     enterClicked(event) {
       console.log('enterClicked handler');

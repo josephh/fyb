@@ -1,18 +1,9 @@
 // app/routes/add-entry.js
 import Ember from 'ember';
 import { request } from 'ic-ajax';
+import uuid from "ember-cli-uuid/utils/uuid-helpers";
 
 export default Ember.Route.extend({
-
-  water: Ember.inject.service(),
-  model() {
-    let newEntry = this.store.createRecord('entry', {id: 1});
-    newEntry.set('location', this.store.createFragment('location',
-      {water: this.get('water').get('waterOptions.firstObject.value'), names: ''}
-    )
-  );
-    return newEntry;
-  },
 
   loadPhoto(url) {
     const {resolve, reject, promise} = RSVP.defer();

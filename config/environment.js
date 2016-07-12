@@ -100,9 +100,8 @@ module.exports = function(environment) {
       }
     },
 
-    'g-map': {
-      key: process.env.FYB_GOOGLE_API_KEY,
-      protocol: 'https'
+    'google-map-places': {
+      key: process.env.GOOGLE_API_KEY
     }
 
   };
