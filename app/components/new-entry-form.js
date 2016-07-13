@@ -36,42 +36,6 @@ export default Ember.Component.extend({
       }
     }));
     component.set('placeTagsConfig', component.get('typeahead-config').get('placeTagsConfig'));
-    // use a combination of services to get the current location and a geocoder object to store on the component
-    let navigator = this.get('navigator') || window.navigator, google, geocoder;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition( (position) => {
-        if(this.get('google')){
-          // TODO - why is service not initialized and available here (via the addon)???
-          console.log('registered google map service found');
-          google = this.get('google');
-          geocoder = new google.Geocoder();
-        } else {
-          google = window.google;
-          geocoder = new google.maps.Geocoder();
-        }
-        geocoder.geocode( { location: {lat: position.coords.latitude, lng: position.coords.longitude} },
-          function(resultArray, status) {
-            if(status === "OK") {
-              if(resultArray.length > 0){
-                component.set('geoDetails', resultArray[0]);
-                newEntry.set('lat', computed('geoDetails{geometry.location}', function() {
-                  return component.get('geoDetails.geometry.location').lat();
-                }));
-                newEntry.set('lng', computed('geoDetails{geometry.longitude}', function() {
-                  return component.get('geoDetails.geometry.location').lng();
-                }));
-                newEntry.set('formattedAddress', computed('geoDetails{geometry.longitude}', function() {
-                  return component.get('geoDetails.formatted_address');
-                }));
-              }
-            }
-          },
-          function(err) {
-            console.log(`Error in geocode() call.  Missing google api key? (Error details : ${err}`);
-          }
-        );
-      });
-    }
 
     newEntry.set('species', component.get('speciesOptions.firstObject'));
     newEntry.set('weightUnits', component.get('unitLabels.firstObject.weightUnits'));

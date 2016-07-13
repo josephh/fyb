@@ -42,7 +42,12 @@
             <div class="form-group">
               <label for="tags-input" class="col-md-3 control-label">Address</label>
               <div class="col-md-6">
-                {{map-with-place-autocomplete lat=newEntry.lat lng=newEntry.lng zoom=12}}
+                {{map-with-place-autocomplete
+                  lat=newEntry.lat
+                  lng=newEntry.lng
+                  zoom=12
+                  currentAddress=newEntry.formattedAddress 
+                }}
               </div>
             </div>
             <div class="form-group">
