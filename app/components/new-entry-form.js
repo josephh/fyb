@@ -1,7 +1,8 @@
 // app/components/new-entry.js
 import Ember from 'ember';
+import request from 'ic-ajax';
 
-const { set, inject, computed, isPresent } = Ember;
+const { get, set, inject, computed, isPresent, RSVP } = Ember;
 
 export default Ember.Component.extend({
   // TODO set these services via DI(?)
@@ -44,7 +45,44 @@ export default Ember.Component.extend({
 
   },
 
+  loadPhoto(url) {
+    const { resolve, reject, promise } = RSVP.defer();
+    const img = new Image();
+    img.src = url;
+    img.onload = () => { resolve(img); };
+    img.onerror = reject;
+
+    return promise;
+  },
+
   actions: {
+    uploadPhoto(file) {
+      debugger;
+      var image = this.get('store').createRecord('image', {
+        name: get(file, 'name'),
+        uploadedAt: new Date()
+      });
+
+      debugger;
+
+      file.read().then((url) => {
+        return this.loadPhoto(url);
+      }).then(function (img) {
+        set(image, 'width', img.width);
+        set(image, 'height', img.height);
+      });
+
+      request('/images', {
+        data: {
+          filename: get(file, 'name')
+        }
+      }).then(function (response) {
+        // return file.upload(s3Direct.url, {
+        //   data: s3Direct.credentials
+        // });
+        console.log('request processed');
+      });
+    },
     waterSelected(waterType) {
       set(this.get('newEntry'), 'location.water', waterType);
     },
