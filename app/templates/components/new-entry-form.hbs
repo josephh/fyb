@@ -14,7 +14,13 @@
             <div class="form-group">
               <label for="tags-input" class="col-md-3 control-label">Catch Date</label>
               <div class="col-md-6">
-                {{pick-a-date date=(readonly newEntry.caught) on-selected=(action (mut newEntry.caught)) placeholder="Pick a date" options=(readonly extraPickadateOptions)}}
+                {{pick-a-date
+                  date=(readonly newEntry.caught)
+                  on-selected=(action (mut newEntry.caught))
+                  placeholder="Pick a date"
+                  options=(readonly extraPickadateOptions)
+                  class="form-control"
+                }}
               </div>
             </div>
           </form>
@@ -46,7 +52,7 @@
                   lat=newEntry.lat
                   lng=newEntry.lng
                   zoom=12
-                  currentAddress=newEntry.formattedAddress 
+                  placeChangedCallback=(action 'placeChanged')
                 }}
               </div>
             </div>
@@ -188,6 +194,28 @@
         </div>
       </section>
 
+      <section class="panel">
+        <header class="panel-heading">
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+
+          <h2 class="panel-title">Images</h2>
+        </header>
+        <div class="panel-body">
+          <form class="form-horizontal form-bordered" action="#">
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="textareaDefault">Upload Image</label>
+              <div class="col-md-6">
+                {{#pl-uploader extensions="jpeg jpg png" for="browse-photos" for-dropzone="app" onfileadd="uploadPhoto" as |queue dropzone|}}
+                  {{photo-stream photos=model queue=queue dropzone=dropzone}}
+                {{/pl-uploader}}
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
 
       <section class="panel">
         <div class="panel-body">
@@ -198,58 +226,10 @@
                 <a href="#" class="btn btn-primary" data-toggle="confirmation" {{action 'addEntry' }}>Add Entry</a>
               </div>
             </div>
-
           </form>
-
-
-          <!--
-
-
-
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="inputDefault">Address</label>
-              <div class="col-md-6">
-                <input type="text" class="form-control" id="inputAddress">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="inputSuccess">Conditions</label>
-              <div class="col-md-6">
-                <select class="form-control mb-md onchange={{action (mut conditions) value="target.value"}}">
-                  {{#each conditionsOptions as |conditionsLabel|}}
-                    <option value={{conditionsLabel}}>{{conditionsLabel}}</option>
-                  {{/each}}
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="textareaDefault">Tackle</label>
-              <div class="col-md-6">
-                <textarea class="form-control" rows="3" data-plugin-maxlength maxlength="250"></textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="textareaDefault">Notes</label>
-              <div class="col-md-6">
-                <textarea class="form-control" rows="3" data-plugin-maxlength maxlength="250"></textarea>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="textareaDefault">Upload Image</label>
-              <div class="col-md-6">
-                {{#pl-uploader extensions="jpeg jpg png" for="browse-photos" for-dropzone="app" onfileadd="uploadPhoto" as |queue dropzone|}}
-                  {{photo-stream photos=model queue=queue dropzone=dropzone}}
-                {{/pl-uploader}}
-              </div>
-            </div>
-          -->
-
-
         </div>
       </section>
+
     </div>
   </div>
 </div>

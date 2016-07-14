@@ -1,7 +1,7 @@
 // app/components/new-entry.js
 import Ember from 'ember';
 
-  const { set, inject, computed } = Ember;
+const { set, inject, computed, isPresent } = Ember;
 
 export default Ember.Component.extend({
   // TODO set these services via DI(?)
@@ -16,6 +16,7 @@ export default Ember.Component.extend({
   compositeLength: computed('lengthMajor', 'lengthMinor', 'lengthUnit', function() {
     return Number(this.get('lengthMajor') + '.' + this.get('lengthMinor'));
   }),
+  conditionsOptions: Ember.ArrayProxy.create({ content: ['sunny', 'rainy', 'overcast', 'windy']}),
   init() {
     let component = this,
       newEntry = component.get('store').createRecord('entry', {id: uuid()});
@@ -65,12 +66,19 @@ export default Ember.Component.extend({
     weatherTypeSelected(conditions) {
       set(this.get('newEntry'), 'conditions', conditions);
     },
-    onLocationChangeHandler(lat, lng, results) {
-      Ember.Logger.log(`lat: ${lat}, lng: ${lng}`);
-      Ember.Logger.debug(results);
-    },
-    placeChanged() {
-      console.log('place changed callback');
+    placeChanged(place) {
+      let newEntry = this.get('newEntry'), location = newEntry.get('location');
+      // if the address_components array contains an element of type 'country / political', store the country code
+      let placeCountryAddressElement = place.address_components.find(function(element) {
+        return ( element.types[0] === "country" && element.types[1] === "political" )
+      })
+      if(isPresent(placeCountryAddressElement)) {
+        location.set('country', placeCountryAddressElement.short_name);
+      }
+      location.set('geoposition', this.get('store').createFragment('geoposition',
+        {longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat()}
+      ));
+      location.set('formattedAddress', place.formatted_address);
     },
     addEntry() {
       let newEntry = this.get('newEntry');
@@ -81,7 +89,10 @@ export default Ember.Component.extend({
       // this can be written newEntry.getProperties...
       console.log(`caught? ${newEntry.get('caught')}`);
       console.log(`water? ${newEntry.get('location.water')}`);
+      console.log(`address? ${newEntry.get('location.formattedAddress')}`);
       console.log(`country? ${newEntry.get('location.country')}`);
+      console.log(`Lat / Long? ${newEntry.get('location.geoposition.latitude')} :
+        ${newEntry.get('location.geoposition.longitude')} : `);
       console.log(`fish? ${newEntry.get('species')}`);
       console.log(`weight? ${newEntry.get('weight')},
         ${newEntry.get('weightUnits.0.text')} ${newEntry.get('weightUnits.1.text')}`);
