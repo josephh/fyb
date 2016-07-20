@@ -20,7 +20,7 @@ export default Ember.Component.extend({
   conditionsOptions: Ember.ArrayProxy.create({ content: ['sunny', 'rainy', 'overcast', 'windy']}),
   init() {
     let component = this,
-      newEntry = component.get('store').createRecord('entry', {id: uuid()});
+      newEntry = component.get('store').createRecord('entry');
     // don't forget to make 'newEntry' available as a property of the controller!
     component.set('newEntry', newEntry);
     newEntry.set('location', component.get('store').createFragment('location',
@@ -45,44 +45,7 @@ export default Ember.Component.extend({
 
   },
 
-  loadPhoto(url) {
-    const { resolve, reject, promise } = RSVP.defer();
-    const img = new Image();
-    img.src = url;
-    img.onload = () => { resolve(img); };
-    img.onerror = reject;
-
-    return promise;
-  },
-
   actions: {
-    uploadPhoto(file) {
-      debugger;
-      var image = this.get('store').createRecord('image', {
-        name: get(file, 'name'),
-        uploadedAt: new Date()
-      });
-
-      debugger;
-
-      file.read().then((url) => {
-        return this.loadPhoto(url);
-      }).then(function (img) {
-        set(image, 'width', img.width);
-        set(image, 'height', img.height);
-      });
-
-      request('/images', {
-        data: {
-          filename: get(file, 'name')
-        }
-      }).then(function (response) {
-        // return file.upload(s3Direct.url, {
-        //   data: s3Direct.credentials
-        // });
-        console.log('request processed');
-      });
-    },
     waterSelected(waterType) {
       set(this.get('newEntry'), 'location.water', waterType);
     },
@@ -141,7 +104,10 @@ export default Ember.Component.extend({
       console.log(`Tackle? ${newEntry.get('tackle')}`);
       console.log(`Bait? ${newEntry.get('bait')}`);
 
-      // newEntry.save();
+      newEntry.save().then( savedEntry => {
+        this.sendAction('onSave', savedEntry.get('id'));
+      });
+
     },
     done() {
       console.log('done called (places auto complete)');

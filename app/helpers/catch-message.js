@@ -11,7 +11,6 @@ export function catchMessage(params/*, hash*/) {
     length = params[0].get('length'),
     lengthUnits = params[0].get('lengthUnits'),
     country = params[0].get('location.country'),
-    place = params[0].get('location.name'),
     message = '';
   if(fish) { // fish is mandatory in the data model - perhaps not a redundant condition
     if(fish === 'unknown') {
@@ -22,9 +21,6 @@ export function catchMessage(params/*, hash*/) {
     }
     if(country){ // country is required in the data model as well...
       message = message.concat(`in ${country}, `);
-    }
-    if(place){ // place name is required in the data model...
-      message = message.concat(`at ${place}, `);
     }
     if(weight) {  // default weight units is ounces
       message = message.concat(`weighing ${weight} ${weightUnits} and `);

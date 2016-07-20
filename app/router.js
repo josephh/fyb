@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('entry', {path: '/entries/:entryId'});
   this.route('my-entries');
   this.route('add-entry');
+  this.route('save-confirmation', {path: '/save-confirmation/:entryId'});
 });
 
 export default Router;

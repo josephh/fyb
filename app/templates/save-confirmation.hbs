@@ -1,0 +1,51 @@
+<section class="page-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb">
+          <li>{{#link-to 'application'}}Home{{/link-to}}</li>
+          <li>{{#link-to 'entries'}}Entries{{/link-to}}</li>
+          <li class="active">{{model.id}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Strike!</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <h2>Catch Details Stored - Now Add Photos</h2>
+  <hr>
+</div>
+
+{{entry-summary model=model}}
+
+<section class="panel">
+  <div class="container">
+    <div class="row">
+      <header class="mb-sm">
+        <h2>Images</h2>
+      </header>
+      <div class="col-md-12 center">
+        <div class="panel-body">
+          <form class="form-horizontal form-bordered" action="#">
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="textareaDefault">Upload Image</label>
+              <div class="col-md-6">
+                {{#pl-uploader extensions="jpeg jpg png" for="browse-photos" for-dropzone="app" onfileadd="uploadPhoto" as |queue dropzone|}}
+                {{photo-stream photos=model queue=queue dropzone=dropzone}}
+                {{/pl-uploader}}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{outlet}}

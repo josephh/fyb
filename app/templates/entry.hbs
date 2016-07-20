@@ -22,60 +22,6 @@
     <hr>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 isotope-item websites">
-        <div class="image-gallery-item">
-          <span class="thumb-info">
-            <span class="thumb-info-wrapper">
-              <img src="{{model.catch.image}}" class="img-responsive" alt="fish image">
-              <span class="thumb-info-title">
-                <span class="thumb-info-inner">{{model.catch.species}}</span>
-                {{#if model.showLengthAndWeight}}
-                  <span class="thumb-info-type">{{model.catch.weight}} {{model.catch.weightUnits}},
-                    {{model.catch.length}} {{model.catch.lengthUnits}}</span>
-                {{/if}}
-              </span>
-            </span>
-          </span>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="pull-right mr-lg mb-sm" style="width: 280px;">
-          <div id="googlemapsInsideText" class="google-map small mt-none mb-none" style="height: 220px;">
-            {{#g-map
-              lat=model.catch.location.position.latitude
-              lng=model.catch.location.position.longitude
-              zoom=12 as |context|}}
-              {{g-map-marker
-                context
-                lat=model.catch.location.position.latitude
-                lng=model.catch.location.position.longitude
-                title=(concat model.catch.species " caught by " model.catch.user.name)}}
-            {{/g-map}}
-          </div>
-        </div>
-        <p>{{catch-message model.catch}}</p>
-        <dl>
-          {{#if model.catch.bait}}
-            <dt>Bait</dt>
-            <dd>{{model.catch.bait}}</dd>
-          {{/if}}
-          {{#if model.catch.tackle}}
-            <dt>Tackle</dt>
-            <dd>{{model.catch.tackle}}</dd>
-          {{/if}}
-          {{#if model.catch.conditions}}
-            <dt>Conditions</dt>
-            <dd>{{model.catch.conditions}}</dd>
-          {{/if}}
-          {{#if model.catch.notes}}
-            <dt>Notes</dt>
-            <dd>{{model.catch.notes}}</dd>
-          {{/if}}
-        </dl>
-      </div>
-    </div>
+  {{entry-summary model=model}}
 
-  </div>
 {{outlet}}

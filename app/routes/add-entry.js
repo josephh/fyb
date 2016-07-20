@@ -1,7 +1,5 @@
 // app/routes/add-entry.js
 import Ember from 'ember';
-import { request } from 'ic-ajax';
-import uuid from "ember-cli-uuid/utils/uuid-helpers";
 
 export default Ember.Route.extend({
 
@@ -16,32 +14,9 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    uploadPhoto: function(file) {
-      var image = this.store.createRecord('image', {
-        name: get(file, 'name'),
-        uploadedAt: new Date()
-      });
-
-      file.read().then((url) => {
-        return this.loadPhoto(url);
-      }).then(function(img) {
-        set(image, 'width', img.width);
-        set(image, 'height', img.height);
-      });
-
-      // request('/api/images/s3_direct', {
-      //   data: {
-      //     filename: get(file, 'name')
-      //   }
-      // }).then(function (s3Direct) {
-      //   return file.upload(s3Direct.url, {
-      //     data: s3Direct.credentials
-      //   });
-      // }).then(function (result) {
-      //   set(image, 'url', result.headers.Location);
-      //   image.save();
-      // });
+    saveConfirmed(newEntryId) {
+      this.transitionTo('save-confirmation', newEntryId);
     }
-  },
+  }
 
 });

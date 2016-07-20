@@ -50,7 +50,7 @@ module.exports = function(environment) {
         "https://maps.googleapis.com/",
         "http://www.shallowtails.com/",
         "http://www.otleyanglingclub.co.uk",
-        "http://www.sydneylake.com",],
+        "http://www.sydneylake.com"],
 
       'style-src': ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
 

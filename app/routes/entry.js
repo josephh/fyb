@@ -6,13 +6,6 @@ export default Ember.Route.extend({
     if (!entry){
       entry = this.store.findRecord('entry', params.entryId);
     }
-    if(entry.length && entry.weight) {
-      return {
-        catch: entry,
-        showLengthAndWeight: true
-      };
-    } else {
-      return {catch: entry};
-    }
+    return entry;
   }
 });
