@@ -27,13 +27,15 @@
     <div class="row">
       <div class="col-md-9">
         <ul class="portfolio-list sort-destination lightbox" data-sort-id="portfolio" data-plugin-options='{"delegate": "a.lightbox-portfolio", "type": "image", "gallery": {"enabled": true}}'>
-          {{#each model as |entry|}}
+          {{#each model.entries as |entry|}}
           {{portfolio-entry catch=entry}}
           {{/each}}
         </ul>
       </div>
       <div class="col-md-3">
-        {{entries-sidebar}}
+        {{entries-sidebar
+          onFishSelected=(route-action 'fishSelected')
+          freshwaterSpecies=model.freshwaterSpecies}}
       </div>
 
     </div>

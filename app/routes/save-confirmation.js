@@ -5,7 +5,12 @@ const { get, set, inject, computed, isPresent, RSVP } = Ember;
 
 export default Ember.Route.extend({
   model(params) {
-    return this.store.findRecord('entry', params.entryId);
+    let e = this.store.findRecord('entry', params.entryId),
+     i = this.store.findAll('image');
+    return {
+      entry: e,
+      images: i
+    }
   },
 
   loadPhoto(url) {

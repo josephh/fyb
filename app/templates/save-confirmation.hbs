@@ -5,7 +5,7 @@
         <ul class="breadcrumb">
           <li>{{#link-to 'application'}}Home{{/link-to}}</li>
           <li>{{#link-to 'entries'}}Entries{{/link-to}}</li>
-          <li class="active">{{model.id}}</li>
+          <li class="active">{{model.entry.id}}</li>
         </ul>
       </div>
     </div>
@@ -22,7 +22,7 @@
   <hr>
 </div>
 
-{{entry-summary model=model}}
+{{entry-summary model=model.entry}}
 
 <section class="panel">
   <div class="container">
@@ -36,8 +36,12 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="textareaDefault">Upload Image</label>
               <div class="col-md-6">
-                {{#pl-uploader extensions="jpeg jpg png" for="browse-photos" for-dropzone="app" onfileadd="uploadPhoto" as |queue dropzone|}}
-                {{photo-stream photos=model queue=queue dropzone=dropzone}}
+                {{#pl-uploader
+                  extensions="jpeg jpg png"
+                  for="browse-photos"
+                  for-dropzone="save-confirmation"
+                  onfileadd="uploadPhoto" as |queue dropzone|}}
+                  {{photo-stream photos=model.images queue=queue dropzone=dropzone}}
                 {{/pl-uploader}}
               </div>
             </div>
