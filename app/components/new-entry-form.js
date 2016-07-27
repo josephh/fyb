@@ -1,8 +1,7 @@
 // app/components/new-entry.js
 import Ember from 'ember';
-import request from 'ic-ajax';
 
-const { get, set, inject, computed, isPresent, RSVP } = Ember;
+const {  set, inject, computed, isPresent } = Ember;
 
 export default Ember.Component.extend({
   // TODO set these services via DI(?)
@@ -21,12 +20,12 @@ export default Ember.Component.extend({
   init() {
     let component = this,
       newEntry = component.get('store').createRecord('entry');
+    component._super(...arguments);
     // don't forget to make 'newEntry' available as a property of the controller!
     component.set('newEntry', newEntry);
     newEntry.set('location', component.get('store').createFragment('location',
       {water: component.get('water').get('waterOptions.firstObject.value'), names: ''}
     ));
-    component._super(...arguments);
     component.set('waterOptions', component.get('water').get('waterOptions'));
     component.set('unitLabels', component.get('metric-imperial-fixtures').get('data'));
     component.set('speciesOptions', computed('newEntry.{location.water}', function() {
@@ -71,8 +70,8 @@ export default Ember.Component.extend({
       let newEntry = this.get('newEntry'), location = newEntry.get('location');
       // if the address_components array contains an element of type 'country / political', store the country code
       let placeCountryAddressElement = place.address_components.find(function(element) {
-        return ( element.types[0] === "country" && element.types[1] === "political" )
-      })
+        return ( element.types[0] === "country" && element.types[1] === "political" );
+      });
       if(isPresent(placeCountryAddressElement)) {
         location.set('country', placeCountryAddressElement.short_name);
       }
@@ -112,9 +111,8 @@ export default Ember.Component.extend({
     done() {
       console.log('done called (places auto complete)');
     },
-    enterClicked(event) {
+    enterClicked() {
       console.log('enterClicked handler');
-      debugger;
     }
   }
 });

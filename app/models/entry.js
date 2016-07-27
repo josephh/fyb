@@ -14,6 +14,6 @@ export default DS.Model.extend({
   weight: DS.attr('number', { defaultValue: 0.0 }),
   weightUnits: DS.attr('string'),
   image: DS.attr('string'),
-    location: MF.fragment('location'),
+  location: MF.fragment('location'),
   user: DS.attr()
 });

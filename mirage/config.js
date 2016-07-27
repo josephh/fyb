@@ -1,5 +1,3 @@
-import Ember from 'ember';
-
 export default function() {
 
   // These comments are here to help you get started. Feel free to delete them.
@@ -26,6 +24,8 @@ export default function() {
     http://www.ember-cli-mirage.com/docs/v0.2.x/shorthands/
   */
   this.passthrough('http://localhost:9000/entries', ['get']);
+  this.passthrough('http://localhost:4500/s3-signed-url', ['get']);
+  this.passthrough('https://s3-us-west-2.amazonaws.com/**', ['post']);
 
   this.post('/entries/{entryId}/upload-image', function() {
     debugger;

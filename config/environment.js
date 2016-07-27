@@ -39,7 +39,9 @@ module.exports = function(environment) {
         "'self'",
         "http://localhost:4500",
         "http://localhost:9000",
-        "http://private-fc323-fyb1.apiary-mock.com"],
+        "http://private-fc323-fyb1.apiary-mock.com",
+        "https://s3-us-west-2.amazonaws.com"
+      ],
 
       'img-src':     [
         "'self'",
@@ -50,7 +52,10 @@ module.exports = function(environment) {
         "https://maps.googleapis.com/",
         "http://www.shallowtails.com/",
         "http://www.otleyanglingclub.co.uk",
-        "http://www.sydneylake.com"],
+        "http://www.sydneylake.com",
+        "data:",
+        "'https://s3-us-west-2.amazonaws.com"
+      ],
 
       'style-src': ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
 
