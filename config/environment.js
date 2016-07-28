@@ -40,7 +40,7 @@ module.exports = function(environment) {
         "http://localhost:4500",
         "http://localhost:9000",
         "http://private-fc323-fyb1.apiary-mock.com",
-        "https://s3-us-west-2.amazonaws.com"
+        "https://s3-eu-west-1.amazonaws.com"
       ],
 
       'img-src':     [
@@ -54,7 +54,7 @@ module.exports = function(environment) {
         "http://www.otleyanglingclub.co.uk",
         "http://www.sydneylake.com",
         "data:",
-        "'https://s3-us-west-2.amazonaws.com"
+        "'https://s3-eu-west-1.amazonaws.com"
       ],
 
       'style-src': ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],

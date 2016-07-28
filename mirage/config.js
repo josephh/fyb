@@ -25,7 +25,7 @@ export default function() {
   */
   this.passthrough('http://localhost:9000/entries', ['get']);
   this.passthrough('http://localhost:4500/s3-signed-url', ['get']);
-  this.passthrough('https://s3-us-west-2.amazonaws.com/**', ['post']);
+  this.passthrough('https://s3-eu-west-1.amazonaws.com/**', ['post']);
 
   this.post('/entries/{entryId}/upload-image', function() {
     debugger;
