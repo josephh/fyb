@@ -104,7 +104,8 @@ export default Ember.Component.extend({
       console.log(`Bait? ${newEntry.get('bait')}`);
 
       newEntry.save().then( savedEntry => {
-        this.sendAction('onSave', savedEntry.get('id'));
+        console.log(`saved new entry with id ${savedEntry.id}`);
+        this.sendAction('onSave', savedEntry.id);
       });
 
     },

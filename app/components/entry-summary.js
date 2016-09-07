@@ -5,9 +5,10 @@ const { set, isNone } = Ember;
 export default Ember.Component.extend({
   init() {
     this._super(...arguments);
-    if(isNone(this.get('model.image')))
+    // debugger;
+    if(isNone(this.get('model.images')))
     {
-      set(this.get('model'), 'image', 'images/logo.svg');
+      set(this.get('model'), 'images', Ember.A(['images/logo.svg']));
     }
   }
 });

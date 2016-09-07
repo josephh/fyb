@@ -1,16 +1,16 @@
 import Ember from 'ember';
 import { request } from 'ic-ajax';
 
-const { get, set, RSVP } = Ember;
+const { get, set, RSVP, isNone, A } = Ember;
+// TODO this constant should probably live somewhere more general like environment.js
+const logo = Ember.Object.create({
+  path: 'images/logo.svg'
+});
 
 export default Ember.Route.extend({
   model(params) {
-    let e = this.store.findRecord('entry', params.entryId),
-     i = this.store.findAll('image');
-    return {
-      entry: e,
-      images: i
-    };
+    let e = this.store.peekRecord('entry', params.entryId);
+    return e;
   },
 
   loadPhoto(url) {
@@ -25,34 +25,36 @@ export default Ember.Route.extend({
 
   actions: {
     uploadPhoto(file) {
-      debugger;
-      let entryId = this.currentModel.entry.get('id');
-
-      var image = this.store.createRecord('image', {
-        name: get(file, 'name'),
-        uploadedAt: new Date()
-      });
+      let entry = this.currentModel, store = this.store;
 
       file.read().then((url) => {
         return this.loadPhoto(url);
-      }).then(function (img) {
-        set(image, 'width', img.width);
-        set(image, 'height', img.height);
       });
-
-      debugger;
 
       request('http://localhost:4500/s3-signed-url', {
         data: {
-          key : entryId
+          'file-name': get(file, 'name'),
+          'file-type': get(file, 'type')
         }
       })
-      .then(function (s3Direct) {
-        return file.upload(s3Direct.signedUrl);
+      .then((s3Direct) => {
+        return file.upload(s3Direct.url, {
+          data: s3Direct.credentials
+        });
       }).then(function (result) {
-        set(image, 'url', result.headers.Location);
-        image.save();
+        if(isNone(entry.get('images'))) {
+          set(entry, 'images', A[result.headers.Location]);
+        } else {
+          debugger;
+          let images = get(entry, 'images'), e = images.findBy('path', logo.path);
+          if (e) {
+            images.removeObject(e);
+          };
+          images.pushObject(Ember.Object.create({ path:  result.headers.Location }));
+        }
+        entry.save();
       });
+
     }
   }
 

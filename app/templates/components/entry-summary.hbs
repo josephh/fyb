@@ -4,7 +4,7 @@
       <div class="image-gallery-item">
         <span class="thumb-info">
           <span class="thumb-info-wrapper">
-            <img src="{{model.image}}" class="img-responsive" alt="fish image">
+            <img src="{{model.images.firstObject.path}}" class="img-responsive" alt="fish image">
             <span class="thumb-info-title">
               <span class="thumb-info-inner">{{model.species}}</span>
               {{#if model.showLengthAndWeight}}

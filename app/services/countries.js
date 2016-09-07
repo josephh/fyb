@@ -24,6 +24,6 @@ export default Ember.Service.extend({
       'Tanzania',
       'Uruguay',
       'V'
-    ])
+    ]);
   }
 });
