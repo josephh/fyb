@@ -1,1 +1,11 @@
-<h2>Redirected to login - not authenticated</h2>
+<h2>Log in page.</h2>
+<p class="text-center">Sign in or create an account</p>
+<div class="row text-center">
+  <div class="column">
+    <button type="button" class="btn btn-default" {{action "authenticateWithGoogle"}}>Google</button>
+    <button type="button" class="btn btn-default" {{action "authenticateWithFacebook"}}>Facebook</button>
+    <button type="button" class="btn btn-default" {{action "authenticateWithTwitter"}}>Twitter</button>
+  </div>
+</div>
+
+{{outlet}}

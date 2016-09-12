@@ -5,7 +5,17 @@ const { inject } = Ember;
 
 export default Ember.Route.extend({
   filter: Ember.Object.create({}),
+  classBindings: [],
+  attributeBindings: [],
   'fish-species': inject.service(),
+  'toriiSession': inject.service(),
+  beforeModel() {
+    if(this.get('toriiSession.isAuthenticated')) {
+      console.log('authenticated ok');
+    } else {
+      this.transitionTo('login');
+    }
+  },
   model(params) {
     let entries = this.store.findAll('entry', params);
     return {

@@ -1,83 +1,40 @@
-<!-- <header id="header" data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 140, "stickySetTop": "-140px"}'>
-  <div class="header-body">
-    <div class="header-top">
-      <div class="container">
-        <div class="header-sign-in pull-right">
-          <a href="index.html">
-            Sign In / Sign up
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="header-container container">
-      <div class="header-row">
-        <div class="header-column header-column-center">
-          <div class="header-logo">
-            <a href="index.html">
-              <img alt="Porto" width="111" height="54" src="img/logo.png">
-            </a>
-          </div>
-        </div>
+<header id="fyb-header">
+  <div class="container">
+    <div class="row">
+      <div class="column text-center">
+        {{#link-to 'login'}}
+          Sign In / Sign up
+        {{/link-to}}
       </div>
     </div>
   </div>
-</header> -->
-
-<header id="header" class="header-mobile-nav-only" data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 57, "stickySetTop": "-57px", "stickyChangeLogo": true}'>
-  <div class="header-body">
-    <div class="header-top">
-      <div class="container">
-        <div class="header-sign-in pull-right">
-          <a href="index.html">
-            Sign In / Sign up
-          </a>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="column pull-left">
+        <a href="index.html">
+          <img alt="FYB" width="200" height="100" src="images/logo.svg">
+        </a>
       </div>
-    </div>
-    <div class="header-container container">
-      <div class="header-row">
-        <div class="header-column">
-          <div class="header-logo">
-            <a href="index.html">
-              <img alt="FYB" width="200" height="100" data-sticky-width="82" data-sticky-height="40" data-sticky-top="33" src="images/logo.svg">
-            </a>
-          </div>
-        </div>
-        <div class="header-column">
-          <div class="header-row">
-            <div class="header-nav header-nav-stripe">
-              <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
-                <i class="fa fa-bars"></i>
-              </button>
-              <ul class="header-social-icons social-icons hidden-xs">
-                <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-              </ul>
-              <div class="header-nav-main header-nav-main-square header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
-                <nav>
-                  <ul class="nav nav-pills" id="mainNav">
-                    <li class="dropdown">
-                      {{#link-to 'entries'}}
-                        All Entries
-                      {{/link-to}}
-                    </li>
-                    <li class="dropdown dropdown-mega">
-                      {{#link-to 'my-entries'}}
-                        My Entries
-                      {{/link-to}}
-                    </li>
-                    <li class="dropdown active">
-                      {{#link-to 'add-entry'}}
-                        Add an Entry
-                      {{/link-to}}
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="column pull-right">
+        <nav>
+          <ul id="mainNav">
+            <li>
+              {{#link-to 'entries'}}
+              All Entries
+              {{/link-to}}
+            </li>
+            <li>
+              {{#link-to 'my-entries'}}
+              My Entries
+              {{/link-to}}
+            </li>
+            <li>
+              {{#link-to 'add-entry'}}
+              Add an Entry
+              {{/link-to}}
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
